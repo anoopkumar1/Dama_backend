@@ -1,0 +1,800 @@
+<div id="loading"></div>
+
+<!-- <head>
+  <script type="text/javascript" src="https://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+
+  <style>
+    * {
+      font-family: Roboto;
+    }
+
+    .card-header {
+      background-color: #0056b3;
+    }
+
+    .card-header h3 {
+      color: #fff;
+    }
+
+    .card-description {
+      font-weight: 500 !important;
+      margin-left: 0px !important;
+      font-size: 17px !important;
+      margin-bottom: 0.875rem !important;
+    }
+
+    .card-body {
+      background: #fff;
+    }
+
+    .submit-data {
+      border-radius: 5px;
+    }
+
+    .card-body:has(.update-rest.show) {
+      background: transparent;
+    }
+
+    .close {
+      font-size: 14px;
+      padding: 14px 24px !important;
+      background: #0056b3 !important;
+      color: #fff;
+      border-radius: 15px;
+    }
+
+    .close:hover {
+      color: #fff;
+    }
+
+    .modal-footer {
+      background: #fff;
+    }
+
+    .card-footer {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+
+    .navbar {
+      z-index: 9999;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .page-header h3 {
+      font-weight: 500 !important;
+      margin-left: 0px !important;
+      font-size: 17px !important;
+      margin-bottom: 0.875rem !important;
+    }
+  </style>
+  <style>
+    * {
+      font-family: Roboto;
+    }
+
+    .card-header {
+      background-color: #0056b3;
+    }
+
+    .card-header h3 {
+      color: #fff;
+    }
+
+    .card-description {
+      font-weight: 500 !important;
+      margin-left: 0px !important;
+      font-size: 17px !important;
+      margin-bottom: 0.875rem !important;
+    }
+
+    .card-body {
+      background: #fff;
+    }
+
+    .submit-data {
+      border-radius: 5px;
+    }
+
+    .card-body:has(.update-rest.show) {
+      background: transparent;
+    }
+
+    .close {
+      font-size: 14px;
+      padding: 14px 24px !important;
+      background: #0056b3 !important;
+      color: #fff;
+      border-radius: 15px;
+    }
+
+    .close:hover {
+      color: #fff;
+    }
+
+    .modal-footer {
+      background: #fff;
+    }
+
+    .card-footer {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+
+    .navbar {
+      z-index: 9999;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .page-header h3 {
+      font-weight: 500 !important;
+      margin-left: 0px !important;
+      font-size: 17px !important;
+    }
+  </style>
+</head> -->
+<div class="table-listing">
+<table class="table table-striped" id="example" style="width:100%">
+  <thead>
+    <tr>
+
+    </tr>
+    <th>TITLE</th>
+    <th>SUBTITLE</th>
+    <th>CONTENT</th>
+    <th>CATEGORY</th>
+
+    <th onclick="KWACHA_ADMIN.sortBy('n_created', '<%=data.sortOrder %>','<%=data.per_page %>')">CREATED
+      AT <i class="fa fa-fw fa-sort"></i></th>
+
+    <th>IMAGE</th>
+    <!-- <th style=" background-color:  #0056b3;">Tag</th> -->
+    <th>ACTION</th>
+  </thead>
+  <tbody>
+    <% if(data.data){ %>
+      <% _data=data.data; if(_data.length> 0 ) { %>
+        <% for (var i=0; i<_data.length; i++) { %>
+          <tr>
+            <td class="py-1 limited-text">
+              <%= _data[i]['n_title'] %>
+            </td>
+
+
+            <td class="limited-text">
+              <%= _data[i]['n_subTitle'] %>
+            </td>
+            <!-- <td>
+              <%= _data[i]['n_description'] %>
+            </td> -->
+            <td class="limited-text">
+
+              <%=_data[i]['n_content'] %>
+            </td>
+            <td class="limited-text">
+
+              <%=_data[i]['n_category'] %>
+            </td>
+            <td>
+              <%=_data[i]['n_created'] %>
+            </td>
+            <!-- <td>
+              <%=_data[i]['n_category'] %>
+            </td> -->
+            <td>
+              <%if(_data[i]['n_image'].length>0 ){%>
+                <img
+                  src="https://allora-bucket.s3.eu-north-1.amazonaws.com/images/users-profile-images/<%= _data[i]['n_image'][0] %>"
+                  width="500" height="600">
+                <% } else{ %>
+                  <img
+                    src="https://media.istockphoto.com/id/1320316989/vector/round-grungy-fake-news-rubber-stamp-imprint.webp?s=2048x2048&w=is&k=20&c=MVr1MrNTAnnP2OlYTBktzuGS31vr5NV-yrnCdxE4kzk="
+                    width="500" height="600">
+                  <%}%>
+            </td>
+
+            <!-- <td>
+              <%=_data[i]['n_tag'] %>
+            </td> -->
+
+
+            <td class="text-right">
+              <!-- <div class="dropdown">
+                <button class="no-border" type="" id="dropdownMenuButton<%= i %>" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v" style="color:#0056b3;"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton<%= i %>">
+                  <a class="dropdown-item edit jummah_editbtn" href="#" dataid="<%=_data[i]['n_uuid']%>">
+                    <i class="fas fa-edit" style="color:#0056b3;"></i> Edit
+                  </a>
+                  <a class="dropdown-item delete" href="#deleteEmployeeModal" data-toggle="modal"
+                    onclick="setUserId(`<%=_data[i]['n_uuid']  %>`)">
+                    <i class="fas fa-trash-alt" style="color:#0056b3;"></i> Delete
+                  </a>
+                </div> 
+              </div>-->
+
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle bg-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v" style="color:#0056b3;"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item edit jummah_editbtn" href="#" dataid="<%=_data[i]['n_uuid']%>">
+                      <i class="fas fa-edit" style="color:#0056b3;"></i> Edit
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item delete" href="#deleteEmployeeModal" data-toggle="modal"
+                    onclick="setUserId(`<%=_data[i]['n_uuid']  %>`)">
+                    <i class="fas fa-trash-alt" style="color:#0056b3;"></i> Delete
+                  </a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+
+
+          </tr>
+          <% } %>
+            <% } else { %>
+              <tr class="no-record-row">
+                <td colspan="5" style="text-align: center; vertical-align: middle">
+                  <span>No record found</span>
+                </td>
+
+              </tr>
+              <% }%>
+                <% } else { %>
+                  <tr class="no-record-row">
+                    <td colspan="9" style="text-align: center; vertical-align: middle;"><span><b>No record
+                          found</b></span></td>
+                  </tr>
+
+                  <% } %>
+  </tbody>
+
+</table>
+</div>
+<% if ( data && data.data && data.data.length> 0 ) { %>
+  <div id="paginationLinks">
+    <%- include('./include/components/pagination_links',{_function:' KWACHA_ADMIN.init'}); %>
+  </div>
+  <% } %>
+
+    </div>
+    <!--Start Edit User Modal HTML -->
+    <div id="deleteEmployeeModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <input type="hidden" id="hiddenuser">
+            <div class="modal-header">
+              <h4 class="modal-title">Delete News</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure, You want to delete this News? </p>
+            </div>
+            <div class="d-flex">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+
+              <input id="userdata" type="button" style="background-color: #0056b3; color: #fff;" type="submit"
+                class="btn btn" value="Delete" onclick="KWACHA_ADMIN.deleteNews()">
+            </div>
+          </form>
+        </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="editEmployeeModal" class="page-wrapper update-rest modal fade position-relative formPart p-0" aria-modal="false"
+      role="dialog">
+      <div class="">
+        <div class="content container-fluid p-0">
+          <div class="page-header d-flex align-items-center justify-content-end mb-5">
+            <!-- <h3 class="card-description UsersDetails pl-0 mb-0">Edit News</h3> -->
+            <div class="add-btn">
+              <button type="button" class="close show-button" data-dismiss="modal" aria-hidden="true">News List</button>
+            </div>
+          </div>
+          <form class="forms-sample editEmployeeModlFrom p-0" id="editEmployeeModlFrom" method="post" role="form">
+            <div class="responseformgroup editEmployeeresponseFrom" id="editEmployeeresponseFrom">
+              <div class="loader"></div>
+            </div>
+            <div class="modal-footer" style="border-top: 0px;">
+              <div class="d-flex gap-3">
+                <input type="button" class="btn btn-default cancelbtn" data-dismiss="modal" value="Cancel">
+                <button type="submit" class="btn btn-primary mr-2 updateBtn rounded-0">
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <style>
+      .limited-text {
+        max-width: 30ch;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    </style>
+
+
+    <script>
+      $('.show-button').on('click', function (e) {
+        e.preventDefault();
+        $('#paginationLinks').show();
+        $('.Search').show();
+
+
+      });
+      //Start-user Delete
+      function setUserId(userId) {
+        $("#hiddenuser").val(userId);
+      }
+      function setSelectedUserId(userId) {
+        localStorage.setItem('selectedUserId', userId);
+      }
+
+      //   order///////
+      function setSelectedOrderId(userId) {
+        localStorage.setItem('selectedUserId', userId);
+      }
+      KWACHA_ADMIN.deleteNews = function () {
+        console.log("Function deleteNews executed");
+        $("#userdata").html('Processing...');
+
+        let userUuid = $("#hiddenuser").val();
+        console.log("Retrieved userUuid:", userUuid);
+
+        if (userUuid) {
+          console.log("Valid userUuid:", userUuid);
+
+          $.ajax({
+            url: "/admin/delete-news",
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+            data: { userId: userUuid },
+            cache: false,
+            processData: true,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            method: "POST",
+            type: "POST",
+            beforeSend: function () {
+              console.log("AJAX request is about to be sent");
+            },
+            success: function (_res) {
+              console.log("AJAX request succeeded", _res);
+              $("#hiddenuser").val("");
+              let successConfig = {
+                title: "Confirmation",
+                message: `Operation performed successfully.`,
+                type: "success",
+              };
+              KWACHA_MAIN.sweetAlert(successConfig);
+            },
+            error: function (e) {
+              console.error("AJAX request failed", e);
+              $("#userdata").html("");
+              let responseText = JSON.parse(e.responseText);
+              let errorConfig = {
+                title: "Error",
+                message: responseText.message,
+                type: "error",
+              };
+              KWACHA_MAIN.sweetAlert(errorConfig);
+            },
+            complete: function () {
+              console.log("AJAX request completed");
+              window.location.reload();
+            }
+          });
+        } else {
+          console.log("No userUuid provided, skipping AJAX request");
+          $("#userdata").html("No user selected");
+        }
+      }
+      $(document).ready(function () {
+        $('#editEmployeeModlFrom').on('submit', function (e) {
+          e.preventDefault();
+
+          // Initialize form validity
+          let formValid = true;
+
+          // Clear previous error messages
+          $('.error-message').remove();
+
+          // Validate Title
+          const title = $('#title').val().trim();
+          if (title === '') {
+            $('#title').after('<span class="error-message" style="color:red;">Title is required</span>');
+            formValid = false;
+          }
+
+          // Validate Sub Title
+          const subTitle = $('#subTitle').val().trim();
+          if (subTitle === '') {
+            $('#subTitle').after('<span class="error-message" style="color:red;">Sub Title is required</span>');
+            formValid = false;
+          }
+
+          // Validate Content
+          const content = $('#content').val().trim();
+          if (content === '') {
+            $('#content').after('<span class="error-message" style="color:red;">Content is required</span>');
+            formValid = false;
+          }
+
+          // Validate Description
+          const description = $('#desc').val().trim();
+          if (description === '') {
+            $('#desc').after('<span class="error-message" style="color:red;">Description is required</span>');
+            formValid = false;
+          }
+
+          // Validate Category
+          const category = $('#category').val().trim();
+          if (category === '') {
+            $('#category').after('<span class="error-message" style="color:red;">Category is required</span>');
+            formValid = false;
+          }
+
+          // If form is valid, submit the form via AJAX
+          if (formValid) {
+            let formData = $(this).serialize();
+            console.log("edit start");
+
+            $.ajax({
+              'url': Homes_url() + 'admin/edit-news',
+              type: 'post',
+              data: formData,
+              dataType: 'json',
+              success: function (res) {
+                const msg = {
+                  title: "Confirmation",
+                  message: 'Operation performed successfully.',
+                  type: "success",
+                };
+
+                KWACHA_MAIN.sweetAlert(msg);
+
+                let _id = res.payload.newsUuid;
+                console.log("_id_id_id_id_id_id_id_id_id", _id);
+                KWACHA_MAIN.uploadMultiple(_id);
+
+
+                if (res.status) {
+                  let htmls = '';
+                  const obj = res.payload;
+
+                  obj.forEach((obj) => {
+                    htmls += '<div class="row">';
+                    htmls += '<input type="hidden" name="desc" id="hidden"  value="">';
+                    htmls += '<input type="hidden" name="newsUuid" id="hiddeneditRestorent" value="' + obj.n_uuid + '">';
+                    htmls += '<div class="col-md-4">';
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="userName">Title</label>';
+                    htmls += '<input type="text" value="' + obj.n_title + '" class="form-control" name="title" id="title" placeholder="Title">';
+                    htmls += '</div>';
+                    htmls += '</div>';
+                    htmls += '<div class="col-md-4">';
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="userName"> Sub Title</label>';
+                    htmls += '<input type="text" value="' + obj.n_subTitle + '" class="form-control" name="subTitle" id="subTitle" placeholder="Title">';
+                    htmls += '</div>';
+                    htmls += '</div>';
+                    htmls += '<div class="col-md-4">';
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="bookingid">Content</label>';
+                    htmls += '<input type="text" value="' + obj.n_content + '" class="form-control" name="content" id="content" placeholder="Enter Content">';
+                    htmls += '</div>';
+                    htmls += '</div>';
+
+                    htmls += '<div class="col-md-4">';
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="bookingid">Description</label>';
+                    htmls += '<textarea class="form-control" name="desc" id="desc" placeholder="Enter Description">' + obj.n_description + '</textarea>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+
+
+                    htmls += '<div class="col-md-4">';
+                    htmls += '<label for="fileName">Upload Image ' + obj.n_image[0] + '</label>';
+                    htmls += '<div class="form-group">';
+                    htmls += '<input style="border:1px solid #bfc4c9;border-radius:5px; width:100%;padding:7px" type="file" name="image" class="input-file" id="n_image" value="' + obj.n_image + '" class="form-control" name="fileName" id="fileName" multiple>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+
+
+                    htmls += '<div class="col-md-4">';
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="features">Category :</label>';
+                    htmls += '<select  name="category" id="category" >';
+                    var featuresList = [
+                      'Business', 'Entertainment', 'Broadcast journalism', 'Sports ',
+                      'International', 'Lifestyle expos', 'Features', 'Journalistic beats'
+                    ];
+                    featuresList.forEach(function (feature) {
+                      var isSelected = (obj.n_category == feature);
+                      console.log(isSelected, "isselcted");
+                      htmls += '<option value="' + feature + '"' + (isSelected ? ' selected' : '') + '>' + feature + '</option>';
+                    });
+                    htmls += '</select>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+
+                    $('#editEmployeeresponseFrom').html(htmls);
+                    var editor = CKEDITOR.replace("desc");
+                    editor.on("change", function (evt) {
+                      $("#hidden").val(evt.editor.getData());
+                    });
+                  });
+
+                  const msg = {
+                    title: "Success",
+                    message: 'News updated successfully',
+                    type: "success"
+                  };
+                  KWACHA_MAIN.sweetAlert(msg);
+                } else {
+                  const msg = {
+                    title: "Error",
+                    message: 'Operation performed failed.',
+                    type: "error"
+                  };
+                  KWACHA_MAIN.sweetAlert(msg);
+                }
+              },
+              error: function (e) {
+                const msg = {
+                  title: "Error",
+                  message: 'Update failed, "Please fill mandatory fields."',
+                  type: "error"
+                };
+                KWACHA_MAIN.sweetAlert(msg);
+              }
+            });
+          }
+        });
+
+        $('.jummah_editbtn').on('click', function (e) {
+          e.preventDefault();
+          const dataid = $(this).attr('dataid');
+          let htmls = '';
+          $('#example').hide();
+          $('#close').hide();
+          $('#paginationLinks').hide();
+          $('.Search').hide();
+          $('.selectbox').hide();
+          $("#editEmployeeModal").attr('style', 'padding-right: 19px; display: block;');
+          $("#editEmployeeModal").attr('aria-modal', 'true');
+          $("#editEmployeeModal").attr('role', 'dialog');
+          $("#editEmployeeModal").addClass('show');
+
+          if (dataid != '') {
+            $.ajax({
+              'url': Homes_url() + 'admin/get-news-by-id/' + dataid,
+              type: 'get',
+              headers: {
+                Authorization: localStorage.getItem("token"),
+              },
+              dataType: 'json',
+              success: function (res) {
+
+                if (res.status) {
+                  const obj = res.payload;
+                  obj.forEach((obj) => {
+                    htmls += '<div class="card border-0">';
+                    htmls += '<div class="card-header bg-transparent border-0">';
+                    htmls += '<h3 class="card-title">';
+                    htmls += 'Edit News Details';
+                    htmls += '</h3>';
+                    htmls += '</div>';
+                    htmls += '<div class="card-body">';
+                    htmls += '<div class="d-flex">';
+                    htmls += '<div class="upload-side">';
+                    htmls += '<div class="position-relative">';
+                    htmls += '<label for="upload-pic" class="mb-3">';
+                    htmls += 'Profile image'
+                    htmls += '</label>';
+                    htmls += '<input type="file" name="image" class="input-file" id="n_image" value="' + obj.n_image[0] + '" class="form-control" name="fileName" id="fileName" multiple>';
+                    htmls += '<div class="placeholder-view">';
+                    htmls += '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" data-testid="Icon" fill="currentColor" height="1em" width="1em">';
+                    htmls += '<path d="M24,12 C28.418278,12 32,15.581722 32,20 L32,22 C32,26.418278 28.418278,30 24,30 C19.581722,30 16,26.418278 16,22 L16,20 C16,15.581722 19.581722,12 24,12 Z M24,32 C33.8734019,32 42.1092023,38.8710577 44,48 L4,48 C5.89079771,38.8710577 14.1265981,32 24,32 Z">';
+                    htmls += '</path>';
+                    htmls += '</svg>';
+                    htmls += '<div class="camra">';
+                    htmls += '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" data-testid="AddAPhotoOutlinedIcon" class="svg-icon icon-sm" height="1em" width="1em">';
+                    htmls += '<path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z">';
+                    htmls += '</path>';
+                    htmls += '</svg>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+                    htmls += '<div class="form-file">';
+                    htmls += '<input type="hidden" name="desc" id="hidden"  value="">';
+                    htmls += '<input type="hidden" name="newsUuid" id="hiddeneditRestorent" value="' + obj.n_uuid + '">';
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="userName">Title</label>';
+                    htmls += '<input type="text" value="' + obj.n_title + '" class="form-control" name="title" id="title" placeholder="Title">';
+                    htmls += '</div>';
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="userName"> Sub Title</label>';
+                    htmls += '<input type="text" value="' + obj.n_subTitle + '" class="form-control" name="subTitle" id="subTitle" placeholder="Title">';
+                    htmls += '</div>';
+                    htmls += '<div class="col-md-12">';
+                    htmls += '<label for="bookingid">Content</label>';
+                    htmls += '<input type="text" value="' + obj.n_content + '" class="form-control" name="content" id="content" placeholder="Enter Content">';
+                    htmls += '</div>';
+
+                    // htmls += '<div class="col-md-12">';
+                    // htmls += '<label for="fileName">Upload Image ' + obj.n_image[0] + '</label>';
+                    // htmls += '<div class="form-group">';
+                    // htmls += '<input style="border:1px solid grey;border-radius:5px; width:100%;padding:7px; background:#fff;" type="file" name="image" class="input-file" id="n_image" value="' + obj.n_image[0] + '" class="form-control" name="fileName" id="fileName" multiple>';
+                    // htmls += '</div>';
+                    // htmls += '</div>';
+
+                    
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="features">Category :</label>';
+                    htmls += '<select  name="category" id="category" class="w-100 select-items" >';
+                    var featuresList = [
+                      'Business', 'Entertainment', 'Broadcast journalism', 'Sports ',
+                      'International', 'Lifestyle expos', 'Features', 'Journalistic beats'
+                    ];
+                    featuresList.forEach(function (feature) {
+                      var isSelected = (obj.n_category == feature);
+                      console.log(isSelected, "isselcted");
+                      htmls += '<option value="' + feature + '"' + (isSelected ? ' selected' : '') + '>' + feature + '</option>';
+                    });
+                    htmls += '</select>';
+                    htmls += '</div>';
+
+                    htmls += '<div class="form-group">';
+                    htmls += '<label for="bookingid">Description</label>';
+                    htmls += '<textarea class="form-control"  id="desc" placeholder="Enter Description">' + obj.n_description + '</textarea>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+                    htmls += '</div>';
+                    $('#editEmployeeresponseFrom').html(htmls);
+                    var editor = CKEDITOR.replace("desc");
+                    editor.on("change", function (evt) {
+                      document.getElementById("hidden").value = evt.editor.getData();
+                    });
+                    editor.on("instanceReady", function (evt) {
+                      document.getElementById("hidden").value = evt.editor.getData();
+                    });
+                  });
+
+                } else {
+                  $(".modal").removeAttr('style');
+                  $(".modal").attr('aria-modal', 'false');
+                  $(".modal").removeAttr('role');
+                  $(".modal").removeClass('show');
+
+                  const msg = {
+                    title: "Error",
+                    message: 'Edit failed...',
+                    type: "error"
+                  };
+                  KWACHA_MAIN.sweetAlert(msg);
+                }
+              }
+            });
+          } else {
+            $(".modal").removeAttr('style');
+            $(".modal").attr('aria-modal', 'false');
+            $(".modal").removeAttr('role');
+            $(".modal").removeClass('show');
+
+            const msg = {
+              title: "Error",
+              message: 'Edit failed...',
+              type: "error"
+            };
+            KWACHA_MAIN.sweetAlert(msg);
+          }
+        });
+
+        $('.close').on('click', function (e) {
+          e.preventDefault();
+          $('#example').show();
+          $('#close').show();
+          $(".modal").removeAttr('style');
+          $(".modal").attr('aria-modal', 'false');
+          $(".modal").removeAttr('role');
+          $('.modal').removeClass('show');
+        });
+
+        $('.cancelbtn').on('click', function (e) {
+          e.preventDefault();
+          $('.modal').removeClass('show');
+          $(".modal").removeAttr('style');
+          $(".modal").attr('aria-modal', 'false');
+          $(".modal").removeAttr('role');
+        });
+      });
+
+      KWACHA_MAIN.uploadMultiple = function (_id) {
+        if (document.getElementById("n_image")) {
+          if (typeof document.getElementById("n_image").files !== "undefined" && document.getElementById("n_image").files.length > 0) {
+            var formData = new FormData();
+            var files = document.getElementById("n_image").files;
+            console.log("Files received from frontend:", files);
+            for (var i = 0; i <= files.length; i++) {
+              formData.append("multiple", files[i]);
+            }
+            formData.append("newsUuid", _id);
+            $.ajax({
+              url: "/admin/upload-image",
+              data: formData,
+              dataType: "json",
+              cache: false,
+              contentType: false,
+              processData: false,
+              method: "POST",
+              type: "POST",
+              success: function () {
+                $("#insertRestaurant").trigger("reset");
+                const msg = {
+                  title: "Error",
+                  message: 'Edit Succesfully',
+                  type: "succes"
+                };
+                KWACHA_MAIN.sweetAlert(msg);
+              },
+              error: function (error) {
+                let message = error.responseJSON ? error.responseJSON.message : "Something Went wrong!";
+                KWACHA_MAIN.sweetAlert({ title: "Error", message: message, type: "error" });
+              },
+            });
+          }
+        }
+      };
+
+
+
+      $(document).ready(function () {
+        $('.jummah_editbtn').click(function () {
+          $('.datatable').hide();
+          $('.selectbox').hide();
+        });
+        $('.close').click(function () {
+          $('.update-rest').hide();
+          $('.datatable').show();
+          $('.selectbox').show();
+        });
+        $('.confirm').click(function () {
+          $('.update-rest').hide();
+          $('.datatable').show();
+          $('.selectbox').show();
+        });
+        $('.cancelbtn').click(function () {
+          $('.update-rest').hide();
+          $('.datatable').show();
+          $('.selectbox').show();
+        });
+      });
+    </script>

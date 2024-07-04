@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+
+
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="/admin/theme/css/style.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Alex+Brush" rel="stylesheet">
+  </head>
+
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+        <div class="d-flex justify-content-between">
+          <%- include('./include/sidebar'); %>
+            <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" /> -->
+            <!-- partial -->
+            <div class="content-side" id="content-side">
+              <!-- partial:../../partials/_settings-panel.html -->
+              <style>
+                button#generatePDF {
+                  color: white;
+                  background-color: rgb(21 116 45);
+                  border: none;
+                  height: 26px;
+                  font-family: sans-serif;
+                  font-weight: 800;
+                  border-radius: 5px;
+                  margin-bottom: 7px;
+                  float: right;
+                }
+
+                .search {
+                  justify-content: flex-end;
+                }
+
+                .search button {
+                  font-size: 14px;
+                  padding: 14px 24px !important;
+                  background: #0056b3 !important;
+                  color: #fff;
+                  border-radius: 0;
+                  border: 0;
+                  margin-bottom: 16px;
+                }
+
+                .card .card-description {
+                  font-weight: 500 !important;
+                  margin-left: 0px !important;
+                  font-size: 16px !important;
+                  padding: 0 !important;
+                  height: max-content !important;
+                  margin-bottom: 18px !important;
+                }
+
+                .Search {
+                  margin-bottom: 1rem;
+                }
+
+                .Search {
+                  align-items: center;
+                }
+
+                .search input {
+                  padding: 7px 20px;
+                  width: 180px;
+                  border: none !important;
+                  background: #f5f7ff;
+                }
+
+                .pagination-container {
+                  position: sticky;
+                  left: 0;
+                }
+              </style>
+              <div class="theme-setting-wrapper">
+                <div id="settings-trigger"><i class="ti-settings"></i></div>
+                <div id="theme-settings" class="settings-panel">
+                  <i class="settings-close ti-close"></i>
+                  <p class="settings-heading">SIDEBAR SKINS</p>
+                  <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                    <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                    Light
+                  </div>
+                  <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                    <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+                    Dark
+                  </div>
+                  <p class="settings-heading mt-2">HEADER SKINS</p>
+                  <div class="color-tiles mx-0 px-4">
+                    <div class="tiles success"></div>
+                    <div class="tiles warning"></div>
+                    <div class="tiles danger"></div>
+                    <div class="tiles info"></div>
+                    <div class="tiles dark"></div>
+                    <div class="tiles default"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- partial -->
+              <!-- partial:../../partials/_sidebar.html -->
+
+              <!-- partial -->
+
+              <div class="main-panel">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                      <div class="card border-0">
+                        <div class="card-body22">
+                          <div class="Search">
+                            <p class="card-description UsersDetails pl-0">Contact us</p>
+                            <div class="d-flex justify-content-end gap-3">
+
+                              <div style="width: 80px;" class="selectbox ">
+
+                                <select class="form-control" id="pagination" class="back">
+                                  <option value="10" selected>10</option>
+                                  <option value="25">25</option>
+                                  <option value="50">50</option>
+                                  <option value="1000">1000</option>
+                                </select>
+                              </div>
+                              <div class="add-btn">
+                                <a href="/admin/create-contact">Add Content</a>
+                              </div>
+                            </div>
+                            <div class="wrap">
+                              <!-- <div class="search">
+                              <input type="search" id="search" placeholder="Search">
+                            </div> -->
+                            </div>
+                          </div>
+                          <div class="table-responsive dynamic-listing dinamic-table" id="excelfile">
+                            <table class="table table-striped">
+                              <thead>
+                                <tr class="userHeader">
+                                  <th>
+                                    TYPE
+                                  </th>
+                                  <th>
+                                    CONTENT
+                                  </th>
+                                  <th>
+                                    CREATED
+                                  </th>
+                                  <th>
+                                    ACTION
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="loader" id="dataLoader"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <!-- partial -->
+              </div>
+              <!-- main-panel ends -->
+            </div>
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+      <!-- endinject -->
+      <!-- Custom js for this page-->
+      <!-- End custom js for this page-->
+  </body>
+
+</html>
+<script>
+  var KWACHA_ADMIN = {};
+
+  KWACHA_ADMIN.init = function (pageNum, sortBy, sortOrder, searchValue) {
+
+    $("#loading").show();
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "contact-list-ajax",
+      pageNumber: pageNum,
+      sortBy: sortBy,
+      sortOrder: sortOrder,
+      keywords: searchValue
+    };
+    KWACHA_MAIN.loadPageData(pageNum, KWACHA_ADMIN_PAGE_CONFIG);
+  };
+  KWACHA_ADMIN.sortBy = function (sortBy, sortOrder, page) {
+    $("#loading").show();
+    if (sortOrder == 'ASC') {
+
+      sortOrder = 'DESC';
+    } else {
+      sortOrder = 'ASC';
+    }
+    KWACHA_ADMIN.init(page, sortBy, sortOrder);
+  }
+  KWACHA_ADMIN.init(0, 'dc_created', 'ASC');
+  $("#search").on('input', function () {
+    clearTimeout(this.delay);
+    this.delay = setTimeout(function () {
+      $(this).trigger('search');
+    }.bind(this), 2000);
+  }).on('search', function () {
+    if (this.value) {
+      $("#loading").show();
+      let searchValue = $("#search").val();
+      KWACHA_ADMIN.init(0, 'dc_created', 'ASC', searchValue);
+    }
+  });
+  $("#pagination").change(function () {
+    let perPage = $('#pagination').val();
+    $("#loading").show();
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "contact-list-ajax",
+      pageNumber: 0,
+      sortBy: 'dc_created',
+      sortOrder: 'ASC',
+      perPage: perPage,
+
+    };
+
+    KWACHA_MAIN.loadPageData(0, KWACHA_ADMIN_PAGE_CONFIG);
+  });
+
+</script>

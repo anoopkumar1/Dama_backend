@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+  <style>
+    .submit-data {
+      width: max-content;
+    }
+
+    .malyislect-main {
+      overflow: auto;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .intl-tel-input,
+    .iti {
+      width: 100%;
+    }
+
+    * {
+      font-family: Roboto;
+    }
+
+    .submit-data {
+      width: max-content;
+    }
+
+    .selet-opt {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      border: 2px solid #ced4da;
+    }
+
+    .form-group input {
+      border: 2px solid #ced4da;
+    }
+
+    .card-header {
+      background-color: #0056b3;
+    }
+
+    .card-header h3 {
+      color: #fff;
+    }
+
+    .card-description {
+      font-weight: 500 !important;
+      margin-left: 0px !important;
+      font-size: 17px !important;
+      margin-bottom: 0 !important;
+    }
+
+    .card-body {
+      background: #fff;
+    }
+
+    .submit-data {
+      border-radius: 5px;
+    }
+  </style>
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+        <div class="d-flex">
+          <%- include('./include/sidebar'); %>
+            <!-- partial -->
+            <div class="content-side" id="content-side">
+              <div class="container">
+                <!-- partial:../../partials/_settings-panel.html -->
+                <div class="theme-setting-wrapper">
+                  <div id="settings-trigger"><i class="ti-settings"></i></div>
+                  <div id="theme-settings" class="settings-panel">
+                    <i class="settings-close ti-close"></i>
+                    <p class="settings-heading">SIDEBAR SKINS</p>
+                    <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                      <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                      Light
+                    </div>
+                    <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                      <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+                      Dark
+                    </div>
+                    <p class="settings-heading mt-2">HEADER SKINS</p>
+                    <div class="color-tiles mx-0 px-4">
+                      <div class="tiles success"></div>
+                      <div class="tiles warning"></div>
+                      <div class="tiles danger"></div>
+                      <div class="tiles info"></div>
+                      <div class="tiles dark"></div>
+                      <div class="tiles default"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- partial -->
+                <!-- partial:partials/_sidebar.html -->
+
+                <!-- partial -->
+                <div class="main-panel">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12 grid-margin stretch-card">
+                        <div class="card-body22 w-100">
+                          <div class="card-body">
+                            <form class="forms-sample" id="insertUser" method="post" role="form">
+                              <div class="d-flex justify-content-between mb-4">
+                                <h3 class="card-title">Create member</h3>
+                                <button type="submit" class="btn btn-primary border-0 rounded-0">
+                                  Submit
+                                </button>
+                              </div>
+                              <div class="form-file w-100">
+                              <div class="form-group">
+                                <label for="usersName">First name</label>
+                                <input type="text" class="form-control" name="firstName" id="firstName"
+                                  placeholder="First Name" />
+                              </div>
+                              <div class="form-group">
+                                <label for="userLast">Last name</label>
+                                <input type="text" class="form-control" name="lastName" id="lastName"
+                                  placeholder="Last Name" />
+                              </div>
+                              <div class="form-group" id="vpn">
+                                <label for="userPassword">Password</label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                  placeholder=" Password" />
+                              </div>
+
+                              <div class="form-group" id="vpn">
+                                <label for="userPassword">Email</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder=" Email" />
+                              </div>
+
+                              <div class="form-group" id="vpn">
+                                <label for="phoneField">Phone</label>
+                                <div class="d-flex">
+                                  <select id="countrySelect" class="select-codes">
+                                    <option value="+93">+93 (Afghanistan)</option>
+                                    <option value="+355">+355 (Albania)</option>
+                                    <option value="+213">+213 (Algeria)</option>
+                                    <option value="+376">+376 (Andorra)</option>
+                                    <option value="+244">+244 (Angola)</option>
+                                    <option value="+1264">+1264 (Anguilla)</option>
+                                    <option value="+1268">+1268 (Antigua and Barbuda)</option>
+                                    <option value="+54">+54 (Argentina)</option>
+                                    <option value="+374">+374 (Armenia)</option>
+                                    <option value="+297">+297 (Aruba)</option>
+                                    <option value="+61">+61 (Australia)</option>
+                                    <option value="+43">+43 (Austria)</option>
+                                    <option value="+994">+994 (Azerbaijan)</option>
+                                    <option value="+1242">+1242 (Bahamas)</option>
+                                    <option value="+973">+973 (Bahrain)</option>
+                                    <option value="+880">+880 (Bangladesh)</option>
+                                    <option value="+1246">+1246 (Barbados)</option>
+                                    <option value="+375">+375 (Belarus)</option>
+                                    <option value="+32">+32 (Belgium)</option>
+                                    <option value="+501">+501 (Belize)</option>
+                                    <option value="+229">+229 (Benin)</option>
+                                    <option value="+1441">+1441 (Bermuda)</option>
+                                    <option value="+975">+975 (Bhutan)</option>
+                                    <option value="+591">+591 (Bolivia)</option>
+                                    <option value="+387">+387 (Bosnia and Herzegovina)</option>
+                                    <option value="+267">+267 (Botswana)</option>
+                                    <option value="+55">+55 (Brazil)</option>
+                                    <option value="+246">+246 (British Indian Ocean Territory)</option>
+                                    <option value="+673">+673 (Brunei)</option>
+                                    <option value="+359">+359 (Bulgaria)</option>
+                                    <option value="+226">+226 (Burkina Faso)</option>
+                                    <option value="+257">+257 (Burundi)</option>
+                                    <option value="+855">+855 (Cambodia)</option>
+                                    <option value="+237">+237 (Cameroon)</option>
+                                    <option value="+1">+1 (Canada)</option>
+                                    <option value="+238">+238 (Cape Verde)</option>
+                                    <option value="+1345">+1345 (Cayman Islands)</option>
+                                    <option value="+236">+236 (Central African Republic)</option>
+                                    <option value="+235">+235 (Chad)</option>
+                                    <option value="+56">+56 (Chile)</option>
+                                    <option value="+86">+86 (China)</option>
+                                    <option value="+61">+61 (Christmas Island)</option>
+                                    <option value="+61">+61 (Cocos (Keeling) Islands)</option>
+                                    <option value="+57">+57 (Colombia)</option>
+                                    <option value="+269">+269 (Comoros)</option>
+                                    <option value="+243">+243 (Congo (DRC))</option>
+                                    <option value="+242">+242 (Congo (Republic))</option>
+                                    <option value="+682">+682 (Cook Islands)</option>
+                                    <option value="+506">+506 (Costa Rica)</option>
+                                    <option value="+225">+225 (Cote d'Ivoire)</option>
+                                    <option value="+385">+385 (Croatia)</option>
+                                    <option value="+53">+53 (Cuba)</option>
+                                    <option value="+599">+599 (Curacao)</option>
+                                    <option value="+357">+357 (Cyprus)</option>
+                                    <option value="+420">+420 (Czech Republic)</option>
+                                    <option value="+45">+45 (Denmark)</option>
+                                    <option value="+253">+253 (Djibouti)</option>
+                                    <option value="+1767">+1767 (Dominica)</option>
+                                    <option value="+1">+1 (Dominican Republic)</option>
+                                    <option value="+593">+593 (Ecuador)</option>
+                                    <option value="+20">+20 (Egypt)</option>
+                                    <option value="+503">+503 (El Salvador)</option>
+                                    <option value="+240">+240 (Equatorial Guinea)</option>
+                                    <option value="+291">+291 (Eritrea)</option>
+                                    <option value="+372">+372 (Estonia)</option>
+                                    <option value="+251">+251 (Ethiopia)</option>
+                                    <option value="+500">+500 (Falkland Islands)</option>
+                                    <option value="+298">+298 (Faroe Islands)</option>
+                                    <option value="+679">+679 (Fiji)</option>
+                                    <option value="+358">+358 (Finland)</option>
+                                    <option value="+33">+33 (France)</option>
+                                    <option value="+594">+594 (French Guiana)</option>
+                                    <option value="+689">+689 (French Polynesia)</option>
+                                    <option value="+241">+241 (Gabon)</option>
+                                    <option value="+220">+220 (Gambia)</option>
+                                    <option value="+995">+995 (Georgia)</option>
+                                    <option value="+49">+49 (Germany)</option>
+                                    <option value="+233">+233 (Ghana)</option>
+                                    <option value="+350">+350 (Gibraltar)</option>
+                                    <option value="+30">+30 (Greece)</option>
+                                    <option value="+299">+299 (Greenland)</option>
+                                    <option value="+1473">+1473 (Grenada)</option>
+                                    <option value="+590">+590 (Guadeloupe)</option>
+                                    <option value="+1671">+1671 (Guam)</option>
+                                    <option value="+502">+502 (Guatemala)</option>
+                                    <option value="+44">+44 (Guernsey)</option>
+                                    <option value="+224">+224 (Guinea)</option>
+                                    <option value="+245">+245 (Guinea-Bissau)</option>
+                                    <option value="+592">+592 (Guyana)</option>
+                                    <option value="+509">+509 (Haiti)</option>
+                                    <option value="+504">+504 (Honduras)</option>
+                                    <option value="+852">+852 (Hong Kong)</option>
+                                    <option value="+36">+36 (Hungary)</option>
+                                    <option value="+354">+354 (Iceland)</option>
+                                    <option value="+91" selected>+91 (India)</option>
+                                    <option value="+62">+62 (Indonesia)</option>
+                                    <option value="+98">+98 (Iran)</option>
+                                    <option value="+964">+964 (Iraq)</option>
+                                    <option value="+353">+353 (Ireland)</option>
+                                    <option value="+44">+44 (Isle of Man)</option>
+                                    <option value="+972">+972 (Israel)</option>
+                                    <option value="+39">+39 (Italy)</option>
+                                    <option value="+1876">+1876 (Jamaica)</option>
+                                    <option value="+81">+81 (Japan)</option>
+                                    <option value="+44">+44 (Jersey)</option>
+                                    <option value="+962">+962 (Jordan)</option>
+                                    <option value="+7">+7 (Kazakhstan)</option>
+                                    <option value="+254">+254 (Kenya)</option>
+                                    <option value="+686">+686 (Kiribati)</option>
+                                    <option value="+383">+383 (Kosovo)</option>
+                                    <option value="+965">+965 (Kuwait)</option>
+                                    <option value="+996">+996 (Kyrgyzstan)</option>
+                                    <option value="+856">+856 (Laos)</option>
+                                    <option value="+371">+371 (Latvia)</option>
+                                    <option value="+961">+961 (Lebanon)</option>
+                                    <option value="+266">+266 (Lesotho)</option>
+                                    <option value="+231">+231 (Liberia)</option>
+                                    <option value="+218">+218 (Libya)</option>
+                                    <option value="+423">+423 (Liechtenstein)</option>
+                                    <option value="+370">+370 (Lithuania)</option>
+                                    <option value="+352">+352 (Luxembourg)</option>
+                                    <option value="+853">+853 (Macau)</option>
+                                    <option value="+389">+389 (Macedonia)</option>
+                                    <option value="+261">+261 (Madagascar)</option>
+                                    <option value="+265">+265 (Malawi)</option>
+                                    <option value="+60">+60 (Malaysia)</option>
+                                    <option value="+960">+960 (Maldives)</option>
+                                    <option value="+223">+223 (Mali)</option>
+                                    <option value="+356">+356 (Malta)</option>
+                                    <option value="+692">+692 (Marshall Islands)</option>
+                                    <option value="+596">+596 (Martinique)</option>
+                                    <option value="+222">+222 (Mauritania)</option>
+                                    <option value="+230">+230 (Mauritius)</option>
+                                    <option value="+262">+262 (Mayotte)</option>
+                                    <option value="+52">+52 (Mexico)</option>
+                                    <option value="+691">+691 (Micronesia)</option>
+                                    <option value="+373">+373 (Moldova)</option>
+                                    <option value="+377">+377 (Monaco)</option>
+                                    <option value="+976">+976 (Mongolia)</option>
+                                    <option value="+382">+382 (Montenegro)</option>
+                                    <option value="+1664">+1664 (Montserrat)</option>
+                                    <option value="+212">+212 (Morocco)</option>
+                                    <option value="+258">+258 (Mozambique)</option>
+                                    <option value="+95">+95 (Myanmar)</option>
+                                    <option value="+264">+264 (Namibia)</option>
+                                    <option value="+674">+674 (Nauru)</option>
+                                    <option value="+977">+977 (Nepal)</option>
+                                    <option value="+31">+31 (Netherlands)</option>
+                                    <option value="+687">+687 (New Caledonia)</option>
+                                    <option value="+64">+64 (New Zealand)</option>
+                                    <option value="+505">+505 (Nicaragua)</option>
+                                    <option value="+227">+227 (Niger)</option>
+                                    <option value="+234">+234 (Nigeria)</option>
+                                    <option value="+683">+683 (Niue)</option>
+                                    <option value="+672">+672 (Norfolk Island)</option>
+                                    <option value="+850">+850 (North Korea)</option>
+                                    <option value="+1670">+1670 (Northern Mariana Islands)</option>
+                                    <option value="+47">+47 (Norway)</option>
+                                    <option value="+968">+968 (Oman)</option>
+                                    <option value="+92">+92 (Pakistan)</option>
+                                    <option value="+680">+680 (Palau)</option>
+                                    <option value="+970">+970 (Palestine)</option>
+                                    <option value="+507">+507 (Panama)</option>
+                                    <option value="+675">+675 (Papua New Guinea)</option>
+                                    <option value="+595">+595 (Paraguay)</option>
+                                    <option value="+51">+51 (Peru)</option>
+                                    <option value="+63">+63 (Philippines)</option>
+                                    <option value="+48">+48 (Poland)</option>
+                                    <option value="+351">+351 (Portugal)</option>
+                                    <option value="+1">+1 (Puerto Rico)</option>
+                                    <option value="+974">+974 (Qatar)</option>
+                                    <option value="+262">+262 (Reunion)</option>
+                                    <option value="+40">+40 (Romania)</option>
+                                    <option value="+7">+7 (Russia)</option>
+                                    <option value="+250">+250 (Rwanda)</option>
+                                    <option value="+590">+590 (Saint Barthelemy)</option>
+                                    <option value="+290">+290 (Saint Helena)</option>
+                                    <option value="+1869">+1869 (Saint Kitts and Nevis)</option>
+                                    <option value="+1758">+1758 (Saint Lucia)</option>
+                                    <option value="+590">+590 (Saint Martin)</option>
+                                    <option value="+508">+508 (Saint Pierre and Miquelon)</option>
+                                    <option value="+1784">+1784 (Saint Vincent and the Grenadines)</option>
+                                    <option value="+685">+685 (Samoa)</option>
+                                    <option value="+378">+378 (San Marino)</option>
+                                    <option value="+239">+239 (Sao Tome and Principe)</option>
+                                    <option value="+966">+966 (Saudi Arabia)</option>
+                                    <option value="+221">+221 (Senegal)</option>
+                                    <option value="+381">+381 (Serbia)</option>
+                                    <option value="+248">+248 (Seychelles)</option>
+                                    <option value="+232">+232 (Sierra Leone)</option>
+                                    <option value="+65">+65 (Singapore)</option>
+                                    <option value="+421">+421 (Slovakia)</option>
+                                    <option value="+386">+386 (Slovenia)</option>
+                                    <option value="+677">+677 (Solomon Islands)</option>
+                                    <option value="+252">+252 (Somalia)</option>
+                                    <option value="+27">+27 (South Africa)</option>
+                                    <option value="+82">+82 (South Korea)</option>
+                                    <option value="+211">+211 (South Sudan)</option>
+                                    <option value="+34">+34 (Spain)</option>
+                                    <option value="+94">+94 (Sri Lanka)</option>
+                                    <option value="+249">+249 (Sudan)</option>
+                                    <option value="+597">+597 (Suriname)</option>
+                                    <option value="+47">+47 (Svalbard and Jan Mayen)</option>
+                                    <option value="+268">+268 (Swaziland)</option>
+                                    <option value="+46">+46 (Sweden)</option>
+                                    <option value="+41">+41 (Switzerland)</option>
+                                    <option value="+963">+963 (Syria)</option>
+                                    <option value="+886">+886 (Taiwan)</option>
+                                    <option value="+992">+992 (Tajikistan)</option>
+                                    <option value="+255">+255 (Tanzania)</option>
+                                    <option value="+66">+66 (Thailand)</option>
+                                    <option value="+670">+670 (Timor-Leste)</option>
+                                    <option value="+228">+228 (Togo)</option>
+                                    <option value="+690">+690 (Tokelau)</option>
+                                    <option value="+676">+676 (Tonga)</option>
+                                    <option value="+1868">+1868 (Trinidad and Tobago)</option>
+                                    <option value="+216">+216 (Tunisia)</option>
+                                    <option value="+90">+90 (Turkey)</option>
+                                    <option value="+993">+993 (Turkmenistan)</option>
+                                    <option value="+1649">+1649 (Turks and Caicos Islands)</option>
+                                    <option value="+688">+688 (Tuvalu)</option>
+                                    <option value="+256">+256 (Uganda)</option>
+                                    <option value="+380">+380 (Ukraine)</option>
+                                    <option value="+971">+971 (United Arab Emirates)</option>
+                                    <option value="+44">+44 (United Kingdom)</option>
+                                    <option value="+1">+1 (United States)</option>
+                                    <option value="+598">+598 (Uruguay)</option>
+                                    <option value="+998">+998 (Uzbekistan)</option>
+                                    <option value="+678">+678 (Vanuatu)</option>
+                                    <option value="+58">+58 (Venezuela)</option>
+                                    <option value="+84">+84 (Vietnam)</option>
+                                    <option value="+1284">+1284 (British Virgin Islands)</option>
+                                    <option value="+1340">+1340 (US Virgin Islands)</option>
+                                    <option value="+681">+681 (Wallis and Futuna)</option>
+                                    <option value="+212">+212 (Western Sahara)</option>
+                                    <option value="+967">+967 (Yemen)</option>
+                                    <option value="+260">+260 (Zambia)</option>
+                                    <option value="+263">+263 (Zimbabwe)</option>
+                                  </select>
+                                  <input type="tel" id="phoneField" class="form-control intl-tel-input"
+                                    placeholder="Phone Number" name="phoneField">
+                                </div>
+                              </div>
+                              <!-- 
+                          <div class="row adjust">
+                            <div class="col-md-1">
+                              <label for="userPhone">Phone:</label>
+                              <select id="country" name="country">
+                                <option value="+1">(+1)</option>
+                                <option value="+44">(+44)</option>
+                                <option value="+91">(+91)</option>
+                                <option value="+86">(+86)</option>
+                                <option value="+81">(+81)</option>
+                                <option value="+33">(+33)</option>
+                                <option value="+49">(+49)</option>
+                                <option value="+7">(+7)</option>
+                                <option value="+61">(+61)</option>
+                                <option value="+55">(+55)</option>
+                                <option value="+1">(+1)</option>
+                                <option value="+52">(+52)</option>
+                                <option value="+34">(+34)</option>
+                                <option value="+39">(+39)</option>
+                                <option value="+82">(+82)</option>
+                                <option value="+44">(+44)</option>
+                                <option value="+31">(+31)</option>
+                                <option value="+46">(+46)</option>
+                                <option value="+65">(+65)</option>
+                                <option value="+41">(+41)</option>
+
+                              </select>
+
+                            </div>
+                            <div id="phoneField" class="form-group1 col-md-11">
+                              <br /> <br /> <br />
+                              <label for=""></label>
+                              <input style="border-left: none;" type="phone" id="phone" name="phone">
+                            </div>
+
+                          </div> -->
+
+
+
+
+
+
+
+                              <div style="display: flex; margin-top: 24px ;justify-content:space-between;" id="form"
+                                class="malyislect-main">
+                                <div class="sub-options1">
+                                  <label for="module">Select Module:</label>
+                                  <div>
+                                    <select name="module" id="module" multiple="" class="hidden">
+                                      <option value="USER">USER MODULE</option>
+                                      <option value="NEWS">NEWS MODULE</option>
+                                      <option value="BLOG">BLOG MODULE</option>
+                                      <option value="EVENT">EVENT MODULE</option>
+                                      <option id="manager" value="MEMBER">MEMBER MODULE</option>
+                                    </select>
+
+
+                                  </div>
+                                </div>
+
+                                <!-- Sub-options for each module -->
+                                <div id="USER-options" class="sub-options">
+                                  <label for="user-action">User Actions:</label>
+                                  <br />
+                                  <select name="user-action" id="user-action" multiple>
+                                    <option value="CREATE">Create User</option>
+                                    <option value="MANAGE">Manage User</option>
+                                  </select>
+                                </div>
+
+                                <div id="NEWS-options" class="sub-options">
+                                  <label for="news-action">News Actions:</label>
+                                  <br />
+                                  <select name="news-action" id="news-action" multiple>
+                                    <option value="CREATE">Create News</option>
+                                    <option value="MANAGE">Manage News</option>
+                                  </select>
+                                </div>
+
+                                <div id="BLOG-options" class="sub-options">
+                                  <label for="blog-action">Blog Actions:</label>
+                                  <br />
+                                  <select name="blog-action" id="blog-action" multiple>
+                                    <option value="CREATE">Create Blog</option>
+                                    <option value="MANAGE">Manage Blog</option>
+                                  </select>
+                                </div>
+
+                                <div id="EVENT-options" class="sub-options">
+                                  <label for="event-action">Event Actions:</label>
+                                  <br />
+                                  <select name="event-action" id="event-action" multiple>
+                                    <option value="CREATE">Create Event</option>
+                                    <option value="MANAGE">Manage Event</option>
+                                  </select>
+                                </div>
+
+                                <div id="MEMBER-options" class="sub-options">
+                                  <label for="member-action">Member Actions:</label>
+                                  <br />
+                                  <select name="member-action" id="member-action" multiple>
+                                    <option value="CREATE">Create Member</option>
+                                    <option value="MANAGE">Manage Member</option>
+                                  </select>
+                                </div>
+
+
+                              </div>
+                              <div id="hide" style="margin-top:20px;">
+                                <label for="role">Role:</label>
+                                <br />
+                                <select
+                                  style=" background:#fff;border:1px solid grey; border-radius: 5px; padding: 7px;"
+                                  name="role" id="role">
+
+                                  <option id="hidden" value="ADMIN">ADMIN</option>
+                                  <option id="hidden1" value="MANAGER">MANAGER</option>
+                                  <option id="hidden2" value="EDITOR">EDITOR</option>
+                                </select>
+                              </div>
+                            </div>
+                                
+                                
+                            </form>
+
+
+
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- content-wrapper ends -->
+                  <!-- partial:../../partials/_footer.html -->
+                  <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+              </div>
+            </div>
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+  </body>
+
+</html>
+
+<script>
+
+
+
+  $(function () {
+    $("#insertUser").validate({
+      errorPlacement: function (error, element) {
+
+        error.insertAfter(element);
+
+      },
+
+      errorElement: "span",
+      rules: {
+        email: {
+          required: true,
+          email: true,
+          maxlength: 50,
+        },
+        firstName: {
+          required: true,
+          maxlength: 20,
+        },
+        lastName: {
+          required: true,
+          maxlength: 20,
+        },
+        password: {
+          required: true,
+          maxlength: 20,
+        },
+      },
+      messages: {
+        firstName: {
+          required: "Please enter your first name",
+          maxlength: "First name must not exceed 20 characters",
+        },
+        lastName: {
+          required: "Please enter your last name",
+          maxlength: "Last name must not exceed 20 characters",
+        },
+        email: {
+          required: "Please enter your email",
+          email: "Please enter a valid email address",
+          maxlength: "Email must not exceed 50 characters",
+        },
+        password: {
+          required: "Please enter your password",
+          maxlength: "Password must not exceed 20 characters",
+        },
+      },
+      submitHandler: function () {
+        let formData = $("#insertUser").serialize();
+
+        $.ajax({
+          url: "/admin/create-member",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+          data: formData,
+          cache: false,
+          processData: false,
+          method: "POST",
+          type: "POST",
+          success: function (_res) {
+            $("#insertUser").trigger("reset");
+            let successConfig = {
+              title: "Confirmation",
+              message: `Operation performed successfully.`,
+              type: "success",
+            };
+            KWACHA_MAIN.sweetAlert(successConfig);
+          },
+          error: function (e) {
+            let responseText = JSON.parse(e.responseText);
+            let errorConfig = {
+              title: "Error",
+              message: responseText.message,
+              type: "error",
+            };
+            KWACHA_MAIN.sweetAlert(errorConfig);
+          },
+        });
+      },
+    });
+  });
+
+
+  function toggleDropdown() {
+    var options = document.getElementById('options');
+    options.classList.toggle('hidden');
+  }
+
+  var checkboxes = document.querySelectorAll('#options input[type="checkbox"]');
+  checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+      updateSelectedOptions();
+    });
+  });
+
+  function updateSelectedOptions() {
+    var selectedOptions = document.getElementById('selected-options');
+    selectedOptions.innerHTML = '';
+    checkboxes.forEach(function (checkbox) {
+      if (checkbox.checked) {
+        var button = document.createElement('button');
+        button.innerText = checkbox.nextElementSibling.textContent.trim();
+        button.onclick = function () {
+          checkbox.checked = false;
+          updateSelectedOptions();
+        };
+        selectedOptions.appendChild(button);
+      }
+    });
+
+    updateSelectElement();
+  }
+
+  function updateSelectElement() {
+    var select = document.getElementById('module');
+    select.querySelectorAll('option').forEach(function (option) {
+      option.selected = false;
+    });
+    checkboxes.forEach(function (checkbox) {
+      if (checkbox.checked) {
+        var option = select.querySelector('option[value="' + checkbox.value + '"]');
+        if (option) {
+          option.selected = true;
+        }
+      }
+    });
+  }
+</script>
+<script>
+
+  function updateSubOptions() {
+    const roleSelect = document.getElementById('module');
+    const selectedRoles = Array.from(roleSelect.selectedOptions).map(option => option.value);
+    const subOptions = document.querySelectorAll('.sub-options select');
+
+
+    subOptions.forEach(option => option.disabled = true);
+
+
+    selectedRoles.forEach(role => {
+      const selectedSubOptions = document.getElementById(`${role}-options`);
+      if (selectedSubOptions) {
+        selectedSubOptions.querySelector('select').disabled = false;
+      }
+    });
+  }
+
+
+  function prepareFormData(event) {
+    const roleSelect = document.getElementById('module');
+    const selectedRoles = Array.from(roleSelect.selectedOptions).map(option => option.value);
+
+    const formData = {
+      mainRoles: selectedRoles,
+      subRoles: {}
+    };
+
+    selectedRoles.forEach(role => {
+      const subSelect = document.querySelector(`#${module}-options select`);
+      const selectedSubOptions = subSelect ? Array.from(subSelect.selectedOptions).map(option => option.value) : [];
+      formData.subRoles[role] = selectedSubOptions;
+    });
+    event.preventDefault();
+    console.log("Form Data: ", formData);
+
+  }
+
+
+  window.onload = function () {
+    document.getElementById('module').addEventListener('change', updateSubOptions);
+    document.getElementById('form').addEventListener('submit', prepareFormData);
+    updateSubOptions();
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script>
+  let rolePermission = localStorage.getItem("role")
+  console.log("permission", rolePermission)
+  let hiddenValue = document.getElementById("hidden")
+  let hiddenValue1 = document.getElementById("hidden1")
+  let hiddenValue2 = document.getElementById("hidden2")
+
+  if (rolePermission === "ADMIN") {
+    hiddenValue.style.display = "none";
+    hiddenValue.innerHTML = "MANAGER";
+    hiddenValue.value = "MANAGER";
+
+
+  }
+  else if (rolePermission === "MANAGER") {
+    hiddenValue1.style.display = "none";
+    hiddenValue.style.display = "none"
+    hiddenValue.innerHTML = "EDITOR";
+    hiddenValue.value = "EDITOR";
+
+  } else if (rolePermission === "EDITOR") {
+    let hide = document.getElementById("hide form");
+    hide.style.display = "none"
+
+  }
+  let role = localStorage.getItem("role")
+  if (role === "MANAGER" || role === "ADMIN") {
+    document.getElementById("manager").style.display = "none";
+    document.getElementById("MEMBER-options").style.display = "none"
+  }
+
+
+  // $("#phoneField").intlTelInput({
+  //   initialCountry: "in",
+  //   separateDialCode: true,
+  //   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js"
+  // });
+
+</script>

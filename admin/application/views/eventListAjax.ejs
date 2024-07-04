@@ -1,0 +1,859 @@
+<script>
+  const getValue = () => {
+    let value = document.getElementById("isPaid").value
+    console.log("value", value);
+    if (value === "Paid") {
+      document.getElementById("hide-show").style.display = "block"
+    } else {
+      document.getElementById("hide-show").style.display = "none"
+
+    }
+  }
+</script>
+<div id="loading"></div>
+
+<table class="table table-striped table-listing" id="example" style="width:100%">
+  <thead>
+    <tr>
+
+    </tr>
+    <th>TITLE</th>
+    <th>SUBTITLE</th>
+    <th>CONTENT</th>
+    <th>STARTDATE</th>
+    <th>ENDDATE</th>
+    <th>VENUE</th>
+    <th>LATITUDE</th>
+    <th>LONGITUDE</th>
+    <th>PRICE</th>
+    <th>IMAGE</th>
+    <th onclick="KWACHA_ADMIN.sortBy('e_created', '<%=data.sortOrder %>','<%=data.per_page %>')">CREATED
+      AT <i class="fa fa-fw fa-sort"></i></th>
+    <th>ACTION</th>
+  </thead>
+  <tbody>
+    <% if(data.data){ %>
+      <% _data=data.data; if(_data.length> 0 ) { %>
+        <% for (var i=0; i<_data.length; i++) { %>
+          <tr>
+            <td class="py-1 limited-text">
+              <%= _data[i]['e_title'] %>
+            </td>
+
+
+            <td class="limited-text">
+              <%= _data[i]['e_subTitle'] %>
+            </td>
+            <!-- <td>
+              <%= _data[i]['n_description'] %>
+            </td> -->
+            <td class="limited-text">
+
+              <%=_data[i]['e_content'] %>
+            </td>
+            <td class="limited-text">
+
+              <%=_data[i]['e_startDate'] %>
+            </td>
+
+            <td class="limited-text">
+
+              <%=_data[i]['e_endDate'] %>
+            </td>
+
+            <td class="limited-text">
+
+              <%=_data[i]['e_venue'] %>
+            </td>
+
+            <td class="limited-text">
+
+              <%=_data[i]['e_latitude'] %>
+            </td>
+
+            <td>
+              <%=_data[i]['e_logitude'] %>
+            </td>
+            <td>
+              <%=_data[i]['e_price'] %>
+            </td>
+
+            <td>
+              <%if(_data[i]['e_image'] ){%>
+                <img
+                  src="https://allora-bucket.s3.eu-north-1.amazonaws.com/images/users-profile-images/<%= _data[i]['e_image'][0] %>"
+                  width="500" height="600">
+                <% } else{ %>
+                  <img src="https://picsum.photos/200/300" width="500" height="600">
+                  <%}%>
+            </td>
+
+            <td>
+              <%=_data[i]['e_created'] %>
+            </td>
+
+
+
+            <td class="text-right">
+              <!-- <div class="dropdown">
+                <button class="no-border" type="" id="dropdownMenuButton<%= i %>" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v" style="color:#0056b3;"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton<%= i %>">
+                  <a class="dropdown-item edit jummah_editbtn" href="#editEmployeeModal"
+                    dataid="<%=_data[i]['e_uuid']%>">
+                    <i class="fas fa-edit" style="color:#0056b3;"></i> Edit
+                  </a>
+                  <a class="dropdown-item delete" href="#deleteEmployeeModal" data-toggle="modal"
+                    onclick="setUserId(`<%=_data[i]['e_uuid']  %>`)">
+                    <i class="fas fa-trash-alt" style="color:#0056b3;"></i> Delete
+                  </a>
+                  <a class="dropdown-item " href="#addspeaker" data-toggle="modal"
+                    onclick="setUserId(`<%=_data[i]['e_uuid']  %>`)">
+                    <i class="fa fa-user" style="color:#0056b3;"></i> Add Speaker
+                  </a>
+
+                </div>
+              </div> -->
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle bg-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v" style="color:#0056b3;"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item edit jummah_editbtn" href="#editEmployeeModal"
+                    dataid="<%=_data[i]['e_uuid']%>">
+                    <i class="fas fa-edit" style="color:#0056b3;"></i> Edit
+                  </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item delete" href="#deleteEmployeeModal" data-toggle="modal"
+                    onclick="setUserId(`<%=_data[i]['e_uuid']  %>`)">
+                    <i class="fas fa-trash-alt" style="color:#0056b3;"></i> Delete
+                  </a>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+            </td>
+
+          </tr>
+          <% } %>
+            <% } else { %>
+              <tr class="no-record-row">
+                <td colspan="5" style="text-align: center; vertical-align: middle">
+                  <span>No record found</span>
+                </td>
+
+              </tr>
+              <% }%>
+                <% } else { %>
+                  <tr class="no-record-row">
+                    <td colspan="9" style="text-align: center; vertical-align: middle;"><span><b>No record
+                          found</b></span></td>
+                  </tr>
+
+                  <% } %>
+  </tbody>
+
+</table>
+
+<!-- End datatable 2024 -->
+
+<!-- End datatable 2024 -->
+<% if ( data && data.data && data.data.length> 0 ) { %>
+  <div id="paginationLinks">
+    <%- include('./include/components/pagination_links',{_function:' KWACHA_ADMIN.init'}); %>
+  </div>
+  <% } %>
+
+    <!--Start Delete User Modal HTML -->
+
+    </div>
+    <!--Start Edit User Modal HTML -->
+    <div id="deleteEmployeeModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <input type="hidden" id="hiddenuser">
+            <div class="modal-header">
+              <h4 class="modal-title">Delete News List</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delete this News?</p>
+            </div>
+            <div class="modal-footer bg-transparent border-0">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+
+              <input id="userdata" type="button" style="background-color: #0056b3; color: #fff;" type="submit"
+                class="btn btn" value="Delete" onclick="KWACHA_ADMIN.deleteEvent()">
+            </div>
+          </form>
+        </div>
+        </form>
+      </div>
+    </div>
+
+
+
+    <div id="addspeaker" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="sendInboxForm">
+            <input type="hidden" id="hiddenuser">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Speaker</h4>
+              <button type="button" class="close hidden hide" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure, You want to add this speaker?</p>
+              <div class="form-group">
+                <div>
+                  <input type="text" name="speakerName" id="e_speakerName" placeholder="Enter Speaker Name">
+
+                </div>
+                <div>
+
+                  <div class="form-group ">
+                    <div class="col-sm-6 add-width">
+                      <label>Featured Image
+                        <small class="text-danger">Only png,
+                          jpg, and jpeg image allow</small>
+                      </label>
+                      <div class="custom-file">
+                        <div class="">
+                          <input type="file" name="image" class="input-file" id="e_s_speakerImage" required=""
+                            style="border: 2px solid #ced4da" />
+
+                        </div>
+                      </div>
+                      <p style="display: none" id="img_error_msg" class="alert alert-danger"></p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+              <input id="userdata" type="button" style="background-color: #0056b3; color: #fff;" class="btn btn"
+                value="Send" onclick="KWACHA_ADMIN.addSpeaker()">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div id="editEmployeeModal" class="page-wrapper update-rest modal position-relative fade formPart"
+      aria-modal="false" role="dialog">
+      <div class="">
+        <div class="content container-fluid p-0">
+          <div class="page-header">
+            <div class="d-flex justify-content-end mb-5">
+              <div class="add-btn">
+                <button type="button" class="close show-button" data-dismiss="modal" aria-hidden="true">Event
+                  List</button>
+              </div>
+            </div>
+            <h3 class="m-0">Edit Event Details</h3>
+
+          </div>
+          <form class="forms-sample editEmployeeModlFrom p-0" id="editEmployeeModlFrom" method="post" role="form">
+            <div class="responseformgroup editEmployeeresponseFrom" id="editEmployeeresponseFrom">
+              <div class="loader"></div>
+            </div>
+            <div class="modal-footer" style="border-top: 0px;">
+              <div class="card-footer border-0 bg-transparent">
+                <input type="button" class="btn btn-default cancelbtn" data-dismiss="modal" value="Cancel">
+                <button type="submit" class="btn btn-primary mr-2 updateBtn rounded-0">
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <style>
+      .limited-text {
+        max-width: 30ch;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    </style>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script>
+
+      $('.show-button').on('click', function (e) {
+        e.preventDefault();
+        $('.Search').show();
+        $('#paginationLinks').show();
+
+
+      });
+      //Start-user Delete
+      function setUserId(userId) {
+        $("#hiddenuser").val(userId);
+      }
+      function setSelectedUserId(userId) {
+        localStorage.setItem('selectedUserId', userId);
+      }
+
+      //   order///////
+      function setSelectedOrderId(userId) {
+        localStorage.setItem('selectedUserId', userId);
+      }
+
+      KWACHA_ADMIN.addSpeaker = function () {
+        console.log("Function execution started...");
+
+        // Displaying "Processing..." message
+        $("#userdata").html('Processing...');
+
+        // Retrieving userUuid and speakerName values
+        let userUuid = $("#hiddenuser").val();
+        let speakerName = $("#e_speakerName").val();
+
+        console.log("User UUID:", userUuid);
+        console.log("Speaker Name:", speakerName);
+
+        if (userUuid) {
+          let requestData = {
+            speakerName: speakerName,
+            eventId: userUuid
+          };
+
+          console.log("Request Data:", requestData);
+
+          // Making AJAX request
+          $.ajax({
+            url: "/admin/add-speaker",
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+            data: JSON.stringify(requestData),
+            contentType: "application/json",
+            cache: false,
+            processData: false,
+            method: "POST",
+            type: "POST",
+            success: function (res) {
+              console.log("AJAX Success Response:", res);
+
+              let _id = res.payload;
+              console.log("Event ID:", _id);
+
+              KWACHA_MAIN.uploadMultipleSpeakerImage(_id);
+              $("#hiddenuser").val("");
+
+
+              let successConfig = {
+                title: "Confirmation",
+                message: `Operation performed successfully.`,
+                type: "success",
+              };
+              KWACHA_MAIN.sweetAlert(successConfig);
+
+            },
+            error: function (e) {
+              console.log("AJAX Error:", e);
+
+              $("#userdata").html("");
+              let responseText = JSON.parse(e.responseText);
+
+
+              let errorConfig = {
+                title: "Error",
+                message: responseText.message,
+                type: "error",
+              };
+              KWACHA_MAIN.sweetAlert(errorConfig);
+            },
+          });
+        }
+        console.log("Reloading window...");
+        close()
+      };
+
+
+
+
+
+      KWACHA_ADMIN.deleteEvent = function () {
+        console.log("Function deleteEvent executed");
+        $("#userdata").html('Processing...');
+
+        let userUuid = $("#hiddenuser").val();
+        console.log("Retrieved userUuid:", userUuid);
+
+        if (userUuid) {
+          console.log("Valid userUuid:", userUuid);
+
+          $.ajax({
+            url: "/admin/delete-event",
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+            data: { eventId: userUuid },
+            cache: false,
+            processData: true,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            method: "POST",
+            type: "POST",
+            beforeSend: function () {
+              console.log("AJAX request is about to be sent");
+            },
+            success: function (_res) {
+              console.log("AJAX request succeeded", _res);
+              $("#hiddenuser").val("");
+              let successConfig = {
+                title: "Confirmation",
+                message: `Operation performed successfully.`,
+                type: "success",
+              };
+              KWACHA_MAIN.sweetAlert(successConfig);
+            },
+            error: function (e) {
+              console.error("AJAX request failed", e);
+              $("#userdata").html("");
+              let responseText = JSON.parse(e.responseText);
+              let errorConfig = {
+                title: "Error",
+                message: responseText.message,
+                type: "error",
+              };
+              KWACHA_MAIN.sweetAlert(errorConfig);
+            },
+            complete: function () {
+              console.log("AJAX request completed");
+              window.location.reload();
+            }
+          });
+        } else {
+          console.log("No userUuid provided, skipping AJAX request");
+          $("#userdata").html("No user selected");
+        }
+      }
+
+      $('#editEmployeeModlFrom').validate({
+        rules: {
+          title: {
+            required: true,
+            maxlength: 255
+          },
+          subTitle: {
+            required: true,
+            maxlength: 255
+          },
+          content: {
+            required: true
+          },
+          desc: {
+            required: true
+          },
+
+        },
+        messages: {
+          title: {
+            required: "Please enter the title",
+            maxlength: "Title must not exceed 255 characters"
+          },
+          subTitle: {
+            required: "Please enter the subtitle",
+            maxlength: "Subtitle must not exceed 255 characters"
+          },
+          content: {
+            required: "Please enter the content"
+          },
+          desc: {
+            required: "Please enter the description"
+          },
+
+        },
+        submitHandler: function (form) {
+          let fromdata = $(form).serialize();
+
+          console.log("edit start")
+          $.ajax({
+            'url': Homes_url() + 'admin/edit-event',
+            type: 'post',
+            data: fromdata,
+            dataType: 'json',
+            success: function (res) {
+              console.log("payload", res.payload)
+              let _id = res.payload.eventId;
+              console.log("_id_id_id_id_id_id_id_id_id", _id)
+              KWACHA_MAIN.uploadMultipleEventImage(_id);
+              if (res.status) {
+                const msg = {
+                  title: "Confirmation",
+                  message: 'Operation performed successfully.',
+                  type: "success",
+                };
+                KWACHA_MAIN.sweetAlert(msg);
+              } else {
+                const msg = {
+                  title: "Error",
+                  message: 'Operation performed failed.',
+                  type: "error",
+                };
+                KWACHA_MAIN.sweetAlert(msg);
+              }
+            },
+            error: function (e) {
+              const msg = {
+                title: "Error",
+                message: 'Update failed , "Please fill mandatory fields.",',
+                type: "error"
+              };
+              KWACHA_MAIN.sweetAlert(msg);
+            }
+          });
+        }
+      });
+
+      $('.jummah_editbtn').on('click', function (e) {
+        e.preventDefault();
+        const dataid = $(this).attr('dataid');
+        let htmls = '';
+
+        $('#example ').hide();
+        $('#close ').hide();
+        $('.Search').hide();
+        $('.selectbox').hide();
+        $('#paginationLinks').hide();
+        $("#editEmployeeModal").attr('style', 'padding-right: 19px; display: block;');
+        $("#editEmployeeModal").attr('aria-modal', 'true');
+        $("#editEmployeeModal").attr('role', 'dialog');
+        $("#editEmployeeModal").addClass('show');
+
+        function showPaginationLinks() {
+          $('#paginationLinks').show();
+        }
+
+        if (dataid != '') {
+          $.ajax({
+            'url': Homes_url() + 'admin/get-event-by-id/' + dataid,
+            type: 'get',
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+            dataType: 'json',
+            success: function (res) {
+              if (res.status) {
+                const obj = res.payload;
+                console.log(obj)
+                htmls += '<div class="card border-0">';
+                htmls += '<div class="card-body">'
+                htmls += '<div class="d-flex">';
+                htmls += '<div class="upload-side">';
+                htmls += '<div class="position-relative">';
+                htmls += '<label for="upload-pic" class="mb-3">';
+                htmls += 'Upload  Image  ' + obj.e_image[0] + ''
+                htmls += '</label>';
+                htmls += '<input type="file"name="image"class="input-file"id="e_image" value="' + obj.e_image + '"  class="form-control" name="fileName" id="fileName" multiple >';
+                htmls += '<div class="placeholder-view">';
+                htmls += '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" data-testid="Icon" fill="currentColor" height="1em" width="1em">';
+                htmls += '<path d="M24,12 C28.418278,12 32,15.581722 32,20 L32,22 C32,26.418278 28.418278,30 24,30 C19.581722,30 16,26.418278 16,22 L16,20 C16,15.581722 19.581722,12 24,12 Z M24,32 C33.8734019,32 42.1092023,38.8710577 44,48 L4,48 C5.89079771,38.8710577 14.1265981,32 24,32 Z">';
+                htmls += '</path>';
+                htmls += '</svg>';
+                htmls += '<div class="camra">';
+                htmls += '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" data-testid="AddAPhotoOutlinedIcon" class="svg-icon icon-sm" height="1em" width="1em">';
+                htmls += '<path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z">';
+                htmls += '</path>';
+                htmls += '</svg>';
+                htmls += '</div>';
+                htmls += '</div>';
+                htmls += '</div>';
+                htmls += '</div>';
+                htmls += '<div class="form-file">';
+                htmls += '<input type="hidden" name="eventId" id="hiddeneditRestorent" value="' + obj.e_uuid + '">';
+                htmls += '<input type="hidden" name="desc" id="hidden"  value="">';
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="userName">Title</label>';
+                htmls += '<input type="text" value="' + obj.e_title + '" class="form-control" name="title" id="title" placeholder="Title">';
+                htmls += '</div>';
+                htmls += '<div class="form-group">';
+                htmls += '<label for="userName"> Sub Title</label>';
+                htmls += '<input type="text" value="' + obj.e_subTitle + '" class="form-control" name="subTitle" id="subTitle" placeholder="Title">';
+                htmls += '</div>';
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="bookingid">Content</label>';
+                htmls += '<input type="text" value="' + obj.e_content + '" class="form-control" name="content" id="content" placeholder="Enter Content">';
+                htmls += '</div>';
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="bookingid">Start Date</label>';
+                htmls += '<input type="date" value="' + obj.e_startDate + '" class="form-control" name="startDate" id="startDate">';
+                htmls += '</div>';
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="bookingid">End Date</label>';
+                htmls += '<input type="date" value="' + obj.e_endDate + '" class="form-control" name="endDate" id="endDate">';
+                htmls += '</div>';
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="bookingid">Venue</label>';
+                htmls += '<input type="text" value="' + obj.e_venue + '" class="form-control" name="venue" id="venue" placeholder="event venue">';
+                htmls += '</div>';
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="bookingid">Latitude</label>';
+                htmls += '<input type="number" value="' + obj.e_latitude + '" class="form-control" name="lat" id="lat"   placeholder="latitude">';
+                htmls += '</div>';
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="bookingid">Longitude</label>';
+                htmls += '<input type="number" value="' + obj.e_logitude + '" class="form-control" name="long" id="long"   placeholder="longitude">';
+                htmls += '</div>';
+
+
+
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="features">Status :</label>';
+
+                htmls += '<select onchange="getValue()"style="width:100%;padding:13px;background:white; border:1px solid grey; border-radius:10px"  name="isPaid"  id="isPaid" >';
+                var featuresList = [
+                  "Free", "Paid"
+                ];
+                featuresList.forEach(function (feature) {
+                  var isSelected = (obj.e_paidStatus == feature);
+                  console.log(isSelected, "isselcted");
+                  htmls += '<option value="' + feature + '"' + (isSelected ? ' selected' : '') + '>' + feature + '</option>';
+                });
+                htmls += '</select>';
+                htmls += '</div>';
+
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="bookingid">Price</label>';
+                htmls += '<input type="string" value="' + obj.e_price + '" class="form-control" name="price" id="e_price"   placeholder="Enter Price">';
+                htmls += '</div>';
+
+                htmls += '<div class="form-group">';
+                htmls += '<label for="bookingid">Description</label>';
+                htmls += '<textarea class="form-control"  id="desc" placeholder="Enter Description">' + obj.e_description + '</textarea>';
+                htmls += '</div>';
+                htmls += '</div>';
+                htmls += '</div>';
+                htmls += '</div>';
+                
+                htmls += '</div>';
+                $('#editEmployeeresponseFrom').html(htmls);
+                document.getElementById("hide-show").style.display = "none"
+
+                var editor = CKEDITOR.replace("desc");
+                editor.on("change", function (evt) {
+                  let value = document.getElementById("hidden").value = evt.editor.getData();
+                  console.log(value, "valueeeeeeeeeeeeeeeeee");
+                });
+                let hiddenValue = document.getElementById("hidden").value;
+                console.log(hiddenValue, "hiddenvalueeeeeeeeeeee");
+                $("#editEmployeeModlFrom").validate({
+                  rules: {
+                    title: {
+                      required: true,
+                      maxlength: 255
+                    },
+                    subTitle: {
+                      required: true,
+                      maxlength: 255
+                    },
+                    content: {
+                      required: true
+                    },
+                    desc: {
+                      required: true
+                    },
+                    image: {
+                      required: true
+                    }
+                  },
+                  messages: {
+                    title: {
+                      required: "Please enter the title",
+                      maxlength: "Title must not exceed 255 characters"
+                    },
+                    subTitle: {
+                      required: "Please enter the subtitle",
+                      maxlength: "Subtitle must not exceed 255 characters"
+                    },
+                    content: {
+                      required: "Please enter the content"
+                    },
+                    desc: {
+                      required: "Please enter the description"
+                    },
+                    image: {
+                      required: "Please upload an image"
+                    }
+                  },
+                  submitHandler: function (form) {
+                    // Your form submission logic here
+                    // This function will be called when the form is valid
+                  }
+                });
+
+              } else {
+                $(".modal").removeAttr('style');
+                $(".modal").attr('aria-modal', 'false');
+                $(".modal").removeAttr('role');
+                $(".modal").removeClass('show');
+
+                const msg = {
+                  title: "Error",
+                  message: 'Edit failed...',
+                  type: "error"
+                };
+
+                KWACHA_MAIN.sweetAlert(msg);
+
+              }
+
+            }
+          });
+
+        } else {
+
+          $(".modal").removeAttr('style');
+          $(".modal").attr('aria-modal', 'false');
+          $(".modal").removeAttr('role');
+          $(".modal").removeClass('show');
+
+          const msg = {
+            title: "Error",
+            message: 'Edit failed...',
+            type: "error"
+          };
+
+          KWACHA_MAIN.sweetAlert(msg);
+
+        }
+      });
+
+      $('.close').on('click', function (e) {
+        e.preventDefault();
+        $('#example ').show();
+        $('#close ').show();
+        $(".modal").removeAttr('style');
+        $(".modal").attr('aria-modal', 'false');
+        $(".modal").removeAttr('role');
+        $('.modal').removeClass('show');
+      });
+
+
+      $('.cancelbtn').on('click', function (e) {
+        e.preventDefault();
+        $('.modal').removeClass('show');
+        $(".modal").removeAttr('style');
+        $(".modal").attr('aria-modal', 'false');
+        $(".modal").removeAttr('role');
+      });
+
+      KWACHA_MAIN.uploadMultipleEventImage = function (_id) {
+        if (document.getElementById("e_image")) {
+          if (typeof document.getElementById("e_image").files !== "undefined" && document.getElementById("e_image").files.length > 0) {
+            var formData = new FormData();
+            var files = document.getElementById("e_image").files;
+            console.log("Files received from frontend:", files);
+            for (var i = 0; i <= files.length; i++) {
+              formData.append("multiple", files[i]);
+            }
+            formData.append("eventUuid", _id);
+            $.ajax({
+              url: "/admin/upload-event-image",
+              data: formData,
+              dataType: "json",
+              cache: false,
+              contentType: false,
+              processData: false,
+              method: "POST",
+              type: "POST",
+              success: function () {
+                $("#addNews").trigger("reset");
+              },
+              error: function (error) {
+                let message = error.responseJSON ? error.responseJSON.message : "Something Went wrong!";
+                KWACHA_MAIN.sweetAlert({ title: "Error", message: message, type: "error" });
+              },
+            });
+          }
+        }
+      };
+
+      KWACHA_MAIN.uploadMultipleSpeakerImage = function (_id) {
+        if (document.getElementById("e_s_speakerImage")) {
+          if (typeof document.getElementById("e_s_speakerImage").files !== "undefined" && document.getElementById("e_s_speakerImage").files.length > 0) {
+            var formData = new FormData();
+            var files = document.getElementById("e_s_speakerImage").files;
+            console.log("Files received from frontend:", files);
+            for (var i = 0; i <= files.length; i++) {
+              formData.append("multiple", files[i]);
+            }
+            formData.append("eventUuid", _id);
+            $.ajax({
+              url: "/admin/upload-event-speakers-image",
+              data: formData,
+              dataType: "json",
+              cache: false,
+              contentType: false,
+              processData: false,
+              method: "POST",
+              type: "POST",
+              success: function () {
+                $("#addNews").trigger("reset");
+                window.location.reload();
+              },
+              error: function (error) {
+                let message = error.responseJSON ? error.responseJSON.message : "Something Went wrong!";
+                KWACHA_MAIN.sweetAlert({ title: "Error", message: message, type: "error" });
+              },
+            });
+          }
+        }
+      };
+
+      $(document).ready(function () {
+        $('.jummah_editbtn').click(function () {
+          $('.datatable').hide();
+          $('.selectbox').hide();
+        });
+        $('.close').click(function () {
+          $('.update-rest').hide();
+          $('.datatable').show();
+          $('.selectbox').show();
+        });
+        $('.confirm').click(function () {
+          $('.update-rest').hide();
+          $('.datatable').show();
+          $('.selectbox').show();
+        });
+        $('.cancelbtn').click(function () {
+          $('.update-rest').hide();
+          $('.datatable').show();
+          $('.selectbox').show();
+        });
+      });
+
+    </script>
+    <script>
+      const close = () => {
+        let id = document.getElementById("addspeaker");
+        setTimeout(() => {
+          id.style.display = "none"
+        }, 1000)
+
+      }
+
+
+    </script>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+  <!-- Ekko Lightbox -->
+  <link rel="stylesheet" href="https://news.wrteam.me/public/plugins/ekko-lightbox/ekko-lightbox.css" />
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="https://news.wrteam.me/public/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+  <!-- Select2 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+  <!-- Latest compiled and minified CSS  -->
+  <link href="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/bootstrap-table@1.21.2/dist/extensions/reorder-rows/bootstrap-table-reorder-rows.css"
+    rel="stylesheet" />
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.1/extensions/fixed-columns/bootstrap-table-fixed-columns.css"
+    integrity="sha512-kvkkrHuKAXVdP5Ank5mgDR9hsNnuA5eVcw+a8K5VgbKjP1UQewIrhBE+826LiXjWMlgZJ0aPZl0Pc+XrOQNa4A=="
+    crossorigin="anonymous" />
+
+  <!-- Custom Theme Style -->
+  <link rel="stylesheet" href="theme/css/testing.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Editors -->
+  <script src="https://news.wrteam.me/public/plugins/tinymce/tinymce.min.js"></script>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+  <style>
+    /* Add this style to change border color to red on validation error */
+    input.error {
+      border-color: red !important;
+    }
+
+    #username-error {
+      border-color: red !important;
+      color: red;
+    }
+  </style>
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+        <%- include('./include/sidebar'); %>
+          <!-- partial -->
+          <div class="container-custom">
+            <!-- partial:../../partials/_settings-panel.html -->
+            <div class="theme-setting-wrapper">
+              <div id="settings-trigger"><i class="ti-settings"></i></div>
+              <div id="theme-settings" class="settings-panel">
+                <i class="settings-close ti-close"></i>
+                <p class="settings-heading">SIDEBAR SKINS</p>
+                <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                  <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                  Light
+                </div>
+                <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                  <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+                  Dark
+                </div>
+                <p class="settings-heading mt-2">HEADER SKINS</p>
+                <div class="color-tiles mx-0 px-4">
+                  <div class="tiles success"></div>
+                  <div class="tiles warning"></div>
+                  <div class="tiles danger"></div>
+                  <div class="tiles info"></div>
+                  <div class="tiles dark"></div>
+                  <div class="tiles default"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+
+            <!-- partial -->
+            <div class="container-xl px-4 mt-4">
+
+              <nav class="nav nav-borders">
+                <a class="nav-link active ms-0"
+                  href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank"> Users
+                  Profile</a>
+
+              </nav>
+              <hr class="mt-0 mb-4">
+              <div class="row mb-80">
+                <div class="col-xl-4">
+                  <form method="post" name="signupForm" id="myForm">
+
+                    <div class="card mb-4 mb-xl-0">
+                      <div class="card-header">Upload Profile</div>
+                      <div class="card-body text-center">
+
+                        <div class="avatar-upload">
+                          <div class="avatar-edit">
+                            <input type="file" id="au_profileImage" accept=".png, .jpg, .jpeg" />
+                            <label for="au_profileImage"></label>
+                          </div>
+                          <div class="avatar-preview">
+                            <div id="imagePreview" style="
+                                background-image: url();
+                                
+                              "></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </form>
+                <form method="post" name="signupForm" id="myForm1">
+                  <div class="col-xl-12">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                      <div class="card-header">Edit Details</div>
+                      <div class="card-body">
+
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                          <label class="small mb-1" for="username">Username </label>
+                          <input class="form-control" name="username" id="username" type="text" placeholder="" value=""
+                            required me>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="small mb-1" for="email">Email address</label>
+                          <input class="form-control" name="email" id="email" type="email" placeholder="" value="">
+                        </div>
+
+                        <div class="flex">
+                          <button style="margin-left:0px;" type="submit" class="btn btn-primary offset-4">
+                            Submit
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+              </form>
+            </div>
+
+            <!-- main-panel ends -->
+          </div>
+          <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+  </body>
+  <style>
+    body {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      color: #69707a;
+    }
+
+    .img-account-profile {
+      height: 10rem;
+    }
+
+    .rounded-circle {
+      border-radius: 50% !important;
+    }
+
+    .card {
+      box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+    }
+
+    .flex {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+    }
+
+    .card .card-header {
+      font-weight: 500;
+    }
+
+    .card-header:first-child {
+      border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .card-header {
+      padding: 1rem 1.35rem;
+      margin-bottom: 0;
+      background-color: rgba(33, 40, 50, 0.03);
+      border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+    }
+
+    .form-control,
+    .dataTable-input {
+      display: block;
+      width: 100%;
+      padding: 0.875rem 1.125rem;
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1;
+      color: #69707a;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #c5ccd6;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 0.35rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .nav-borders .nav-link.active {
+      color: #0056b3;
+      border-bottom-color: #0056b3;
+    }
+
+    .nav-borders .nav-link {
+      color: #69707a;
+      border-bottom-width: 0.125rem;
+      border-bottom-style: solid;
+      border-bottom-color: transparent;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+
+    .card-header {
+      background-color: #0056b3;
+      color: aliceblue;
+    }
+
+
+    .avatar-upload {
+      position: relative;
+      max-width: 205px;
+      margin: 12px auto;
+    }
+
+    .avatar-upload .avatar-edit {
+      position: absolute;
+      right: 12px;
+      z-index: 1;
+      top: 10px;
+    }
+
+    .avatar-upload .avatar-edit input {
+      display: none;
+    }
+
+    .avatar-upload .avatar-edit input+label {
+      display: flex;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 0;
+      border-radius: 100%;
+      background: #ffffff;
+      border: 1px solid transparent;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      font-weight: normal;
+      transition: all 0.2s ease-in-out;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-upload .avatar-edit input+label:hover {
+      background: #f1f1f1;
+      border-color: #d6d6d6;
+    }
+
+    .avatar-upload .avatar-edit input+label:after {
+      content: "\f040";
+      font-family: "FontAwesome";
+      color: #757575;
+      text-align: center;
+      margin: auto;
+    }
+
+    .avatar-upload .avatar-preview {
+      width: 192px;
+      height: 192px;
+      position: relative;
+      border-radius: 100%;
+      border: 6px solid #f8f8f8;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .avatar-upload .avatar-preview>div {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
+
+</html>
+<script>
+
+  $(document).ready(function () {
+    console.log("Document ready");
+    $("#myForm1").validate({
+
+      errorPlacement: function (error, element) {
+
+        error.insertAfter(element);
+
+      },
+      errorElement: "span",
+      rules: {
+        username: {
+          required: true,
+        },
+        email: {
+          required: true,
+          email: true,
+        },
+      },
+      messages: {
+        username: {
+          required: "Please enter your username",
+        },
+        email: {
+          required: "Please enter your email address",
+          email: "Please enter a valid email address",
+        },
+      },
+      submitHandler: function (form) {
+        console.log("Form submitted");
+        let formData = $(form).serialize();
+        console.log("Form data:", formData);
+
+        $.ajax({
+          url: "/admin/edit-profile-data",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+          data: formData,
+          cache: false,
+          processData: false,
+          method: "POST",
+          type: "POST",
+          success: function (_res) {
+            console.log("Success response:", _res.payload.au_firstname);
+            _res.payload.forEach((data) => {
+              localStorage.setItem("adminName", data.au_firstname);
+              localStorage.setItem("adminEmail", data.au_email);
+            });
+
+            $(form).trigger("reset");
+            let successConfig = {
+              title: "Confirmation",
+              message: `Operation performed successfully.`,
+              type: "success",
+            };
+            KWACHA_MAIN.sweetAlert(successConfig);
+          },
+          error: function (e) {
+            console.error("Error:", e);
+            let responseText = JSON.parse(e.responseText);
+            let errorConfig = {
+              title: "Error",
+              message: responseText.message,
+              type: "error",
+            };
+            KWACHA_MAIN.sweetAlert(errorConfig);
+          },
+        });
+      },
+    });
+  });
+
+
+</script>
+
+
+<script>
+  var field = document.getElementById('imagePreview');
+  var imageUrl = localStorage.getItem("adminImage")
+  console.log(imageUrl, "imageurl");
+  field.style.backgroundImage = 'url(' + imageUrl + ')';
+
+  document.getElementById("username").value = localStorage.getItem("adminName")
+  document.getElementById("email").value = localStorage.getItem("adminEmail")
+</script>
+
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#imagePreview").css(
+          "background-image",
+          "url(" + e.target.result + ")"
+        );
+        $("#imagePreview").hide();
+        $("#imagePreview").fadeIn(650);
+      };
+      reader.readAsDataURL(input.files[0]);
+      KWACHA_MAIN.editUploadImage(input.file);
+    }
+  }
+  $("#au_profileImage").change(function () {
+    readURL(this);
+  });
+  KWACHA_MAIN.editUploadImage = function (file) {
+    if (document.getElementById("au_profileImage")) {
+      if (typeof document.getElementById("au_profileImage").files[0] != "undefined") {
+        var file = document.getElementById("au_profileImage").files[0];
+        var formData = new FormData();
+        formData.append("image", file);
+        $.ajax({
+          url: "/admin/edit-upload-image",
+          data: formData,
+          dataType: "json",
+          cache: false,
+          contentType: false,
+          processData: false,
+          method: "POST",
+          type: "POST",
+          success: function (_res) {
+            if (_res.payload) {
+              localStorage.setItem("adminImage", _res.payload);
+              console.log("adminImage", _res.payload);
+            }
+            $("#userImageSrc").attr("src", _res.payload);
+            $("#myForm").trigger("reset");
+            let successConfig = {
+              title: "Confirmation",
+              message: `Operation performed successfully.`,
+              type: "success",
+            };
+            KWACHA_MAIN.sweetAlert(successConfig);
+          },
+          error: function (error) {
+            let message = "";
+            if (message == "") {
+              message = "Something Went wrong!";
+            }
+            swal("Error", message, "error");
+            return true;
+          },
+        });
+      } else {
+        $("#myForm").trigger("reset");
+        let successConfig = {
+          title: "Confirmation",
+          message: `Operation performed successfully.`,
+          type: "success",
+          ajaxRedirect: "/admin/",
+        };
+        KWACHA_MAIN.sweetAlert(successConfig);
+      }
+    } else {
+      $("#load").hide();
+      KWACHA_MAIN.onSuccessCommonFunction(successConfig);
+      //  $("#myModal2").modal('hide');
+    }
+  };
+</script>

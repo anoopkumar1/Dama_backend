@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+  <!-- <head>
+
+    <link rel="stylesheet" type="text/css" href="/admin//theme/css/style.css">
+    <script type="text/javascript" src="https://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+  </head> -->
+  <style>
+    .search button {
+      font-size: 14px;
+      padding: 14px 24px !important;
+      background: #0056b3 !important;
+      color: #fff;
+      border-radius: 0;
+      border: 0;
+      margin-bottom: 0;
+    }
+
+    .search {
+      width: auto;
+    }
+  </style>
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+
+        <!-- partial -->
+    </div>
+
+    <!-- partial -->
+    <!-- partial:../../partials/_sidebar.html -->
+    <!-- partial -->
+    <div class="d-flex">
+      <%- include('./include/sidebar'); %>
+        <div class="content-side" id="content-side">
+          <div class="container">
+            <p class="card-description UsersDetails pl-0 selectbox">News List</p>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card border-0">
+                    <div class="card-body22">
+                      <div class="Search d-flex justify-content-end py-3 px-5 bg-white position-sticky top-0 z-1 gap-3">
+
+                        <div style="width: 80px;" class="selectbox">
+
+                          <select class="form-control h-100" id="pagination" class="back">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="1000">1000</option>
+                          </select>
+                        </div>
+                        <div class="search selectbox">
+                          <div class="add-btn">
+                            <a href="/admin/news">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-plus" viewBox="0 0 16 16">
+                                <path
+                                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4">
+                                </path>
+                              </svg>
+                              Add News
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="table-responsive dynamic-listing dinamic-table" id="excelfile">
+                        <table class="table table-striped">
+
+                          <thead>
+                            <tr>
+                              <th>TITLE </th>
+                              <th>SUBTITLE</th>
+                              <th>CONTENT</th>
+                              <th>CATEGORY</th>
+                              <th>CREATED AT</th>
+                              <th>IMAGE <i class="fa fa-fw fa-sort"></i></th>
+                            </tr>
+                          <tbody>
+                          </tbody>
+                          </thead>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="loader" id="dataLoader"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          <!-- partial -->
+        </div>
+    </div>
+    <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+      <!-- endinject -->
+      <!-- Custom js for this page-->
+      <!-- End custom js for this page-->
+  </body>
+  <style>
+    .description {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+  </style>
+
+</html>
+
+<script>
+  var KWACHA_ADMIN = {};
+
+  KWACHA_ADMIN.init = function (pageNum, sortBy, sortOrder, searchValue, perPage) {
+    page_num = pageNum ? pageNum : 0;
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "get-news-list-Ajax",
+      pageNumber: page_num,
+      sortBy: sortBy,
+      sortOrder: sortOrder,
+      keywords: searchValue,
+      perPage: perPage,
+    };
+    KWACHA_MAIN.loadPageData(pageNum, KWACHA_ADMIN_PAGE_CONFIG);
+  };
+  KWACHA_ADMIN.sortBy = function (sortBy, sortOrder, perPage) {
+
+    $("#loading").show();
+    if (sortOrder == 'ASC') {
+      sortOrder = 'DESC';
+    } else {
+      sortOrder = 'ASC';
+    }
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "get-news-list-Ajax",
+      pageNumber: 0,
+      sortBy: sortBy,
+      sortOrder: sortOrder,
+      perPage: perPage,
+      perPage: perPage,
+    };
+
+    KWACHA_MAIN.loadPageData(0, KWACHA_ADMIN_PAGE_CONFIG);
+  }
+  KWACHA_ADMIN.init(0, 'au_created', 'ASC');
+
+
+  $("#search").on('input', function () {
+    clearTimeout(this.delay);
+    this.delay = setTimeout(function () {
+      $(this).trigger('search');
+    }.bind(this), 2000);
+  }).on('search', function () {
+    if (this.value) {
+      $("#loading").show();
+      let searchValue = $("#search").val();
+      KWACHA_ADMIN.init(0, 'au_created', 'ASC', searchValue);
+
+    } s
+  });
+  $("#pagination").change(function () {
+    let perPage = $('#pagination').val();
+    $("#loading").show();
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "get-news-list-Ajax",
+      pageNumber: 0,
+      sortBy: 'au_created',
+      sortOrder: 'ASC',
+      perPage: perPage,
+    };
+    KWACHA_MAIN.loadPageData(0, KWACHA_ADMIN_PAGE_CONFIG);
+
+  });
+
+
+
+</script>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/website/application/theme/css/style.css" />
+    <script src="/website/application/jquery/form-validation.min.js"></script>
+    <script src="/website/application/jquery/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Web Event</title>
+</head>
+<style>
+    .user-drop .dropdown-item i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 15%;
+    }
+
+    .card-container {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+        color: #B3B8CD;
+        padding: 30px 0px;
+        position: relative;
+        /* width: 230px; */
+        max-width: 100%;
+        text-align: center;
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .card-container .round {
+        border: 1px solid #0966C3;
+        border-radius: 50%;
+        padding: 3px;
+    }
+
+    img.round {
+        width: 30%;
+    }
+
+    button.primary {
+        background-color: #0966C3;
+        border: 1px solid #0966C3;
+        border-radius: 3px;
+        color: #fff;
+        /* font-family: Montserrat, sans-serif; */
+        font-weight: 500;
+        padding: 3px 7px;
+        font-size: 14px;
+    }
+
+    button.primary.ghost {
+        background-color: transparent;
+        color: #0966C3;
+    }
+</style>
+
+<body>
+    <%- include('../partials/header'); %>
+
+        <section class="main-nav">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg navbar-light nav-style">
+                    <div class=" set-nav container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <div class="logo-main">
+                                <img src="/website/application/theme/image/logo22.png" alt="Logo">
+                            </div>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav-set navbar-nav me-auto">
+                                <li class="nav-item">
+                                    <i class="fa-solid fa-house"></i>
+                                    <a class="nav-link" aria-current="page" href="/main">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="bi bi-card-text"></i>
+                                    <a class="nav-link" href="#">Blogs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="fa-regular fa-newspaper"></i>
+                                    <a class="nav-link" href="#">News</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="fa-regular fa-folder-open"></i>
+                                    <a class="nav-link" href="#">Resources</a>
+                                </li>
+                                <li class="nav-item">
+                                    <i class="fa-solid fa-calendar-day"></i>
+                                    <a class="nav-link active" href="/webevent">Events</a>
+                                </li>
+                            </ul>
+                            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                                <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                                    data-toggle="minimize">
+                                    <span class="icon-menu"></span>
+                                </button>
+                                <ul class="navbar-nav navbar-nav-right">
+                                    <li class="nav-item nav-profile dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+                                            id="profileDropdown">
+                                            <img src="" alt="profile" id="userImageSrc" class="rounded-circle"
+                                                width="40" height="40" />
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown user-drop"
+                                            aria-labelledby="profileDropdown">
+                                            <a class="dropdown-item" href="/profile">
+                                                <i class="fa-regular fa-user" style="color: #1e293b;"></i>
+                                                Profile
+                                            </a>
+                                            <a class="dropdown-item" href="">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M12 13C11.0167 13 10.1875 12.6625 9.5125 11.9875C8.8375 11.3125 8.5 10.4833 8.5 9.5C8.5 8.51667 8.8375 7.6875 9.5125 7.0125C10.1875 6.3375 11.0167 6 12 6C12.9833 6 13.8125 6.3375 14.4875 7.0125C15.1625 7.6875 15.5 8.51667 15.5 9.5C15.5 10.4833 15.1625 11.3125 14.4875 11.9875C13.8125 12.6625 12.9833 13 12 13ZM12 11C12.4333 11 12.7917 10.8583 13.075 10.575C13.3583 10.2917 13.5 9.93333 13.5 9.5C13.5 9.06667 13.3583 8.70833 13.075 8.425C12.7917 8.14167 12.4333 8 12 8C11.5667 8 11.2083 8.14167 10.925 8.425C10.6417 8.70833 10.5 9.06667 10.5 9.5C10.5 9.93333 10.6417 10.2917 10.925 10.575C11.2083 10.8583 11.5667 11 12 11ZM12 22C9.68333 21.4167 7.77083 20.0875 6.2625 18.0125C4.75417 15.9375 4 13.6333 4 11.1V5L12 2L20 5V11.1C20 13.6333 19.2458 15.9375 17.7375 18.0125C16.2292 20.0875 14.3167 21.4167 12 22ZM12 4.125L6 6.375V11.1C6 12 6.125 12.875 6.375 13.725C6.625 14.575 6.96667 15.375 7.4 16.125C8.1 15.775 8.83333 15.5 9.6 15.3C10.3667 15.1 11.1667 15 12 15C12.8333 15 13.6333 15.1 14.4 15.3C15.1667 15.5 15.9 15.775 16.6 16.125C17.0333 15.375 17.375 14.575 17.625 13.725C17.875 12.875 18 12 18 11.1V6.375L12 4.125ZM12 17C11.4 17 10.8167 17.0667 10.25 17.2C9.68333 17.3333 9.14167 17.5167 8.625 17.75C9.10833 18.25 9.63333 18.6833 10.2 19.05C10.7667 19.4167 11.3667 19.7 12 19.9C12.6333 19.7 13.2333 19.4167 13.8 19.05C14.3667 18.6833 14.8917 18.25 15.375 17.75C14.8583 17.5167 14.3167 17.3333 13.75 17.2C13.1833 17.0667 12.6 17 12 17Z"
+                                                        fill="#1E293B" />
+                                                </svg>
+
+                                                Membership
+                                            </a>
+                                            <a class="dropdown-item" href="">
+                                                <i class="fa-regular fa-bell" style="color: #1e293b;"></i>
+                                                Notification
+                                            </a>
+                                            <a class="dropdown-item" href="">
+                                                <i class="fa-solid fa-calendar-days" style="color: #1e293b;"></i>
+                                                Manage Events
+                                            </a>
+                                            <a class="dropdown-item" href="">
+                                                <i class="bi bi-info-circle" style="color: #1e293b;"></i>
+                                                About Dama Kenya
+                                            </a>
+                                            <a class="dropdown-item" style="color: #FF0000;"
+                                                onclick="KWACHA_MAIN.userLogout()">
+                                                <i class="fa-solid fa-arrow-right-from-bracket"
+                                                    style="color: #FF0000;"></i>
+                                                Logout
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+                                    type="button" data-toggle="offcanvas">
+                                    <span class="icon-menu"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </section>
+
+        <section class="next-sec">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- <div class="col-md-3">
+                        <div class="card-container">
+                            <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
+                            <h3 style="font-size: 20px;">Ricky Park</h3>
+                            <div class="buttons">
+                                <button class="primary">
+                                    Message
+                                </button>
+                                <button class="primary ghost">
+                                    Following
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-md-9">
+                        <div class="main-box">
+                            <div class="set-box">
+                                <div class="main-search">
+                                    <div class="image-set">
+                                        <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg"
+                                            alt="user" />
+                                    </div>
+                                    <div class="search">
+                                        <input type="search" id="gsearch" name="gsearch" placeholder="search"
+                                            class="form-control-2">
+                                    </div>
+                                </div>
+                                <a href="" class="create-event"><i class="fa-regular fa-calendar-plus"></i>Create an
+                                    Event</a>
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_7_176)">
+                                        <path
+                                            d="M26.6666 2.66666H5.33329C3.86663 2.66666 2.67996 3.86666 2.67996 5.33332L2.66663 29.3333L7.99996 24H26.6666C28.1333 24 29.3333 22.8 29.3333 21.3333V5.33332C29.3333 3.86666 28.1333 2.66666 26.6666 2.66666ZM7.99996 12H24V14.6667H7.99996V12ZM18.6666 18.6667H7.99996V16H18.6666V18.6667ZM24 10.6667H7.99996V7.99999H24V10.6667Z"
+                                            fill="#475569" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_7_176">
+                                            <rect width="32" height="32" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                            </div>
+                        </div>
+                        <div class="feed-box">
+                            <div class="event-tab mt-3">
+                                <div class="tab">
+                                    <button class="tablinks" onclick="openCity(event, 'All Event')">All Event</button>
+                                    <button class="tablinks" onclick="openCity(event, 'My Event')">My Event</button>
+                                </div>
+                                <div id="All Event" class="tabcontent">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="feed-sec">
+                                                <div class="text-box">
+
+                                                    <h2 style="font-size: 16px; font-weight: 600;">World Economics and
+                                                        Finance Conference</h2>
+                                                    <div class="info-event">
+                                                        <span><i class="fa-solid fa-calendar-days"></i>14 August
+                                                            2024</span>
+                                                        <span style="color: #0966C3;"><a href="">
+                                                                <i class="fa-solid fa-location-dot"
+                                                                    style="color: #0966C3;"></i>Mombasa,
+                                                                Kenya</a></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="feed-image mt-2">
+                                                    <div class="free-data">
+                                                        <a href="">Free</a>
+                                                    </div>
+                                                    <img src="/website/application/theme/image/event.png" alt="user">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="feed-sec">
+                                                <div class="text-box">
+
+                                                    <h2 style="font-size: 16px; font-weight: 600;">World Economics and
+                                                        Finance Conference</h2>
+                                                    <div class="info-event">
+                                                        <span><i class="fa-solid fa-calendar-days"></i>14 August
+                                                            2024</span>
+                                                        <span style="color: #0966C3;"><a href="">
+                                                                <i class="fa-solid fa-location-dot"
+                                                                    style="color: #0966C3;"></i>Mombasa,
+                                                                Kenya</a></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="feed-image mt-2">
+                                                    <div class="free-data">
+                                                        <a href="">Free</a>
+                                                    </div>
+                                                    <img src="/website/application/theme/image/event.png" alt="user">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="feed-sec">
+                                                <div class="text-box">
+
+                                                    <h2 style="font-size: 16px; font-weight: 600;">World Economics and
+                                                        Finance Conference</h2>
+                                                    <div class="info-event">
+                                                        <span><i class="fa-solid fa-calendar-days"></i>14 August
+                                                            2024</span>
+                                                        <span style="color: #0966C3;"><a href="">
+                                                                <i class="fa-solid fa-location-dot"
+                                                                    style="color: #0966C3;"></i>Mombasa,
+                                                                Kenya</a></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="feed-image mt-2">
+                                                    <div class="free-data">
+                                                        <a href="">Free</a>
+                                                    </div>
+                                                    <img src="/website/application/theme/image/event.png" alt="user">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="My Event" class="tabcontent">
+                                    <div class="feed-sec">
+                                        <div class="text-box">
+
+                                            <h2 style="font-size: 16px; font-weight: 600;">World Economics and Finance
+                                                Conference</h2>
+                                            <div class="info-event">
+                                                <span><i class="fa-solid fa-calendar-days"></i>14 August 2024</span>
+                                                <span style="color: #0966C3;"><a href="">
+                                                        <i class="fa-solid fa-location-dot"
+                                                            style="color: #0966C3;"></i>Mombasa, Kenya</a></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="feed-image mt-2">
+                                            <div class="free-data">
+                                                <a href="">KES 1,500</a>
+                                            </div>
+                                            <img src="/website/application/theme/image/event.png" alt="user">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="right-set">
+                            <div class="text-event">
+                                <p>Latest Events<a href="">View all</a></p>
+                            </div>
+                            <div class="event-box">
+                                <img src="/website/application/theme/image/event.png" alt="">
+                                <p style="font-size: 14px;">World Economics and Finance Conference
+                                    <span><i class="fa-solid fa-calendar-days"></i>14 August 2024</span>
+
+                                </p>
+
+                            </div>
+                            <div class="event-box">
+                                <img src="/website/application/theme/image/event.png" alt="">
+                                <p style="font-size: 14px;">World Economics and Finance Conference
+                                    <span><i class="fa-solid fa-calendar-days"></i>14 August 2024</span>
+                                </p>
+                            </div>
+                            <div class="event-box">
+                                <img src="/website/application/theme/image/event.png" alt="">
+                                <p style="font-size: 14px;">World Economics and Finance Conference
+                                    <span><i class="fa-solid fa-calendar-days"></i>14 August 2024</span>
+
+                                </p>
+                            </div>
+                            <div class="event-box">
+                                <img src="/website/application/theme/image/event.png" alt="">
+                                <p style="font-size: 14px;">World Economics and Finance Conference
+                                    <span><i class="fa-solid fa-calendar-days"></i>14 August 2024</span>
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script>
+            function openCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                let image = localStorage.getItem("adminImage");
+                console.log("Retrieved image from localStorage:", image);
+
+                let userImage = document.getElementById("userImageSrc");
+                if (!userImage) {
+                    console.error("Element with id 'userImageSrc' not found.");
+                    return;
+                }
+
+                if (image && image !== "" && image !== null && image !== undefined) {
+                    console.log("Setting user image to localStorage value:", image);
+                    userImage.src = image;
+                } else {
+                    let defaultSource = "https://cdn.pixabay.com/photo/2014/03/25/16/32/user-297330_1280.png";
+                    console.log("Setting user image to default value:", defaultSource);
+                    userImage.src = defaultSource;
+                }
+            });
+        </script>
+
+
+
+        <%- include('../partials/contactUs'); %>
+
+</body>
+
+</html>

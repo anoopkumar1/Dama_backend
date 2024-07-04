@@ -1,0 +1,108 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Hotel Dashboard Template</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+    <link rel="stylesheet" href="assets/css/feathericon.min.css">
+    <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card.card-table-dash">
+            <div class="card-body booking_card">
+                <div class="table-responsive">
+                    <table class="datatable table table-stripped ">
+                        <thead style="margin-left: 250; ">
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Name</th>
+                                <th>Room Type</th>
+                                <th>Total Numbers</th>
+                                <th>Email ID</th>
+                                <th>Ph.Number</th>
+                                <th class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(data.data){ %>
+                                <% _data=data.data ; if(_data.length> 0 ) { %>
+                                    <% for (var i=0; i<_data.length; i++) { %>
+
+                                        <tr>
+                                            <td>
+                                                <%= _data[i]['ab_booking'] %>
+                                            </td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <%if(_data[i]['ab_image'] ){%>
+                                                        <img src="https://stealar-bucket.s3.amazonaws.com/restaurant-images/<%= _data[i]['ab_image'] %>"
+                                                            class="avatar avatar-sm mr-2"
+                                                            class="avatar-img rounded-circle">
+                                                        <% } else{ %>
+                                                            <img src="https://picsum.photos/200/300"
+                                                                class="avatar avatar-sm mr-2"
+                                                                class="avatar-img rounded-circle">
+                                                            <%}%>
+                                                                <%= _data[i]['ab_name'] %>
+                                                </h2>
+                                            </td>
+
+                                            <td>
+                                                <%= _data[i]['ab_room'] %>
+                                            </td>
+                                            <td>
+                                                <%= _data[i]['ab_member'] %>
+                                            </td>
+
+                                            <td>
+                                                <%= _data[i]['ab_email'] %>
+                                            </td>
+
+                                            <td>
+                                                <%=_data[i]['ab_number'] %>
+                                            </td>
+                                            </td>
+                                            <td class="text-center"> <span
+                                                    class="badge badge-pill bg-success inv-badge">ACTIVE</span> </td>
+                                        </tr>
+                                        </tr>
+
+                                        <% } %>
+                                            <% } else { %>
+                                                <tr class="no-record-row">
+                                                    <td colspan="9" style="text-align: center; vertical-align: middle;">
+                                                        <span><b>No record
+                                                                found</b></span>
+                                                    </td>
+                                                </tr>
+
+                                                <% } %>
+                                                    <% } else { %>
+                                                        <tr class="no-record-row">
+                                                            <td colspan="9"
+                                                                style="text-align: center; vertical-align: middle;">
+                                                                <span><b>No
+                                                                        record
+                                                                        found</b></span>
+                                                            </td>
+                                                        </tr>
+
+                                                        <% } %>
+                        </tbody>
+                    </table>
+                    <% if ( data && data.data && data.data.length> 0 ) { %>
+                        <%- include('./include/components/pagination_links',{_function:' KWACHA_ADMIN.init'}); %>
+                            <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

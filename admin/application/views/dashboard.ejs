@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+  <body>
+    <div id="banner">
+      <div>
+        <!-- partial:partials/_navbar.html -->
+        <%- include('./include/topbar'); %>
+          <div class="d-flex justify-content-between">
+            <%- include('./include/sidebar'); %>
+              <!-- partial -->
+              <div class="content-side" id="content-side">
+                <!-- partial:partials/_sidebar.html -->
+
+
+                <!-- partial -->
+                <div class="main-panel">
+                  <div class="content-wrapper">
+                    <!-- <div class="row">
+                    <div class="col-md-12 grid-margin">
+                      <div class="row">
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                          <h3 class="font-weight-bold">Welcome to Community</h3>
+                        </div>
+                        <div class="col-12 col-xl-4">
+                          <div class="justify-content-end d-flex">
+                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                    <div class="d-flex gap-4 card-desktop">
+                      <div class="custom-col stretch-card transparent">
+                        <div class="card">
+                          <div id="USER" class="card-body22 p-0">
+                            <div class="icon-box-formet">
+                              <div class="icon">
+                                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24" data-testid="Icon" class="svg-icon icon-lg" height="1em"
+                                  width="1em" fill="currentColor">
+                                  <path
+                                    d="M9 13.75c-2.34 0-7 1.17-7 3.5V19h14v-1.75c0-2.33-4.66-3.5-7-3.5zM4.34 17c.84-.58 2.87-1.25 4.66-1.25s3.82.67 4.66 1.25H4.34zM9 12c1.93 0 3.5-1.57 3.5-3.5S10.93 5 9 5 5.5 6.57 5.5 8.5 7.07 12 9 12zm0-5c.83 0 1.5.67 1.5 1.5S9.83 10 9 10s-1.5-.67-1.5-1.5S8.17 7 9 7zm7.04 6.81c1.16.84 1.96 1.96 1.96 3.44V19h4v-1.75c0-2.02-3.5-3.17-5.96-3.44zM15 12c1.93 0 3.5-1.57 3.5-3.5S16.93 5 15 5c-.54 0-1.04.13-1.5.35.63.89 1 1.98 1 3.15s-.37 2.26-1 3.15c.46.22.96.35 1.5.35z">
+                                  </path>
+                                </svg>
+                              </div>
+                              <div class="d-flex align-items-end w-100 justify-content-between">
+                                <div>
+                                  <p class="fs-30 mb-0">
+                                    <%=data.totalUsers%>K
+                                  </p>
+                                  <h4 class="box-title">Users</h4>
+                                </div>
+                                <span class="profit">+12.6%</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="custom-col stretch-card transparent">
+                        <div class="card">
+                          <div id="USER" class="card-body22 p-0">
+                            <div class="icon-box-formet">
+                              <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                                  <path
+                                    d="M96 96c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H80c-44.2 0-80-35.8-80-80V128c0-17.7 14.3-32 32-32s32 14.3 32 32V400c0 8.8 7.2 16 16 16s16-7.2 16-16V96zm64 24v80c0 13.3 10.7 24 24 24H296c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24H184c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z" />
+                                </svg>
+                              </div>
+                              <div class="d-flex align-items-end w-100 justify-content-between">
+                                <div>
+                                  <p class="fs-30 mb-0">
+                                    <%=data.totalnews%>K
+                                  </p>
+                                  <h4 class="box-title">News</h4>
+                                </div>
+                                <span class="profit">+12.6%</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="custom-col stretch-card transparent">
+                        <div class="card">
+                          <div id="USER" class="card-body22 p-0">
+                            <div class="icon-box-formet">
+                              <div class="icon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                  <g id="SVGRepo_iconCarrier">
+                                    <path fill="none" stroke="currentColor" stroke-width="2"
+                                      d="M5,16 C3.343,16 2,17.343 2,19 C2,20.657 3.343,22 5,22 C6.657,22 8,20.657 8,19 C8,17.343 6.657,16 5,16 L5,16 L5,16 Z M5,1 C14.925,1 23,9.075 23,19 L23,19 M18,19 C18,11.832 12.168,6 5,6 M13,19 C13,14.589 9.411,11 5,11 M2,11 L2,19 L2,19">
+                                    </path>
+                                  </g>
+                                </svg>
+                              </div>
+                              <div class="d-flex align-items-end w-100 justify-content-between">
+                                <div>
+                                  <p class="fs-30 mb-0">
+                                    <%=data.blogData%>K
+                                  </p>
+                                  <h4 class="box-title">Blogs</h4>
+                                </div>
+                                <span class="profit">+12.6%</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="custom-col stretch-card transparent">
+                        <div class="card">
+                          <div id="USER" class="card-body22 p-0">
+                            <div class="icon-box-formet">
+                              <div class="icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                  <g id="SVGRepo_iconCarrier">
+                                    <path
+                                      d="M8 12C7.44772 12 7 12.4477 7 13C7 13.5523 7.44772 14 8 14H16C16.5523 14 17 13.5523 17 13C17 12.4477 16.5523 12 16 12H8Z"
+                                      fill="currentColor"></path>
+                                    <path
+                                      d="M7 17C7 16.4477 7.44772 16 8 16H12C12.5523 16 13 16.4477 13 17C13 17.5523 12.5523 18 12 18H8C7.44772 18 7 17.5523 7 17Z"
+                                      fill="currentColor"></path>
+                                    <path fill-rule="currentColor" clip-rule="currentColor"
+                                      d="M7 2C7.55228 2 8 2.44772 8 3V4H16V3C16 2.44772 16.4477 2 17 2C17.5523 2 18 2.44772 18 3V4.10002C20.2822 4.56329 22 6.58104 22 9V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V9C2 6.58104 3.71776 4.56329 6 4.10002V3C6 2.44772 6.44772 2 7 2ZM20 10H4V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V10Z"
+                                      fill="currentColor"></path>
+                                  </g>
+                                </svg>
+                              </div>
+                              <div class="d-flex align-items-end w-100 justify-content-between">
+                                <div>
+                                  <p class="fs-30 mb-0">
+                                    <%=data.eventData%>K
+                                  </p>
+                                  <h4 class="box-title">Events</h4>
+                                </div>
+                                <span class="profit">+12.6%</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  
+                    </div>
+                    <div class="row my-5">
+                      <div class="col-12 col-md-8">
+                        <div class="card-box report">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="earning">Total Record</h6>
+                            <!-- <p class="sub-title">Yearly Earnings Overview</p> -->
+                          </div>
+                          <canvas id="playsGraph" class="playsGraph" width="400" height="200"></canvas>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-4">
+                        <div class="card-box report">
+                          <h6 class="earning">Total Resource Purchases</h6>
+                          <canvas id="myRadarChart" width="300" height="300"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="payment-ststus-table mt-5 mb-80">
+                      <div class="card-body22 report">
+                        <h6 class="earning">User List</h6>
+                        <div class="transaction-main table-responsive dynamic-listing table-listing">
+                          <table class="table mt-3 transaction-detail table-striped ">
+                            <thead>
+                              <tr>
+                                <th> USER AVTAR</th>
+                                <th>USER NAME</th>
+                                <th>LAST NAME</th>
+                                <th>USER EMAIL</th>
+                                <th>CREATED</th>
+                                <th>ACTION</th>
+                              </tr>
+                            </thead>
+                       
+                          </table>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <%- include('./include/footer'); %>
+
+                  <!-- partial -->
+              </div>
+          </div>
+          <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    </div>
+    <!-- container-scroller -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const resourcepurchaseData = '<%= data.resourcepurchaseData %>';
+        const totalUsers = '<%= data.totalUsers %>';
+        const totalnews = '<%= data.totalnews %>';
+        const resourceData = '<%= data.resourceData %>';
+        const eventData = '<%= data.eventData %>';
+        const blogData = '<%= data.blogData %>';
+        const labels = ['Total Users', 'Total News', 'Total Resource', 'Total Event', 'Total Blog',];
+        const data = [totalUsers, totalnews, resourceData, eventData, blogData];
+        const playsGraph = document.getElementById('playsGraph').getContext('2d');
+
+        const playsChart = new Chart(playsGraph, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: '',
+              data: data,
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          }
+        });
+        const radarChart = new Chart(document.getElementById('myRadarChart').getContext('2d'), {
+          type: 'line',
+          data: {
+            labels: ['Resource Purchases'],
+            datasets: [{
+              label: '',
+              data: [resourcepurchaseData],
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 2,
+              pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: 'rgba(54, 162, 235, 1)',
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              tension: 0.4 
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (tooltipItem) {
+                    return 'Total Resource Purchases: ' + tooltipItem.raw;
+                  }
+                }
+              }
+            }
+          }
+        });
+      });
+    </script>
+
+<script>
+  var KWACHA_ADMIN = {};
+
+  KWACHA_ADMIN.init = function (pageNum, sortBy, sortOrder, searchValue, perPage) {
+    page_num = pageNum ? pageNum : 0;
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "user-list-ajax",
+      pageNumber: pageNum,
+      sortBy: sortBy,
+      sortOrder: sortOrder,
+      keywords: searchValue,
+      perPage: perPage,
+    };
+    KWACHA_MAIN.loadPageData(pageNum, KWACHA_ADMIN_PAGE_CONFIG);
+  };
+
+  KWACHA_ADMIN.sortBy = function (sortBy, sortOrder, perPage) {
+    $("#loading").show();
+    if (sortOrder == 'ASC') {
+      sortOrder = 'DESC';
+    } else {
+      sortOrder = 'ASC';
+    }
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "user-list-ajax",
+      pageNumber: 0,
+      sortBy: sortBy,
+      sortOrder: sortOrder,
+      perPage: perPage,
+    };
+    KWACHA_MAIN.loadPageData(0, KWACHA_ADMIN_PAGE_CONFIG);
+  }
+  KWACHA_ADMIN.init(0, 'uc_created', 'ASC');
+
+  $("#search").on('keyup', function () {
+    clearTimeout(this.delay);
+    this.delay = setTimeout(function () {
+      $(this).trigger('search');
+    }.bind(this), 1000); // Adjust the delay time as needed
+  }).on('search', function () {
+    let searchValue = $("#search").val().trim(); // Trim any whitespace
+    if (searchValue) {
+      $("#loading").show();
+      KWACHA_ADMIN.init(0, "uc_created", 'ASC', searchValue);
+    } else {
+      $("#loading").show();
+      KWACHA_ADMIN.init(0, "uc_created", 'ASC', '');
+    }
+  });
+
+
+
+
+  $("#pagination").change(function () {
+    let perPage = $('#pagination').val();
+    $("#loading").show();
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "user-list-ajax",
+      pageNumber: 0,
+      sortBy: 'uc_created',
+      sortOrder: 'ASC',
+      perPage: perPage,
+    };
+    KWACHA_MAIN.loadPageData(0, KWACHA_ADMIN_PAGE_CONFIG);
+  });
+
+
+
+</script>
+  </body>
+
+</html>

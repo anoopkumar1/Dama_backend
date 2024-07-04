@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>dama project</title>
+  <link rel="stylesheet" type="text/css" href="/website/application/theme/css/style.css" />
+  <script src="/website/application/jquery/form-validation.min.js"></script>
+  <script src="/website/application/jquery/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <%- include('../partials/header'); %>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>User Login</title>
+      <link rel="stylesheet" type="text/css" href="styles.css" />
+    </head>
+
+    <body>
+      <div class="container">
+        <div class="login-container">
+          <div class="logo">
+            <img src="/website/application/theme/image/logo22.png" alt="Logo" />
+          </div>
+          <div class="sign-data">
+            <h2 class="signin-text">Sign in to continue</h2>
+            <p class="sign-sub">Stay Udated</p>
+          </div>
+          <form id="loginForm" class="sign-form">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email" required />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                required />
+            </div>
+            <div class="forgot-password">
+              <a href="#">Forgot password?</a>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn-primary">Login</button>
+            </div>
+
+            <div class="signin-with">
+              <a href="#">Sign in with <i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+            <div class="signup-section">
+              <p>Don't have an account? <a href="/register">Register</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="message"></div>
+
+      <!-- jQuery and other scripts here -->
+    </body>
+
+    </html>
+
+    <%- include('../partials/contactUs'); %>
+</body>
+
+</html>
+
+<script>
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      LoginUser();
+    });
+
+  async function LoginUser() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const requestBody = {
+      email: email,
+      password: password,
+      devicePlatform: "WEB",
+    };
+
+    try {
+      const response = await fetch(
+        "http://52.55.77.120/auth/login-with-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok && data.status) {
+        console.log("token", data);
+        localStorage.setItem("webtoken", data.payload.token);
+        window.location.href = "/main";
+      } else {
+        displayMessage(
+          data.message || "Please fill mandatory fields.",
+          "error"
+        );
+        swal("Error", data.message || "Please fill mandatory fields.", "error");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      displayMessage("An error occurred. Please try again.", "error");
+      swal("Error", "An error occurred. Please try again.", "error");
+    }
+  }
+
+  function displayMessage(message, type) {
+    const messageElement = document.getElementById("message");
+    messageElement.innerHTML = `<div class="${type || "success"
+      }">${message}</div>`;
+  }
+</script>

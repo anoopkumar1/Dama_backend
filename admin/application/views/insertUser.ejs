@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+  <style>
+    * {
+      font-family: Roboto;
+    }
+
+    .submit-data {
+      width: max-content;
+    }
+
+    .selet-opt {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      border: 2px solid #ced4da;
+    }
+
+    .form-group input {
+      border: 2px solid #ced4da;
+    }
+
+    .card-header {
+      background-color: #0056b3;
+    }
+
+    .card-header h3 {
+      color: #fff;
+    }
+
+
+
+    .card-body {
+      background: #fff;
+    }
+
+    .submit-data {
+      border-radius: 5px;
+    }
+  </style>
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+        <div class="d-flex justify-content-between">
+          <%- include('./include/sidebar'); %>
+            <!-- partial -->
+            <div class="content-side" id="content-side">
+              <!-- partial:../../partials/_settings-panel.html -->
+              <div class="theme-setting-wrapper">
+                <div id="settings-trigger" class="d-flex setting-btn"><i class="ti-settings"></i></div>
+                <div id="theme-settings" class="settings-panel">
+                  <!-- <i class="settings-close ti-close"></i> -->
+                  <!-- <p class="settings-heading">SIDEBAR SKINS</p> -->
+                  <div class="sidebar-bg-options selected icon-view-form" id="sidebar-light-theme">
+                    <!-- <div class="img-ss rounded-circle bg-light border mr-3"></div> -->
+                    <svg fill="currentColor" viewBox="0 0 35 35" data-name="Layer 2" id="Layer_2"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z">
+                        </path>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="sidebar-bg-options icon-view-form" id="sidebar-dark-theme">
+                    <!-- <div class="img-ss rounded-circle bg-dark border mr-3"></div> -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5001M17.6859 17.69L18.5 18.5001M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="color-tiles mx-0 px-4">
+                    <div class="tiles success"></div>
+                    <div class="tiles warning"></div>
+                    <div class="tiles danger"></div>
+                    <div class="tiles info"></div>
+                    <div class="tiles dark"></div>
+                    <div class="tiles default"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- partial -->
+              <!-- partial:partials/_sidebar.html -->
+
+              <!-- partial -->
+              <div class="main-panel">
+                <div class="content-wrapper mb-80">
+                  <!-- <p class="card-description" style="padding: 20px;">Create user</p> -->
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12 grid-margin stretch-card">
+                        <div class="card border-0">
+                          <div class="card-body22">
+                            <div class="card-body">
+                              <form class="forms-sample" id="insertUser" method="post" role="form">
+                                <div class="d-flex align-items-center justify-content-between mb-5">
+                                  <h3 class="card-title m-0">Create new user</h3>
+                                  <button type="submit" class="btn btn-primary mr-2 submit-data">
+                                    Submit
+                                  </button>
+                                </div>
+                                <div class="d-flex">
+                                  <div class="upload-side">
+                                    <div class="position-relative">
+                                      <label for="upload-pic">Profile image</label>
+                                      <input type="file" name="profile image" id="upload-pic">
+                                      <div class="placeholder-view">
+                                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                          viewBox="0 0 48 48" data-testid="Icon" fill="currentColor" height="1em"
+                                          width="1em">
+                                          <path
+                                            d="M24,12 C28.418278,12 32,15.581722 32,20 L32,22 C32,26.418278 28.418278,30 24,30 C19.581722,30 16,26.418278 16,22 L16,20 C16,15.581722 19.581722,12 24,12 Z M24,32 C33.8734019,32 42.1092023,38.8710577 44,48 L4,48 C5.89079771,38.8710577 14.1265981,32 24,32 Z">
+                                          </path>
+                                        </svg>
+                                        <div class="camra">
+                                          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                            fill="currentColor" viewBox="0 0 24 24" data-testid="AddAPhotoOutlinedIcon"
+                                            class="svg-icon icon-sm" height="1em" width="1em">
+                                            <path
+                                              d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z">
+                                            </path>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-file">
+                                    <div class="form-group">
+                                      <label for="userName">First name</label>
+                                      <input type="text" class="form-control" name="userName" id="userName"
+                                        placeholder="First Name" />
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="userLast">Last name</label>
+                                      <input type="text" class="form-control" name="userLast" id="userLast"
+                                        placeholder="Last Name" />
+                                    </div>
+                                    <div class="form-group" id="vpn">
+                                      <label for="userPassword">Password</label>
+                                      <input type="password" class="form-control" name="userPassword" id="userPassword"
+                                        placeholder="User Password" />
+                                    </div>
+
+
+                                    <div class="form-group">
+                                      <label for="userEmail">Email</label>
+                                      <input type="email" class="form-control" name="userEmail" id="userEmail"
+                                        placeholder="User Email" />
+                                    </div>
+                                  </div>
+                                </div>
+
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- content-wrapper ends -->
+              <!-- partial:../../partials/_footer.html -->
+              <!-- partial -->
+            </div>
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+  </body>
+
+</html>
+
+<script>
+  $(function () {
+    $("#insertUser").validate({
+
+      errorPlacement: function (error, element) {
+
+        error.insertAfter(element);
+
+      },
+
+      errorElement: "span",
+      rules: {
+        userName: {
+          required: true,
+          maxlength: 20,
+        },
+        userLast: {
+          required: true,
+          maxlength: 20,
+        },
+        userEmail: {
+          required: true,
+          email: true,
+          maxlength: 50,
+        },
+        userPassword: {
+          required: true,
+          maxlength: 20,
+        },
+      },
+      messages: {
+        userName: {
+          required: "Please enter your first name",
+          maxlength: "First name must not exceed 20 characters",
+        },
+        userLast: {
+          required: "Please enter your last name",
+          maxlength: "Last name must not exceed 20 characters",
+        },
+        userEmail: {
+          required: "Please enter your email",
+          email: "Please enter a valid email address",
+          maxlength: "Email must not exceed 50 characters",
+        },
+        userPassword: {
+          required: "Please enter your password",
+          maxlength: "Password must not exceed 20 characters",
+        },
+      },
+      submitHandler: function (form) {
+        let formData = $(form).serialize();
+
+        $.ajax({
+          url: "/admin/insert-user",
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+          data: formData,
+          cache: false,
+          processData: false,
+          method: "POST",
+          type: "POST",
+          success: function (_res) {
+            $(form).trigger("reset");
+            let successConfig = {
+              title: "Confirmation",
+              message: `Operation performed successfully.`,
+              type: "success",
+            };
+            KWACHA_MAIN.sweetAlert(successConfig);
+          },
+          error: function (e) {
+            let responseText = JSON.parse(e.responseText);
+            let errorConfig = {
+              title: "Error",
+              message: responseText.message,
+              type: "error",
+            };
+            KWACHA_MAIN.sweetAlert(errorConfig);
+          },
+        });
+      },
+    });
+  });
+</script>
+
+
+
+
+<script>
+  function toggleInput() {
+    var contactType = document.getElementById("contactType").value;
+    var emailField = document.getElementById("emailField");
+    var phoneField = document.getElementById("phoneField");
+
+    if (contactType === "email") {
+      emailField.style.display = "block";
+      phoneField.style.display = "none";
+    } else if (contactType === "phone") {
+      emailField.style.display = "none";
+      phoneField.style.display = "block";
+    }
+  }
+</script>

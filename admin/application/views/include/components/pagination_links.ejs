@@ -1,0 +1,91 @@
+<style>
+    .pagination-container {
+        text-align: right;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .pagination {
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+        border-radius: 8px;
+        justify-content: end;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    ul.pagination li a {
+        padding: 10px;
+    }
+</style>
+<div class="pagination-container">
+
+    <% if ( locals._function ) { callFunction=_function; } else { callFunction='KNOWEX_MAIN.loadPageData' ; }
+        showing=parseInt(data.offset) + parseInt(data.per_page); if ( showing <=parseInt(data.total_records) ) {
+        show=showing; } else { show=parseInt(data.total_records); } if ( data.total_records !=0 ) { %>
+        <span>Showing <%= data.offset+1 %> to <%=show %> of <%= data.total_records %></span>
+
+        <% if ( show==data.total_records && data.offset+1==1) { %>
+            <% } else { %>
+
+                <ul class="pagination">
+                    <% total_pages=Math.ceil( data.total_records/data.per_page); %>
+
+                        <% var i=(Number(data.page)> 3 ? Number(data.page) - 2 : 1) %>
+
+                            <% if (data.page==0) { %>
+                                <li class="inactive"><a>First</a></li>
+                                <% } else { %>
+                                    <li><a href="javascript:void(0);" onclick=<%=callFunction%>('<%=0 %>')>
+                                                <i class="active">First</i>
+                                        </a></li>
+                                    <li><a href="javascript:void(0);" onclick=<%=callFunction%>('<%=i-1 %>')>
+                                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                                        </a></li>
+                                    <% } %>
+
+                                        <% data.page++ %>
+                                            <% i=(Number(data.page))%>
+
+                                                <% for (i; i <=(Number(data.page) + 2) && i <=total_pages-1; i++) { %>
+
+                                                    <% if (i==data.page) { %>
+                                                        <li class="active"><a>
+                                                                <%= i %>
+                                                            </a></li>
+                                                        <% } else { %>
+                                                            <li><a href="javascript:void(0);"
+                                                                    onclick=<%=callFunction%>('<%=i-1 %>','','','','
+                                                                        <%=data.per_page %>')><%= i %></a></li>
+                                                            <% } %>
+
+                                                                <% } %>
+
+                                                                    <% if (data.page==total_pages) { %>
+                                                                        <li class="active"><a>
+                                                                                <%= i %>
+                                                                            </a></li>
+                                                                        <li class="inactive"><a>Last</a></li>
+                                                                        <% } else { %>
+
+                                                                            <li class="<%=i-1 %>"><a
+                                                                                    href="javascript:void(0);"
+                                                                                    onclick=<%=callFunction%>('<%=i-1
+                                                                                        %>','','','','<%=data.per_page
+                                                                                            %>')>
+                                                                                            <i class="fa fa-angle-double-right"
+                                                                                                aria-hidden="true"></i>
+                                                                                </a></li>
+                                                                            <li><a href="javascript:void(0);"
+                                                                                    onclick=<%=callFunction%>('<%=total_pages-1
+                                                                                        %>',,'','','','<%=data.per_page
+                                                                                            %>')>
+                                                                                            <i class="active">Last</i>
+                                                                                </a></li>
+                                                                            <% } %>
+                </ul>
+                <% } %>
+                    <% } %>
+</div>

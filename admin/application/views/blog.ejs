@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+    <!-- <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+        <link rel="stylesheet" href="https://news.wrteam.me/public/plugins/ekko-lightbox/ekko-lightbox.css" />
+        <link rel="stylesheet" href="https://news.wrteam.me/public/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+        <link href="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.css" rel="stylesheet" />
+        <link
+            href="https://unpkg.com/bootstrap-table@1.21.2/dist/extensions/reorder-rows/bootstrap-table-reorder-rows.css"
+            rel="stylesheet" />
+
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.1/extensions/fixed-columns/bootstrap-table-fixed-columns.css"
+            integrity="sha512-kvkkrHuKAXVdP5Ank5mgDR9hsNnuA5eVcw+a8K5VgbKjP1UQewIrhBE+826LiXjWMlgZJ0aPZl0Pc+XrOQNa4A=="
+            crossorigin="anonymous" />
+        <link rel="stylesheet" href="theme/css/testing.css" />
+        <script type="text/javascript" src="https://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" id="mce-u0"
+            href="https://news.wrteam.me/public/plugins/tinymce/skins/ui/oxide/skin.min.css" />
+    </head> -->
+
+    <body>
+        <div class="container-scroller">
+            <!-- partial:../../partials/_navbar.html -->
+            <%- include('./include/topbar'); %>
+                <div class="d-flex justify-content-between">
+                    <%- include('./include/sidebar'); %>
+                        <!-- partial -->
+                        <div class="content-side" id="content-side">
+                            <div class="container">
+                                <!-- partial:../../partials/_settings-panel.html -->
+                                <div class="theme-setting-wrapper">
+                                    <div id="settings-trigger"><i class="ti-settings"></i></div>
+                                    <div id="theme-settings" class="settings-panel">
+                                        <i class="settings-close ti-close"></i>
+                                        <p class="settings-heading">SIDEBAR SKINS</p>
+                                        <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                                            <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                                            Light
+                                        </div>
+                                        <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                                            <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+                                            Dark
+                                        </div>
+                                        <p class="settings-heading mt-2">HEADER SKINS</p>
+                                        <div class="color-tiles mx-0 px-4">
+                                            <div class="tiles success"></div>
+                                            <div class="tiles warning"></div>
+                                            <div class="tiles danger"></div>
+                                            <div class="tiles info"></div>
+                                            <div class="tiles dark"></div>
+                                            <div class="tiles default"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- partial -->
+                                <!-- partial:partials/_sidebar.html -->
+
+                                <!-- partial -->
+                                <div class="content-wrapper" style="min-height: 795.562px">
+                                    <!-- Content Header (Page header) -->
+                                    <!-- Main content -->
+                                    <section class="content">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card-body22 card-secondary">
+                                                        <form role="form" id="addBlog" method="POST">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-between mb-5">
+                                                                <h3 class="card-title m-0">Add Blog</h3>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary mr-2 submit-data">
+                                                                    Submit
+                                                                </button>
+                                                            </div>
+                                                            <div class="d-flex">
+                                                                <div class="upload-side ps-4">
+                                                                    <div class="position-relative">
+                                                                        <label>Featured Image<br />
+                                                                            <small class="text-danger">Only
+                                                                                png,
+                                                                                jpg,
+                                                                                and jpeg image
+                                                                                allow</small></label>
+                                                                                <input type="file" name="image"
+                                                                                class="input-file" id="b_image"
+                                                                                required="" multiple
+                                                                                style="border: 2px solid #ced4da" />
+                                                                        <div class="placeholder-view">
+                                                                            <svg aria-hidden="true" focusable="false"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                viewBox="0 0 48 48" data-testid="Icon"
+                                                                                fill="currentColor" height="1em"
+                                                                                width="1em">
+                                                                                <path
+                                                                                    d="M24,12 C28.418278,12 32,15.581722 32,20 L32,22 C32,26.418278 28.418278,30 24,30 C19.581722,30 16,26.418278 16,22 L16,20 C16,15.581722 19.581722,12 24,12 Z M24,32 C33.8734019,32 42.1092023,38.8710577 44,48 L4,48 C5.89079771,38.8710577 14.1265981,32 24,32 Z">
+                                                                                </path>
+                                                                            </svg>
+                                                                            <div class="camra">
+                                                                                <svg aria-hidden="true"
+                                                                                    focusable="false"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    fill="currentColor"
+                                                                                    viewBox="0 0 24 24"
+                                                                                    data-testid="AddAPhotoOutlinedIcon"
+                                                                                    class="svg-icon icon-sm"
+                                                                                    height="1em" width="1em">
+                                                                                    <path
+                                                                                        d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z">
+                                                                                    </path>
+                                                                                </svg>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-file">
+
+                                                                    <div class="form-group ">
+                                                                        <div class="col-sm-12 add-width">
+                                                                            <label>Title</label>
+                                                                            <input type="text" id="title" name="title"
+                                                                                class="form-control"
+                                                                                placeholder="blog title"
+                                                                                style="border: 2px solid #ced4da" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group ">
+                                                                        <div class="col-sm-12 add-width">
+                                                                            <label>Subtitle</label>
+                                                                            <input type="text" id="subTitle"
+                                                                                name="subTitle" class="form-control"
+                                                                                placeholder="blog subtitle"
+                                                                                style="border: 2px solid #ced4da" />
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="form-group ">
+                                                                        <div class="col-sm-12 add-width">
+                                                                            <label>Content</label>
+                                                                            <input type="text" id="content"
+                                                                                name="content" class="form-control"
+                                                                                placeholder="blog content"
+                                                                                style="border: 2px solid #ced4da" />
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <!-- <div class="form-group ">
+                                                                        <div class="col-sm-12 add-width">
+                                                                            <label>Featured Image
+                                                                                <small class="text-danger">Only
+                                                                                    png,
+                                                                                    jpg,
+                                                                                    and jpeg image
+                                                                                    allow</small></label>
+                                                                            <div class="custom-file">
+                                                                                <div class="">
+                                                                                    <input type="file" name="image"
+                                                                                        class="input-file" id="b_image"
+                                                                                        required="" multiple
+                                                                                        style="border: 2px solid #ced4da" />
+                                                                                    <div class="input-group col-xs-12">
+                                                                                        <span
+                                                                                            class="input-group-addon"><i
+                                                                                                class="fa fa-video-camera"></i></span>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            disabled
+                                                                                            placeholder="Upload Image"
+                                                                                            style="border: 2px solid #ced4da" />
+                                                                                        <span class="input-group-btn">
+                                                                                            <button
+                                                                                                class="upload-field btn btn-info"
+                                                                                                type="button">
+                                                                                                <i
+                                                                                                    class="fa fa-search"></i>
+                                                                                                Browse
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> -->
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-12">
+                                                                            <label>Description</label>
+                                                                            <textarea id="description"
+                                                                                name="description" class="form-control"
+                                                                                aria-hidden="true" style="display: none"
+                                                                                required=""></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p style="display: none" id="img_error_msg"
+                                                                        class="alert alert-danger"></p>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            </form>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        </section>
+                        <!-- /.content -->
+                </div>
+        </div>
+        </div>
+        </div>
+        <!--footer-->
+        <%- include('./include/footer'); %>
+            </div>
+    </body>
+    <style>
+        .form-group select {
+            width: 100% !important;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 10px !important;
+        }
+
+        body {
+            font-family: Roboto;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .input-file {
+            visibility: hidden;
+            position: absolute;
+        }
+
+        button.upload-field.btn.btn-info {
+            padding-bottom: 5px;
+            margin-left: 4px;
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .input-group:not(.has-validation)>.form-control:not(:last-child),
+        .asColorPicker-wrap:not(.has-validation)>.form-control:not(:last-child),
+        .input-group:not(.has-validation)>.asColorPicker-input:not(:last-child),
+        .asColorPicker-wrap:not(.has-validation)>.asColorPicker-input:not(:last-child),
+        .dataTables_wrapper .input-group:not(.has-validation)>select:not(:last-child),
+        .dataTables_wrapper .asColorPicker-wrap:not(.has-validation)>select:not(:last-child),
+        .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>input:not(:last-child)[type="text"],
+        .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>input:not(:last-child)[type="text"],
+        .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>select:not(:last-child),
+        .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>select:not(:last-child),
+        .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>input:not(:last-child)[type="number"],
+        .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>input:not(:last-child)[type="number"],
+        .select2-container--default .input-group:not(.has-validation)>.select2-selection--single:not(:last-child),
+        .select2-container--default .asColorPicker-wrap:not(.has-validation)>.select2-selection--single:not(:last-child),
+        .select2-container--default .select2-selection--single .input-group:not(.has-validation)>.select2-search__field:not(:last-child),
+        .select2-container--default .select2-selection--single .asColorPicker-wrap:not(.has-validation)>.select2-search__field:not(:last-child),
+        .input-group:not(.has-validation)>.typeahead:not(:last-child),
+        .asColorPicker-wrap:not(.has-validation)>.typeahead:not(:last-child),
+        .input-group:not(.has-validation)>.tt-query:not(:last-child),
+        .asColorPicker-wrap:not(.has-validation)>.tt-query:not(:last-child),
+        .input-group:not(.has-validation)>.tt-hint:not(:last-child),
+        .asColorPicker-wrap:not(.has-validation)>.tt-hint:not(:last-child),
+        .input-group:not(.has-validation)>.custom-select:not(:last-child),
+        .asColorPicker-wrap:not(.has-validation)>.custom-select:not(:last-child),
+        .input-group:not(.has-validation)>.custom-file:not(:last-child) .custom-file-label::after,
+        .asColorPicker-wrap:not(.has-validation)>.custom-file:not(:last-child) .custom-file-label::after {
+            background-color: white;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            $("#addBlog").validate({
+                errorPlacement: function (error, element) {
+                    $(element)
+                        .closest("form")
+                        .find("label[for='" + element.attr("id") + "']")
+                        .append(error);
+                },
+
+                errorElement: "span",
+                rules: {
+                    title: {
+                        required: true,
+                        maxlength: 300,
+                    },
+
+                    content: {
+                        required: true,
+                        maxlength: 350,
+                    },
+                    description: {
+                        required: true,
+                        maxlength: 350,
+                    },
+                },
+                submitHandler: function () {
+                    let formData = $("#addBlog").serialize();
+                    console.log(formData, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
+                    $.ajax({
+                        url: "/admin/insert-blog",
+                        headers: {
+                            Authorization: localStorage.getItem("token"),
+                        },
+                        data: formData,
+                        cache: false,
+                        processData: false,
+                        method: "POST",
+                        type: "POST",
+
+                        success: function (_res) {
+                            console.log(_res, "ressssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
+                            let _id = _res.payload.blogUuid;
+                            console.log(_id, "_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id_id")
+                            KWACHA_MAIN.uploadBlogImage(_id);
+                            $("#addBlog").trigger("reset");
+
+                            let successConfig = {
+                                title: "Confirmation",
+                                message: `Operation performed successfully.`,
+                                type: "success",
+                            };
+                            KWACHA_MAIN.sweetAlert(successConfig);
+                        },
+
+                        error: function (e) {
+                            $("#load").hide();
+                            let responseText = JSON.parse(e.responseText);
+                            let errorConfig = {
+                                title: "Error",
+                                message: responseText.message,
+                                type: "error",
+                            };
+                            KWACHA_MAIN.sweetAlert(errorConfig);
+                        },
+                    });
+                },
+            });
+        });
+        KWACHA_MAIN.uploadBlogImage = function (_id) {
+            if (document.getElementById("b_image")) {
+                if (typeof document.getElementById("b_image").files !== "undefined" && document.getElementById("b_image").files.length > 0) {
+                    var formData = new FormData();
+                    var files = document.getElementById("b_image").files;
+                    console.log("Files received from frontend:", files);
+                    for (var i = 0; i <= files.length; i++) {
+                        formData.append("multiple", files[i]);
+                    }
+                    formData.append("blogUuid", _id);
+                    $.ajax({
+                        url: "/admin/upload-blog-image",
+                        data: formData,
+                        dataType: "json",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        method: "POST",
+                        type: "POST",
+                        success: function () {
+                            $("#addBlog").trigger("reset");
+                        },
+                        error: function (error) {
+                            let message = error.responseJSON ? error.responseJSON.message : "Something Went wrong!";
+                            KWACHA_MAIN.sweetAlert({ title: "Error", message: message, type: "error" });
+                        },
+                    });
+                }
+            }
+        };
+
+        $(document).on("click", ".upload-field", function () {
+            var file = $(this).parent().parent().parent().find(".input-file");
+            file.trigger("click");
+        });
+        $(document).on("change", ".input-file", function () {
+            $(this)
+                .parent()
+                .find(".form-control")
+                .val(
+                    $(this)
+                        .val()
+                        .replace(/C:\\fakepath\\/i, "")
+                );
+        });
+    </script>
+
+    <script>
+        var editor = CKEDITOR.replace("description");
+        editor.on("change", function (evt) {
+            $("#hidden").val(evt.editor.getData());
+        });
+    </script>
+
+</html>

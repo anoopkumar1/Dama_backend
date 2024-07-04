@@ -1,0 +1,513 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+<div id="loading"></div>
+<table class="table table-striped" id="example">
+    <thead>
+        <tr>
+            <th><b>USER AVTAR</b> </th>
+            <th><b>FIRST NAME</b> </th>
+            <th><b>LAST NAME</b>
+            </th>
+
+            <th>
+                USER EMAIL
+            </th>
+
+
+
+            <th onclick="KWACHA_ADMIN.sortBy('uc_created','<%=data.sortOrder %>','<%=data.per_page %>')">
+                CREATED<i class="fa fa-fw fa-sort"></i>
+            </th>
+            <th>
+                ACTION
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% if(data.data){ %>
+            <% _data=data.data; if(_data.length> 0 ) { %>
+                <% for (var i=0; i<_data.length; i++) { %>
+
+                    <tr>
+                        <td>
+                            <img src="https://media.istockphoto.com/id/1320316989/vector/round-grungy-fake-news-rubber-stamp-imprint.webp?s=2048x2048&w=is&k=20&c=MVr1MrNTAnnP2OlYTBktzuGS31vr5NV-yrnCdxE4kzk="
+                                width="500" height="600">
+                        </td>
+
+
+                        <td class="py-1">
+                            <%= _data[i]['uc_first_name'] %>
+                        </td>
+                        <td class="py-1">
+                            <%= _data[i]['uc_last_name'] %>
+                        </td>
+
+                        <td>
+                            <%= _data[i]['uc_email'] %>
+                        </td>
+
+
+                        <td>
+                            <%=_data[i]['uc_created'] %>
+
+                        </td>
+
+                        <td class="text-right">
+                            <!-- <div class="dropdown">
+                                <button class="no-border" type="" id="dropdownMenuButton<%= i %>" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v" style="color:#0056b3;"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right"
+                                    aria-labelledby="dropdownMenuButton<%= i %>">
+                                    <a class="dropdown-item edit jummah_editbtn" href="#editEmployeeModal"
+                                        dataid="<%=_data[i]['uc_uuid']%>">
+                                        <i class="fas fa-edit" style="color:#0056b3;"></i> Edit
+                                    </a>
+                                    <a class="dropdown-item delete" href="#deleteEmployeeModal" data-toggle="modal"
+                                        onclick="setUserId(`<%=_data[i]['uc_uuid']  %>`)">
+                                        <i class="fas fa-trash-alt" style="color:#0056b3;"></i> Delete
+                                    </a>
+                                </div>
+                            </div> -->
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle bg-transparent" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v" style="color:#0056b3;"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item edit jummah_editbtn" href="#editEmployeeModal"
+                                            dataid="<%=_data[i]['uc_uuid']%>">
+                                            <i class="fas fa-edit" style="color:#0056b3;"></i> Edit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item delete" href="#deleteEmployeeModal" data-toggle="modal"
+                                            onclick="setUserId(`<%=_data[i]['uc_uuid']  %>`)">
+                                            <i class="fas fa-trash-alt" style="color:#0056b3;"></i> Delete
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+
+
+
+                    </tr>
+
+                    <% } %>
+                        <% } else { %>
+                            <tr class="no-record-row">
+                                <td colspan="9" style="text-align: center; vertical-align: middle;"><span><b>No record
+                                            found</b></span></td>
+                            </tr>
+
+                            <% } %>
+                                <% } else { %>
+                                    <tr class="no-record-row">
+                                        <td colspan="9" style="text-align: center; vertical-align: middle;"><span><b>No
+                                                    record
+                                                    found</b></span></td>
+                                    </tr>
+
+                                    <% } %>
+
+    </tbody>
+</table>
+<% if ( data && data.data && data.data.length> 0 ) { %>
+    <div id="paginationLinks">
+        <%- include('./include/components/pagination_links',{_function:' KWACHA_ADMIN.init'}); %>
+    </div>
+    <% } %>
+
+
+        <!--Start Delete User Modal HTML -->
+        <div id="deleteEmployeeModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>`
+                        <input type="hidden" id="hiddenuser">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete User</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure, You want to delete this user?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+
+                            <input type="button" style="background-color: #0056b3; color: #fff;" type="submit"
+                                class="btn btn" value="Delete" onclick="KWACHA_ADMIN.deleteUser()" id="userdata">
+                        </div>
+                    </form>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class="page-header">
+            <h3>Edit Users</h3>
+            <button type="button" class="close close1 show-button" data-dismiss="modal" aria-hidden="true">User
+                List</button>
+        </div>
+        <div id="editEmployeeModal" class="page-wrapper update-rest modal fade formPart" aria-modal="false"
+            role="dialog">
+
+            <div class="">
+                <div class="content container-fluid p-0">
+                    <form class="forms-sample editEmployeeModlFrom p-0" id="editEmployeeModlFrom" method="post"
+                        role="form">
+                        <div class="responseformgroup editEmployeeresponseFrom" id="editEmployeeresponseFrom">
+                            <div class="loader"></div>
+                        </div>
+                        <div class="modal-footer" style="border-top: 0px;">
+                            <div class="card-footer">
+                                <input type="button" class="btn btn-default cancelbtn" data-dismiss="modal"
+                                    value="Cancel">
+                                <button type="submit" class="btn btn-primary mr-2 updateBtn ">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <style>
+            * {
+                font-family: Roboto;
+            }
+
+            .page-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .limited-text {
+                max-width: 30ch;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            input.error {
+                border-color: red !important;
+            }
+
+            .card-header {
+                background-color: #0056b3;
+            }
+
+            .card-header h3 {
+                color: #fff;
+            }
+
+            .card-description {
+                font-weight: 500 !important;
+                margin-left: 0px !important;
+                font-size: 17px !important;
+                margin-bottom: 0.875rem !important;
+            }
+
+            .card-body {
+                background: #fff;
+            }
+
+            .submit-data {
+                border-radius: 5px;
+            }
+
+            .card-body:has(.update-rest.show) {
+                background: transparent;
+            }
+
+            .close {
+                font-size: 14px;
+                padding: 14px 24px !important;
+                background: #0056b3 !important;
+                color: #fff;
+                border-radius: 15px;
+            }
+
+            .close:hover {
+                color: #fff;
+            }
+
+            .modal-footer {
+                background: #fff;
+            }
+
+            .card-footer {
+                width: 100%;
+                display: flex;
+                justify-content: end;
+            }
+
+            .navbar {
+                z-index: 9999;
+            }
+        </style>
+
+        <!--End Edit User Modal HTML -->
+        <script>
+            $('.show-button').on('click', function (e) {
+                e.preventDefault();
+                $('.Search').show();
+                $('#paginationLinks').show();
+                $('.selectbox').show();
+
+
+
+            });
+
+            //Start-user Delete
+            function setUserId(userId) {
+                $("#hiddenuser").val(userId);
+            }
+            function setSelectedUserId(userId) {
+                localStorage.setItem('selectedUserId', userId);
+            }
+
+            //   order///////
+            function setSelectedOrderId(userId) {
+                localStorage.setItem('selectedUserId', userId);
+            }
+            KWACHA_ADMIN.deleteUser = function () {
+                $("#userdata").html('Processing...');
+                let userUuid = $("#hiddenuser").val();
+                if (userUuid) {
+                    $.ajax({
+                        url: "/admin/delete-user",
+                        data: "userId=" + userUuid,
+                        cache: false,
+                        processData: false,
+                        method: "POST",
+                        type: "POST",
+                        success: function (_res) {
+                            $("#hiddenuser").val("");
+                            let successConfig = {
+                                title: "Confirmation",
+                                message: `Operation performed successfully.`,
+                                type: "success",
+                            };
+                            KWACHA_MAIN.sweetAlert(successConfig);
+                        },
+                        error: function (e) {
+                            $("#userdata").html("");
+                            let responseText = JSON.parse(e.responseText);
+                            let errorConfig = {
+                                title: "Error",
+                                message: responseText.message,
+                                type: "error",
+                            };
+                            KWACHA_MAIN.sweetAlert(errorConfig);
+                        },
+                    });
+                }
+                window.location.reload();
+            }
+            //End-user Delete
+            //Start-user Update
+            function seteditUserId(userId, activeStatus) {
+                if (activeStatus == '1') {
+                    $("#messagePara").html('Are you sure,You want to Disable this user.');
+                } else {
+                    $("#messagePara").html('Are you sure,You want to Enable this user.');
+                }
+                $("#hiddenedituser").val(userId);
+            }
+
+
+            $(document).ready(function () {
+
+                $("#editEmployeeModlFrom").validate({
+                    errorPlacement: function (error, element) {
+
+                        error.insertAfter(element);
+
+                    },
+                    errorElement: "span",
+                    rules: {
+                        userName: {
+                            required: true,
+                            maxlength: 20,
+                        },
+                        userLast: {
+                            required: true,
+                            maxlength: 20,
+                        },
+                        userEmail: {
+                            required: true,
+                            email: true,
+                            maxlength: 50,
+                        }
+                    },
+                    messages: {
+                        userName: {
+                            required: "Please enter your first name",
+                            maxlength: "First name must not exceed 20 characters",
+                        },
+                        userLast: {
+                            required: "Please enter your last name",
+                            maxlength: "Last name must not exceed 20 characters",
+                        },
+                        userEmail: {
+                            required: "Please enter your email",
+                            email: "Please enter a valid email address",
+                            maxlength: "Email must not exceed 50 characters",
+                        }
+                    },
+                    submitHandler: function (form) {
+                        // Handle form submission
+                        let formData = $(form).serialize();
+                        $.ajax({
+                            url: "admin/edit-users",
+                            type: "POST",
+                            data: formData,
+                            dataType: "json",
+                            success: function (res) {
+                                if (res.status) {
+                                    const msg = {
+                                        title: "Confirmation",
+                                        message: 'Operation performed successfully.',
+                                        type: "success",
+                                    };
+                                    KWACHA_MAIN.sweetAlert(msg);
+                                } else {
+                                    const msg = {
+                                        title: "Error",
+                                        message: 'Operation performed failed.',
+                                        type: "error",
+                                    };
+                                    KWACHA_MAIN.sweetAlert(msg);
+                                }
+                            },
+                            error: function (e) {
+                                const msg = {
+                                    title: "Error",
+                                    message: 'Update failed, "Please fill mandatory fields.",',
+                                    type: "error"
+                                };
+                                KWACHA_MAIN.sweetAlert(msg);
+                            }
+                        });
+                    }
+                });
+
+                // Existing event handlers for opening and closing modals
+                $('.jummah_editbtn').on('click', function (e) {
+                    e.preventDefault();
+                    const dataid = $(this).attr('dataid');
+                    let htmls = '';
+
+                    $('#example').hide();
+                    $('#close').hide();
+                    $('.Search').hide();
+                    $('.selectbox').hide();
+                    $('#paginationLinks').hide();
+                    $("#editEmployeeModal").attr('style', 'padding-right: 0px; display: block;');
+                    $("#editEmployeeModal").attr('aria-modal', 'true');
+                    $("#editEmployeeModal").attr('role', 'dialog');
+                    $("#editEmployeeModal").addClass('show');
+                    $('.page-header').show();
+
+
+                    if (dataid != '') {
+                        $.ajax({
+                            'url': Homes_url() + 'admin/get-user-by-id/' + dataid,
+                            type: 'get',
+                            headers: {
+                                Authorization: localStorage.getItem("token"),
+                            },
+                            dataType: 'json',
+                            success: function (res) {
+                                if (res.status) {
+                                    const obj = res.payload;
+                                    htmls += '<div class="card">';
+                                    htmls += '<div class="card-header">'
+                                    htmls += '<h3 class="card">'
+                                    htmls += 'Edit User Details'
+                                    htmls += '</h3>'
+                                    htmls += '</div>'
+                                    htmls += '<div class="card-body">'
+                                    htmls += '<div class="row">';
+                                    htmls += '<input type="hidden" name="userId" id="hiddeneditRestorent" value="' + obj.uc_uuid + '">';
+                                    htmls += '<div class="col-md-12">';
+                                    htmls += '<div class="form-group">';
+                                    htmls += '<label for="userName">First name</label>';
+                                    htmls += '<input class="show" type="text" value="' + obj.uc_first_name + '" class="form-control" name="userName" id="userName" placeholder="First Name">';
+                                    htmls += '</div>';
+                                    htmls += '</div>';
+                                    htmls += '<div class="col-md-12">';
+                                    htmls += '<div class="form-group">';
+                                    htmls += '<label for="userLast">Last name</label>';
+                                    htmls += '<input class="show"  type="text" value="' + obj.uc_last_name + '" class="form-control" name="userLast" id="userLast" placeholder="Last Name">';
+                                    htmls += '</div>';
+                                    htmls += '</div>';
+                                    htmls += '<div class="col-md-12">';
+                                    htmls += '<div class="form-group">';
+                                    htmls += '<label for="userEmail">Email</label>';
+                                    htmls += '<input class="show"  type="text" value="' + obj.uc_email + '" class="form-control" name="userEmail" id="userEmail" placeholder="Email">';
+                                    htmls += '</div>';
+                                    htmls += '</div>';
+                                    htmls += '</div>';
+                                    htmls += '</div>';
+                                    htmls += '</div>';
+                                    $('#editEmployeeresponseFrom').html(htmls);
+                                } else {
+                                    $(".modal").removeAttr('style');
+                                    $(".modal").attr('aria-modal', 'false');
+                                    $(".modal").removeAttr('role');
+                                    $(".modal").removeClass('show');
+                                    const msg = {
+                                        title: "Error",
+                                        message: 'Edit failed...',
+                                        type: "error"
+                                    };
+                                    KWACHA_MAIN.sweetAlert(msg);
+                                }
+                            }
+                        });
+                    } else {
+                        $(".modal").removeAttr('style');
+                        $(".modal").attr('aria-modal', 'false');
+                        $(".modal").removeAttr('role');
+                        $(".modal").removeClass('show');
+                        const msg = {
+                            title: "Error",
+                            message: 'Edit failed...',
+                            type: "error"
+                        };
+                        KWACHA_MAIN.sweetAlert(msg);
+                    }
+                });
+
+                $('.close, .cancelbtn').on('click', function (e) {
+                    e.preventDefault();
+                    $('#example').show();
+                    $('#close').show();
+                    $(".modal").removeAttr('style');
+                    $(".modal").attr('aria-modal', 'false');
+                    $(".modal").removeAttr('role');
+                    $('.modal').removeClass('show');
+                    $('.page-header').hide();
+                });
+            });
+
+            $(document).ready(function () {
+                $('.page-header').hide();
+            });
+            $(document).ready(function () {
+
+                $('close1').click(function () {
+                    $('.page-header').hide();
+                });
+            });
+        </script>

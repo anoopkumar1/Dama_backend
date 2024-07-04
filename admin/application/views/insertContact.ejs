@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+    <body>
+        <style>
+            * {
+                font-family: Roboto;
+            }
+
+            .submit-data {
+                width: max-content;
+            }
+
+            .selet-opt {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 25px;
+                border-radius: 10px;
+                border: 2px solid #ced4da;
+            }
+
+            .form-group input {
+                border: 2px solid #ced4da;
+            }
+
+            .card-header {
+                background-color: #0056b3;
+            }
+
+            .card-header h3 {
+                color: #fff;
+            }
+
+            .card-description {
+                font-weight: 500 !important;
+                margin-left: 0px !important;
+                font-size: 17px !important;
+                margin-bottom: 0.875rem !important;
+            }
+
+            .card-body {
+                background: #fff;
+            }
+
+            .submit-data {
+                border-radius: 5px;
+            }
+        </style>
+        <div class="container-scroller">
+            <!-- partial:../../partials/_navbar.html -->
+            <%- include('./include/topbar'); %>
+                <div class="d-flex">
+                    <%- include('./include/sidebar'); %>
+                        <!-- partial -->
+                        <div class="content-side" id="content-side">
+                            <!-- partial:../../partials/_settings-panel.html -->
+                            <div class="theme-setting-wrapper">
+                                <div id="settings-trigger"><i class="ti-settings"></i></div>
+                                <div id="theme-settings" class="settings-panel">
+                                    <i class="settings-close ti-close"></i>
+                                    <p class="settings-heading">SIDEBAR SKINS</p>
+                                    <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                                        <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                                        Light
+                                    </div>
+                                    <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                                        <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+                                        Dark
+                                    </div>
+                                    <p class="settings-heading mt-2">HEADER SKINS</p>
+                                    <div class="color-tiles mx-0 px-4">
+                                        <div class="tiles success"></div>
+                                        <div class="tiles warning"></div>
+                                        <div class="tiles danger"></div>
+                                        <div class="tiles info"></div>
+                                        <div class="tiles dark"></div>
+                                        <div class="tiles default"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- partial -->
+                            <!-- partial:partials/_sidebar.html -->
+
+                            <!-- partial -->
+                            <div class="main-panel">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12 grid-margin stretch-card">
+                                            <div class="card-body22 w-100">
+                                                <div class="mb-4">
+                                                    <h3 class="card-title m-0">Create new content</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <form class="forms-sample" id="insertUser" method="post"
+                                                        role="form">
+                                                        <div class="form-file w-100">
+                                                            <div class="form-group">
+                                                                <label for="contentType">Content Type</label>
+                                                                <select class="form-control" name="contentType"
+                                                                    id="contentType" placeholder="User Name">
+                                                                    <option value="TERMS AND CONDITIONS">TERMS AND
+                                                                        CONDITIONS</option>
+                                                                    <option value="PRIVACY POLICY">PRIVACY POLICY
+                                                                    </option>
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="userName">Content</label>
+                                                                <textarea id="userMessage" name="userMessage" rows="4"
+                                                                    cols="50" class="w-100"></textarea>
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <button type="submit"
+                                                                    class="btn rounded-0 btn-primary mr-2 submit-data">
+                                                                    Submit 
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- content-wrapper ends -->
+                                <!-- partial:../../partials/_footer.html -->
+                                <!-- partial -->
+                            </div>
+                            <!-- main-panel ends -->
+                        </div>
+                </div>
+                <%- include('./include/footer'); %>
+    </body>
+
+</html>
+
+<style>
+    .form-group select {
+        width: 100% !important;
+        padding: 8px;
+        border: 1px solid #ced4da;
+        border-radius: 10px !important;
+    }
+
+    body {
+        font-family: Roboto;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .input-file {
+        visibility: hidden;
+        position: absolute;
+    }
+
+    button.upload-field.btn.btn-info {
+        padding-bottom: 5px;
+        margin-left: 4px;
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .input-group:not(.has-validation)>.form-control:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.form-control:not(:last-child),
+    .input-group:not(.has-validation)>.asColorPicker-input:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.asColorPicker-input:not(:last-child),
+    .dataTables_wrapper .input-group:not(.has-validation)>select:not(:last-child),
+    .dataTables_wrapper .asColorPicker-wrap:not(.has-validation)>select:not(:last-child),
+    .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>input:not(:last-child)[type="text"],
+    .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>input:not(:last-child)[type="text"],
+    .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>select:not(:last-child),
+    .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>select:not(:last-child),
+    .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>input:not(:last-child)[type="number"],
+    .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>input:not(:last-child)[type="number"],
+    .select2-container--default .input-group:not(.has-validation)>.select2-selection--single:not(:last-child),
+    .select2-container--default .asColorPicker-wrap:not(.has-validation)>.select2-selection--single:not(:last-child),
+    .select2-container--default .select2-selection--single .input-group:not(.has-validation)>.select2-search__field:not(:last-child),
+    .select2-container--default .select2-selection--single .asColorPicker-wrap:not(.has-validation)>.select2-search__field:not(:last-child),
+    .input-group:not(.has-validation)>.typeahead:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.typeahead:not(:last-child),
+    .input-group:not(.has-validation)>.tt-query:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.tt-query:not(:last-child),
+    .input-group:not(.has-validation)>.tt-hint:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.tt-hint:not(:last-child),
+    .input-group:not(.has-validation)>.custom-select:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.custom-select:not(:last-child),
+    .input-group:not(.has-validation)>.custom-file:not(:last-child) .custom-file-label::after,
+    .asColorPicker-wrap:not(.has-validation)>.custom-file:not(:last-child) .custom-file-label::after {
+        background-color: white;
+    }
+</style>
+
+<script>
+    $(function () {
+        $("#insertUser").validate({
+            errorPlacement: function (error, element) {
+                $(element)
+                    .closest("form")
+                    .find("label[for='" + element.attr("id") + "']")
+                    .append(error);
+            },
+
+            errorElement: "span",
+            rules: {
+                userName: {
+                    required: true,
+                    maxlength: 20,
+                },
+
+                userEmail: {
+                    required: true,
+                    maxlength: 50,
+                },
+
+                userPassword: {
+                    required: true,
+                    maxlength: 20,
+                },
+
+                userGender: {
+                    required: true,
+                    maxlength: 20,
+                },
+            },
+            submitHandler: function () {
+                let formData = $("#insertUser").serialize();
+
+                $.ajax({
+                    url: "/admin/insert-contact",
+                    headers: {
+                        Authorization: localStorage.getItem("token"),
+                    },
+                    data: formData,
+                    cache: false,
+                    processData: false,
+                    method: "POST",
+                    type: "POST",
+                    success: function (_res) {
+                        $("#insertUser").trigger("reset");
+                        let successConfig = {
+                            title: "Confirmation",
+                            message: `Operation performed successfully.`,
+                            type: "success",
+                        };
+                        KWACHA_MAIN.sweetAlert(successConfig);
+                    },
+                    error: function (e) {
+                        let responseText = JSON.parse(e.responseText);
+                        let errorConfig = {
+                            title: "Error",
+                            message: responseText.message,
+                            type: "error",
+                        };
+                        KWACHA_MAIN.sweetAlert(errorConfig);
+                    },
+                });
+            },
+        });
+    });
+</script>

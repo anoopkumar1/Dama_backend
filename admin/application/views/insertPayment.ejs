@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+    <style>
+        .submit-data {
+            width: max-content;
+        }
+
+        .selet-opt {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            border: 2px solid #ced4da;
+        }
+
+        .form-group input {
+            border: 2px solid #ced4da;
+        }
+
+        .forms-sample {
+            width: 50%;
+            margin: 10px;
+            background: #fff;
+            box-sizing: border-box;
+            padding: 10px 29px;
+        }
+
+        .card-body {
+            display: flex;
+            gap: 20px;
+        }
+
+
+        .header {
+            background-color: #0056b3;
+
+        }
+
+        .header h3 {
+            padding: 10px;
+            color: #fff;
+            margin: 0;
+            font-weight: 500 !important;
+            margin-left: 0px !important;
+            font-size: 17px !important;
+        }
+
+        .gap-5 {
+            gap: 1.5rem;
+        }
+
+        .btn-grp input {
+            display: none;
+        }
+
+        .btn-grp .form-group:first-child label {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .btn-grp .form-group:last-child label {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .btn-grp label {
+            padding: 10px 30px;
+            border: 1px solid #0056b3;
+            cursor: pointer;
+        }
+
+        .btn-grp input:checked+label {
+            background: #0056b3;
+            color: #fff;
+        }
+    </style>
+
+    <body>
+        <div class="container-scroller">
+            <!-- partial:../../partials/_navbar.html -->
+            <%- include('./include/topbar'); %>
+            <div class="d-flex justify-content-between">
+                <%- include('./include/sidebar'); %>
+                    <!-- partial -->
+                    <div class="content-side" id="content-side">
+                        <!-- partial:../../partials/_settings-panel.html -->
+                        <div class="theme-setting-wrapper">
+                            <div id="settings-trigger"><i class="ti-settings"></i></div>
+                            <div id="theme-settings" class="settings-panel">
+                                <i class="settings-close ti-close"></i>
+                                <p class="settings-heading">SIDEBAR SKINS</p>
+                                <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                                    <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                                    Light
+                                </div>
+                                <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                                    <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+                                    Dark
+                                </div>
+                                <p class="settings-heading mt-2">HEADER SKINS</p>
+                                <div class="color-tiles mx-0 px-4">
+                                    <div class="tiles success"></div>
+                                    <div class="tiles warning"></div>
+                                    <div class="tiles danger"></div>
+                                    <div class="tiles info"></div>
+                                    <div class="tiles dark"></div>
+                                    <div class="tiles default"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- partial -->
+                        <!-- partial:partials/_sidebar.html -->
+
+                        <!-- partial -->
+                        <div class="main-panel">
+
+                            <div class="container">
+                                <div class="header p-0">
+                                    <h3>
+                                        Payment Setting
+                                    </h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 grid-margin stretch-card">
+                                        <div class="card p-0">
+                                            <div class="card-body22 p-5 d-flex gap-5">
+                                                <form class="forms-sample card border m-0" id="insertUser" method="post"
+                                                    role="form">
+                                                    <p class="card-description" style="padding: 20px 0;">PayPal
+                                                    </p>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="d-flex btn-grp">
+                                                                <div
+                                                                    class="form-group d-flex align-items-center justify-content-start gap-3">
+                                                                    <input type="radio" id="paypal-active" name="active"
+                                                                        class="form-control w-auto h-auto m-0">
+                                                                    <label for="paypal-active"
+                                                                        class="m-0">Active</label>
+                                                                </div>
+                                                                <div
+                                                                    class="form-group d-flex align-items-center justify-content-start gap-3">
+                                                                    <input type="radio" id="paypal-inactive"
+                                                                        name="inactive"
+                                                                        class="form-control w-auto h-auto m-0">
+                                                                    <label for="paypal-inactive"
+                                                                        class="m-0">Inactive</label>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="form-group d-flex align-items-start justify-content-start gap-3 flex-column">
+                                                                <label for="paypal-client-id" class="m-0">PayPal Client
+                                                                    Id</label>
+                                                                <input type="text" id="paypal-client-id"
+                                                                    name="client_id"
+                                                                    class="form-control w-100 h-auto m-0" required>
+                                                            </div>
+                                                            <div
+                                                                class="form-group d-flex align-items-start justify-content-start gap-3 flex-column">
+                                                                <label for="paypal-secret" class="m-0">PayPal
+                                                                    Secret</label>
+                                                                <input type="text" id="paypal-secret" name="secret"
+                                                                    class="form-control w-100 h-auto m-0" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </form>
+
+                                                <form class="forms-sample card border m-0" id="insertStripe"
+                                                    method="post" role="form">
+                                                    <p class="card-description" style="padding: 20px 0;">Stripe
+                                                    </p>
+
+                                                    
+
+                                                    <div class="d-flex btn-grp">
+                                                        <div
+                                                            class="form-group d-flex align-items-center justify-content-start gap-3">
+                                                            <input type="radio" id="stripe-active" name="active"
+                                                                class="form-control w-auto h-auto m-0">
+                                                            <label for="stripe-active" class="m-0">Active</label>
+                                                        </div>
+
+                                                        <div
+                                                            class="form-group d-flex align-items-center justify-content-start gap-3">
+                                                            <input type="radio" id="stripe-inactive" name="inactive"
+                                                                class="form-control w-auto h-auto m-0">
+                                                            <label for="stripe-inactive" class="m-0">Inactive</label>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="form-group d-flex align-items-start justify-content-start gap-3 flex-column">
+                                                        <label for="stripe-publish-key" class="m-0">Publishable
+                                                            Key</label>
+                                                        <input type="text" id="stripe-publish-key" name="publish_key"
+                                                            class="form-control w-100 h-auto m-0" required>
+                                                    </div>
+
+                                                    <div
+                                                        class="form-group d-flex align-items-start justify-content-start gap-3 flex-column">
+                                                        <label for="stripe-api-key" class="m-0">API Key</label>
+                                                        <input type="text" id="stripe-api-key" name="api_key"
+                                                            class="form-control w-100 h-auto m-0" required>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- content-wrapper ends -->
+                            <!-- partial:../../partials/_footer.html -->
+                            <!-- partial -->
+                        </div>
+                        <!-- main-panel ends -->
+                    </div>
+                    <!-- page-body-wrapper ends -->
+            </div>
+        </div>
+        <%- include('./include/footer'); %>
+    </body>
+    <script src="https://js.stripe.com/v3/"></script>
+
+</html>
+
+<script>
+    $(function () {
+        $("#insertUser").validate({
+
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+
+            errorElement: "span",
+            rules: {
+                userName: {
+                    required: true,
+                    maxlength: 20,
+                },
+                userLast: {
+                    required: true,
+                    maxlength: 20,
+                },
+                userEmail: {
+                    required: true,
+                    email: true,
+                    maxlength: 50,
+                },
+                userPassword: {
+                    required: true,
+                    maxlength: 20,
+                },
+            },
+            messages: {
+                userName: {
+                    required: "Please enter your first name",
+                    maxlength: "First name must not exceed 20 characters",
+                },
+                userLast: {
+                    required: "Please enter your last name",
+                    maxlength: "Last name must not exceed 20 characters",
+                },
+                userEmail: {
+                    required: "Please enter your email",
+                    email: "Please enter a valid email address",
+                    maxlength: "Email must not exceed 50 characters",
+                },
+                userPassword: {
+                    required: "Please enter your password",
+                    maxlength: "Password must not exceed 20 characters",
+                },
+            },
+            submitHandler: function (form) {
+                let formData = $(form).serialize();
+
+                $.ajax({
+                    url: "/admin/insert-payment",
+                    headers: {
+                        Authorization: localStorage.getItem("token"),
+                    },
+                    data: formData,
+                    cache: false,
+                    processData: false,
+                    method: "POST",
+                    type: "POST",
+                    success: function (_res) {
+                        $(form).trigger("reset");
+                        let successConfig = {
+                            title: "Confirmation",
+                            message: `Operation performed successfully.`,
+                            type: "success",
+                        };
+                        KWACHA_MAIN.sweetAlert(successConfig);
+                    },
+                    error: function (e) {
+                        let responseText = JSON.parse(e.responseText);
+                        let errorConfig = {
+                            title: "Error",
+                            message: responseText.message,
+                            type: "error",
+                        };
+                        KWACHA_MAIN.sweetAlert(errorConfig);
+                    },
+                });
+            },
+        });
+    });
+
+    $(function () {
+        $("#insertStripe").validate({
+
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+
+            errorElement: "span",
+            rules: {
+                userName: {
+                    required: true,
+                    maxlength: 20,
+                },
+                userLast: {
+                    required: true,
+                    maxlength: 20,
+                },
+                userEmail: {
+                    required: true,
+                    email: true,
+                    maxlength: 50,
+                },
+                userPassword: {
+                    required: true,
+                    maxlength: 20,
+                },
+            },
+            messages: {
+                userName: {
+                    required: "Please enter your first name",
+                    maxlength: "First name must not exceed 20 characters",
+                },
+                userLast: {
+                    required: "Please enter your last name",
+                    maxlength: "Last name must not exceed 20 characters",
+                },
+                userEmail: {
+                    required: "Please enter your email",
+                    email: "Please enter a valid email address",
+                    maxlength: "Email must not exceed 50 characters",
+                },
+                userPassword: {
+                    required: "Please enter your password",
+                    maxlength: "Password must not exceed 20 characters",
+                },
+            },
+            submitHandler: function (form) {
+                let formData = $(form).serialize();
+
+                $.ajax({
+                    url: "/admin/insert-stripe",
+                    headers: {
+                        Authorization: localStorage.getItem("token"),
+                    },
+                    data: formData,
+                    cache: false,
+                    processData: false,
+                    method: "POST",
+                    type: "POST",
+                    success: function (_res) {
+                        $(form).trigger("reset");
+                        let successConfig = {
+                            title: "Confirmation",
+                            message: `Operation performed successfully.`,
+                            type: "success",
+                        };
+                        KWACHA_MAIN.sweetAlert(successConfig);
+                    },
+                    error: function (e) {
+                        let responseText = JSON.parse(e.responseText);
+                        let errorConfig = {
+                            title: "Error",
+                            message: responseText.message,
+                            type: "error",
+                        };
+                        KWACHA_MAIN.sweetAlert(errorConfig);
+                    },
+                });
+            },
+        });
+    });
+
+    function toggleInput() {
+        var contactType = document.getElementById("contactType").value;
+        var emailField = document.getElementById("emailField");
+        var phoneField = document.getElementById("phoneField");
+
+        if (contactType === "email") {
+            emailField.style.display = "block";
+            phoneField.style.display = "none";
+        } else if (contactType === "phone") {
+            emailField.style.display = "none";
+            phoneField.style.display = "block";
+        }
+    }
+
+    $(document).ready(function () {
+        $("#paypal-active, #paypal-inactive").change(function () {
+            var isActive = $(this).attr("id") === "paypal-active";
+            if ($(this).is(":checked")) {
+                $("#" + (isActive ? "paypal-inactive" : "paypal-active")).prop("checked", false);
+                $("#" + (isActive ? "paypal-inactive" : "paypal-active")).val("1");
+                $(this).val("0");
+            }
+        });
+
+        $("#stripe-active, #stripe-inactive").change(function () {
+            var isActive = $(this).attr("id") === "stripe-active";
+            if ($(this).is(":checked")) {
+                $("#" + (isActive ? "stripe-inactive" : "stripe-active")).prop("checked", false);
+                $("#" + (isActive ? "stripe-inactive" : "stripe-active")).val("1");
+                $(this).val("0");
+            }
+        });
+        $("#insertUser").submit(function (event) {
+            event.preventDefault();
+            $("#paypal-active, #paypal-inactive").val(function () {
+                return $(this).prop("defaultChecked") ? "1" : "0";
+            });
+        });
+        $("#insertStripe").submit(function (event) {
+            event.preventDefault();
+            $("#stripe-active, #stripe-inactive").val(function () {
+                return $(this).prop("defaultChecked") ? "1" : "0";
+            });
+        });
+    });
+
+
+</script>

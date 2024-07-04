@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/website/application/theme/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Email Verification</title>
+  <style>
+    .otp-input {
+      width: 2em;
+      height: 2em;
+      text-align: center;
+      font-size: 2.5em;
+      margin: 0 0.2em;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+    }
+
+    .message {
+      margin-top: 1em;
+      padding: 0.5em;
+      border-radius: 5px;
+    }
+
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    form button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="otp-container">
+      <div class="otp-data">
+        <h2 class="signin-text">Verify Phone</h2>
+        <p class="sign-sub">Enter OTP below to verify phone number</p>
+      </div>
+      <form id="otpForm" class="otp-form">
+        <div class="otp-box">
+          <input type="text" id="otp1" class="otp-input" maxlength="1" required />
+          <input type="text" id="otp2" class="otp-input" maxlength="1" required />
+          <input type="text" id="otp3" class="otp-input" maxlength="1" required />
+          <input type="text" id="otp4" class="otp-input" maxlength="1" required />
+        </div>
+        <br />
+        <button type="submit">Verify OTP</button>
+        <div class="signup-section">
+          <p>Didn't receive OTP? <a href="#" id="resendOTP">Resend</a></p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div id="message" class="message"></div>
+
+  <script src="/website/application/jquery/jquery.min.js"></script>
+  <script src="/website/application/jquery/form-validation.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get("email");
+
+    document
+      .getElementById("otpForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        verifyOTP(email); // Pass email parameter to verifyOTP function
+      });
+
+    async function verifyOTP(email) {
+      const otp1 = document.getElementById("otp1").value.trim();
+      const otp2 = document.getElementById("otp2").value.trim();
+      const otp3 = document.getElementById("otp3").value.trim();
+      const otp4 = document.getElementById("otp4").value.trim();
+      const otp = otp1 + otp2 + otp3 + otp4;
+
+      const requestBody = {
+        email: email,
+        otp: otp,
+      };
+
+      try {
+        const response = await fetch(
+          "http://52.55.77.120/auth/verify-email",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
+          }
+        );
+
+        const data = await response.json();
+        if (response.ok && data.status) {
+          let data = {
+            email: email,
+          };
+          let queryString = Object.keys(data)
+            .map(
+              (key) =>
+                `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+            )
+            .join("&");
+
+          let url = `/profile?${queryString}`;
+          window.location.href = url;
+
+          displayMessage("OTP verified successfully");
+          swal("Success", "OTP verified successfully");
+        } else {
+          displayMessage(data.message || "OTP verification failed.", "error");
+          swal("Error", data.message || "OTP verification failed.", "error");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        displayMessage("An error occurred. Please try again.", "error");
+        swal("Error", "An error occurred. Please try again.", "error");
+      }
+    }
+
+    function displayMessage(message, type) {
+      const messageElement = document.getElementById("message");
+      messageElement.innerHTML = `<div class="${type || "success"
+        }">${message}</div>`;
+    }
+
+    document.getElementById("resendOTP").addEventListener("click", function (event) {
+      event.preventDefault();
+      resendOTP();
+    });
+
+    async function resendOTP() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const email = urlParams.get('email');
+
+      try {
+        const response = await fetch(
+          "http://52.55.77.120/auth/resend-email-otp",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: email }),
+          }
+        );
+
+        const data = await response.json();
+        if (response.ok && data.status) {
+          displayMessage("OTP resent successfully.", "success");
+          swal("Success", "OTP resent successfully.", "success");
+        } else {
+          displayMessage(data.message || "Failed to resend OTP.", "error");
+          swal("Error", data.message || "Failed to resend OTP.", "error");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        displayMessage("An error occurred. Please try again.", "error");
+        swal("Error", "An error occurred. Please try again.", "error");
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>

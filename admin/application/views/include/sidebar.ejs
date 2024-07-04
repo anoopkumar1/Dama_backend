@@ -1,0 +1,233 @@
+<style>
+  .sidebar .nav .nav-item .nav-link i {
+    margin: 0;
+  }
+
+  .gap-3 {
+    gap: 9px;
+  }
+
+  .menu-block {
+    padding-right: 16px !important;
+    justify-content: space-between;
+  }
+
+  .nav-item:has(.collapse) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media screen and (max-width: 991px) {}
+</style>
+<nav class="nav-main sidebar sidebar-offcanvas" id="sidebar">
+  <div class="container-custom">
+    <ul class="nav justify-content-center flex-column menu-main" id="menu-bar">
+      <!-- /*------------------------------dashboard--------------------------------*/-->
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/dashboard">
+          <div class="d-flex align-items-center gap-3">
+            <i class="icon-grid menu-icon"></i>
+            <span id="1" class="menu-title">Dashboard</span>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link d-flex gap-3 align-items-center justify-content-between" href="/admin/users-list" >
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span class="menu-title">Users Management</span>
+          </div>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+        <!-- <div class="dropdown-menu position-relative sub-menu p-3">
+          <a class="dropdown-item" href="/admin/create-user">Create User</a>
+          <a class="dropdown-item" href="/admin/users-list">Users List</a>
+        </div> -->
+      </li>
+
+      <!-- /*------------------------------ News --------------------------------*/-->
+
+      <li class="nav-item">
+        <a class="nav-link d-flex gap-3 align-items-center justify-content-between" href="/admin/manage-news-list">
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa fa-sort" aria-hidden="true"></i>
+            <span class="menu-title">News Management</span>
+          </div>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+        <!-- <div class="dropdown-menu position-relative sub-menu p-3">
+          <a class="dropdown-item" href="/admin/news">Create News</a>
+          <a class="dropdown-item" href="/admin/manage-news-list">Manage News</a>
+        </div> -->
+      </li>
+
+      <!-- /*------------------------------Blog--------------------------------*/-->
+
+      <li class="nav-item">
+        <a class="nav-link d-flex gap-3 align-items-center justify-content-between" href="/admin/manage-blog-list">
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa fa-blog" aria-hidden="true"></i>
+            <span class="menu-title">Blog Management</span>
+          </div>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+      </li>
+
+      <!-- /*------------------------------Event--------------------------------*/-->
+      <li class="nav-item">
+        <a class="nav-link -toggle d-flex gap-3 align-items-center justify-content-between" href="/admin/get-event-list">
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <span class="menu-title">Events Management</span>
+          </div>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+        <!-- <div class="dropdown-menu position-relative sub-menu p-3">
+          <a class="dropdown-item" href="/admin/event">Create Event</a>
+          <a class="dropdown-item" href="">Manage Event</a>
+        </div> -->
+      </li>
+
+      <!-- /*------------------------------Member Management--------------------------------*/-->
+      <li class="nav-item">
+        <a class="nav-link d-flex gap-3 align-items-center justify-content-between" href="/admin/get-member-list" >
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <span class="menu-title">Member Management</span>
+          </div>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+        <!-- <div class="dropdown-menu position-relative sub-menu p-3">
+          <a class="dropdown-item" href="/admin/member">Create Member</a>
+          <a class="dropdown-item" href="/admin/get-member-list">Manage Member</a>
+        </div> -->
+      </li>
+
+      <!-- /*------------------------------Resource Management--------------------------------*/-->
+      <li class="nav-item">
+        <a class="nav-link d-flex gap-3 align-items-center justify-content-between" href="/admin/manage-resource-list" >
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa fa-book" aria-hidden="true"></i>
+            <span class="menu-title">Resource Management</span>
+          </div>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+        <!-- <div class="dropdown-menu position-relative sub-menu p-3">
+          <a class="dropdown-item" href="/admin/resource">Create Resource</a>
+          <a class="dropdown-item" href="/admin/manage-resource-list">Manage Resource</a>
+        </div> -->
+      </li>
+
+      <!-- /*------------------------------Payment Management--------------------------------*/-->
+      <li class="nav-item">
+        <a class="nav-link  d-flex gap-3 align-items-center justify-content-between" href="/admin/create-payement">
+          <div class="d-flex align-items-center gap-3">
+            <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+            <span class="menu-title">Payments Management</span>
+          </div>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+        <!-- <div class="dropdown-menu position-relative sub-menu p-3">
+          <a class="dropdown-item" href="/admin/create-payement">Payment Method</a>
+        </div> -->
+      </li>
+
+
+      <!-- /*------------------------------content Management--------------------------------*/-->
+
+      <li class="nav-item ">
+        <a class="nav-link d-flex gap-3 align-items-center justify-content-between" href="/admin/contact-list">
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa fa-file" aria-hidden="true"></i>
+            <span class="menu-title">Content Management</span>
+          </div>
+          <!-- <i class="menu-arrow"></i> -->
+        </a>
+        <!-- <div class="dropdown-menu position-relative sub-menu p-3">
+          <a class="dropdown-item" href="/admin/create-contact">Create Content</a>
+          <a class="dropdown-item" href="/admin/contact-list">Content List</a>
+        </div> -->
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  var permissionRole = localStorage.getItem('role');
+  console.log("role", permissionRole);
+
+  let permissionModule = localStorage.getItem("permission")
+  const storedDataArray = JSON.parse(permissionModule);
+
+  if (storedDataArray.length > 0) {
+    const modulesMap = {};
+
+    storedDataArray.forEach(module => {
+      const mainModule = module.mainModule;
+      const subModules = module.subModules;
+
+      if (!modulesMap[mainModule]) {
+        modulesMap[mainModule] = [];
+      }
+
+      modulesMap[mainModule] = modulesMap[mainModule].concat(subModules);
+    });
+
+    function setDisplay(moduleId, display) {
+      console.log("eeeeeeeeeeeeeee");
+      let element = document.getElementById(moduleId);
+      if (element) {
+        element.style.display = display;
+      }
+    }
+    if (permissionRole === "MANAGER") {
+      document.getElementById("USER").style.display = "none"
+      document.getElementById("NEWS").style.display = "none"
+      document.getElementById("BLOG").style.display = "none"
+      document.getElementById("EVENT").style.display = "none"
+      document.getElementById("MEMBER").style.display = "none"
+
+    }
+    if (permissionRole == "EDITOR") {
+      document.getElementById("USER").style.display = "none";
+      document.getElementById("NEWS").style.display = "none";
+      document.getElementById("BLOG").style.display = "none";
+      document.getElementById("EVENT").style.display = "none";
+      document.getElementById("MEMBER").style.display = "none";
+
+    }
+
+    for (const mainModule in modulesMap) {
+      let displayModule = "none";
+
+
+      if ((permissionRole === "MANAGER" || permissionRole === "EDITOR" || permissionRole === "ADMIN") && modulesMap[mainModule].length > 0) {
+        displayModule = "block";
+      }
+
+      setDisplay(mainModule, displayModule);
+    }
+  }
+  if (permissionRole === "EDITOR") {
+
+    document.getElementById("CREATE").style.display = "none";
+    document.getElementById("CREATE1").style.display = "none";
+    document.getElementById("CREATE2").style.display = "none";
+    document.getElementById("CREATE3").style.display = "none";
+    document.getElementById("CREATE4").style.display = "none";
+  }
+
+  document.getElementById("payment").style.display = "none"
+  document.getElementById("resource").style.display = "none"
+  document.getElementById("content").style.display = "none"
+
+  if (permissionRole === "SUPER_ADMIN") {
+    document.getElementById("payment").style.display = "block"
+    document.getElementById("resource").style.display = "block"
+    document.getElementById("content").style.display = "block"
+
+  }
+
+</script>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="/admin//theme/css/style.css">
+  </head>
+
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+        <div class="d-flex">
+          <%- include('./include/sidebar'); %>
+            <!-- partial -->
+            <div class="content-side" id="content-side">
+              <div class="container">
+                <!-- partial:../../partials/_settings-panel.html -->
+                <div class="theme-setting-wrapper">
+                  <div id="settings-trigger"><i class="ti-settings"></i></div>
+                  <div id="theme-settings" class="settings-panel">
+                    <i class="settings-close ti-close"></i>
+                    <p class="settings-heading">SIDEBAR SKINS</p>
+                    <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+                      <div class="img-ss rounded-circle bg-light border mr-3"></div>
+                      Light
+                    </div>
+                    <div class="sidebar-bg-options" id="sidebar-dark-theme">
+                      <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+                      Dark
+                    </div>
+                    <p class="settings-heading mt-2">HEADER SKINS</p>
+                    <div class="color-tiles mx-0 px-4">
+                      <div class="tiles success"></div>
+                      <div class="tiles warning"></div>
+                      <div class="tiles danger"></div>
+                      <div class="tiles info"></div>
+                      <div class="tiles dark"></div>
+                      <div class="tiles default"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- partial -->
+                <!-- partial:../../partials/_sidebar.html -->
+
+                <!-- partial -->
+                <div class="main-panel">
+                  <div class="content-wrapper">
+                    <div class="row">
+                      <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="Search">
+                              <p class="card-description UsersDetails pl-3"> Breaking News List</p>
+                              <div class="wrap">
+                              </div>
+                            </div>
+                            <div style="width: 80px;" class="selectbox">
+                              <select class="form-control" id="pagination" class="back">
+                                <option value="10" selected>10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="1000">1000</option>
+                              </select>
+                            </div>
+
+                            <div class="table-responsive dynamic-listing dinamic-table" id="excelfile">
+                              <table class="table table-striped">
+
+                                <thead>
+                                  <tr>
+                                    <th style=" background-color: #0056b3;">Title </th>
+                                    <th style=" background-color: #0056b3;">Content</th>
+                                    <th style=" background-color: #0056b3;">Language</th>
+                                    <th style=" background-color: #0056b3">Description</th>
+                                    <th style=" background-color: #0056b3;">Created at <i class="fa fa-fw fa-sort"></i>
+                                    </th>
+                                  </tr>
+                                <tbody>
+                                </tbody>
+                                </thead>
+                              </table>
+                            </div>
+                          </div>
+                          <div class="loader" id="dataLoader"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- content-wrapper ends -->
+                  <!-- partial:../../partials/_footer.html -->
+                  <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                      <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+                      </span>
+                      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"><a href="#">
+                        </a></span>
+                    </div>
+                  </footer>
+                  <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+              </div>
+            </div>
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+      <!-- endinject -->
+      <!-- Custom js for this page-->
+      <!-- End custom js for this page-->
+  </body>
+
+
+</html>
+
+<script>
+  var KWACHA_ADMIN = {};
+
+  KWACHA_ADMIN.init = function (pageNum, sortBy, sortOrder, searchValue, perPage) {
+    page_num = pageNum ? pageNum : 0;
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "search-list-ajax",
+      pageNumber: page_num,
+      sortBy: sortBy,
+      sortOrder: sortOrder,
+      keywords: searchValue,
+      perPage: perPage,
+    };
+    KWACHA_MAIN.loadPageData(pageNum, KWACHA_ADMIN_PAGE_CONFIG);
+  };
+  KWACHA_ADMIN.sortBy = function (sortBy, sortOrder, perPage) {
+
+    $("#loading").show();
+    if (sortOrder == 'ASC') {
+      sortOrder = 'DESC';
+    } else {
+      sortOrder = 'ASC';
+    }
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "search-list-ajax",
+      pageNumber: 0,
+      sortBy: sortBy,
+      sortOrder: sortOrder,
+      perPage: perPage,
+      perPage: perPage,
+    };
+
+    KWACHA_MAIN.loadPageData(0, KWACHA_ADMIN_PAGE_CONFIG);
+  }
+  KWACHA_ADMIN.init(0, 'ut_created', 'ASC');
+
+
+  $("#search").on('input', function () {
+    clearTimeout(this.delay);
+    this.delay = setTimeout(function () {
+      $(this).trigger('search');
+    }.bind(this), 2000);
+  }).on('search', function () {
+    if (this.value) {
+      $("#loading").show();
+      let searchValue = $("#search").val();
+      KWACHA_ADMIN.init(0, 'ut_created', 'ASC', searchValue);
+
+    }
+  });
+  $("#pagination").change(function () {
+    let perPage = $('#pagination').val();
+    $("#loading").show();
+    var KWACHA_ADMIN_PAGE_CONFIG = {
+      url: "search-list-ajax",
+      pageNumber: 0,
+      sortBy: 'ut_created',
+      sortOrder: 'ASC',
+      perPage: perPage,
+    };
+    KWACHA_MAIN.loadPageData(0, KWACHA_ADMIN_PAGE_CONFIG);
+
+  });
+
+
+
+</script>

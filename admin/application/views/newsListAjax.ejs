@@ -1,0 +1,234 @@
+<div id="loading"></div>
+<table class="table table-striped dinamic-table" id="example" style="width:100%">
+    <thead>
+        <tr>
+
+        </tr>
+        <th style=" background-color:  #0056b3;">Title</th>
+        <th style=" background-color:  #0056b3;">Content</th>
+        <th style=" background-color:  #0056b3;">Language</th>
+        <th style=" background-color:  #0056b3;">Description</th>
+        <th style=" background-color:  #0056b3;">Image</th>
+        </th>
+        <th style=" background-color:  #0056b3;"
+            onclick="KWACHA_ADMIN.sortBy('bn_created', '<%=data.sortOrder %>','<%=data.per_page %>')">Created
+            at <i class="fa fa-fw fa-sort"></i></th>
+        <th style=" background-color:  #0056b3;">Action</th>
+    </thead>
+    <tbody>
+        <% if(data.data){ %>
+            <% _data=data.data ; if(_data.length> 0 ) { %>
+                <% for(var i=0; i<_data.length; i++) { %>
+                    <tr>
+                        <td  class="limit-text1">
+                            <%= _data[i]['bn_title'] %>
+                        </td>
+
+                        <td>
+                            <%= _data[i]['bn_content'] %>
+                        </td>
+                        <td>
+                            <%= _data[i]['bn_language'] %>
+                        </td>
+                        <td class="limited-text">
+                            <%=_data[i]['bn_description'] %>
+                        </td>
+                        <td>
+                            <%if(_data[i]['bn_image'] ){%>
+                                <img src="https://allora-bucket.s3.eu-north-1.amazonaws.com/images/users-profile-images/<%= _data[i]['bn_image'] %>"
+                                    width="500" height="600">
+                                <% } else{ %>
+                                    <img src="https://picsum.photos/200/300" width="500" height="600">
+                                    <%}%>
+                        </td>
+
+                        <td>
+                            <%=_data[i]['bn_created'] %>
+
+                        </td>
+                        <td class="delet">
+                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"
+                                onclick="setUserId(`<%=_data[i]['bn_uuid']  %>`)">
+                                <i style="color:#0056b3;" class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <% } %>
+                        <% } else { %>
+                            <tr class="no-record-row">
+                                <td colspan="5" style="text-align: center; vertical-align: middle">
+                                    <span>No record found</span>
+                                </td>
+
+                            </tr>
+                            <% }%>
+                                <% } else { %>
+                                    <tr class="no-record-row">
+                                        <td colspan="9" style="text-align: center; vertical-align: middle;"><span><b>No
+                                                    record
+                                                    found</b></span></td>
+                                    </tr>
+
+                                    <% } %>
+    </tbody>
+</table>
+<!-- start datatable 15-09-2022 -->
+
+<!-- End datatable 15-09-2022 -->
+<% if ( data && data.data && data.data.length> 0 ) { %>
+    <%- include('./include/components/pagination_links',{_function:' KWACHA_ADMIN.init'}); %>
+        <% } %>
+
+            <!--Start Delete User Modal HTML -->
+            <div id="deleteEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form>`
+                            <input type="hidden" id="hiddenuser">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Breaking News List</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this breaking News?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+
+                                <input type="button" style="background-color: #0056b3; color: #fff;" type="submit"
+                                    class="btn btn" value="Delete" onclick="KWACHA_ADMIN.deleteUser()" id="userdata">
+                            </div>
+                        </form>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <!--Start Edit User Modal HTML -->
+            <div id="editEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form>
+                            <input type="hidden" id="hiddenedituser">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update User List</h4>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="messagePara"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" data-dismiss="modal" value="No">
+                                <input style="background-color: #0056b3 ; color: #fff;" type="button" class="btn btn"
+                                    value="Yes" onclick="KWACHA_ADMIN.editUser()" id="usereditdata">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .limited-text {
+                    max-width: 30ch;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            </style>
+            <!--End Edit User Modal HTML -->
+            <script>
+                //Start-user Delete
+                function setUserId(userId) {
+                    $("#hiddenuser").val(userId);
+                }
+                function setSelectedUserId(userId) {
+                    localStorage.setItem('selectedUserId', userId);
+                }
+
+                //   order///////
+                function setSelectedOrderId(userId) {
+                    localStorage.setItem('selectedUserId', userId);
+                }
+                KWACHA_ADMIN.deleteUser = function () {
+                    $("#userdata").html('Processing...');
+                    let userUuid = $("#hiddenuser").val();
+                    if (userUuid) {
+                        $.ajax({
+                            url: "/admin/delete-news",
+                            data: "userId=" + userUuid,
+                            cache: false,
+                            processData: false,
+                            method: "POST",
+                            type: "POST",
+                            success: function (_res) {
+                                $("#hiddenuser").val("");
+                                let successConfig = {
+                                    title: "Confirmation",
+                                    message: `Operation performed successfully.`,
+                                    type: "success",
+                                };
+                                KWACHA_MAIN.sweetAlert(successConfig);
+                            },
+                            error: function (e) {
+                                $("#userdata").html("");
+                                let responseText = JSON.parse(e.responseText);
+                                let errorConfig = {
+                                    title: "Error",
+                                    message: responseText.message,
+                                    type: "error",
+                                };
+                                KWACHA_MAIN.sweetAlert(errorConfig);
+                            },
+                        });
+                    }
+                    window.location.reload();
+                }
+                //End-user Delete
+                //Start-user Update
+                function seteditUserId(userId, activeStatus) {
+                    if (activeStatus == '1') {
+                        $("#messagePara").html('Are you sure,You want to Disable this user.');
+                    } else {
+                        $("#messagePara").html('Are you sure,You want to Enable this user.');
+                    }
+                    $("#hiddenedituser").val(userId);
+                }
+                KWACHA_ADMIN.editUser = function () {
+                    $("#usereditdata").html('Processing...');
+                    let userUuid = $("#hiddenedituser").val();
+                    if (userUuid) {
+                        $.ajax({
+                            url: '/admin/delete-news',
+                            data: 'userId=' + userUuid,
+                            cache: false,
+                            processData: false,
+                            method: 'POST',
+                            type: 'POST',
+                            success: function (_res) {
+                                $("#hiddenedituser").val('');
+                                window.location.reload();
+                                let successConfig = {
+                                    title: 'Confirmation',
+                                    message: `Operation performed successfully.`,
+                                    type: 'success',
+                                }
+                                KWACHA_MAIN.sweetAlert(successConfig);
+                            },
+                            error: function (e) {
+                                $("#userdata").html('');
+                                let responseText = JSON.parse(e.responseText);
+                                let errorConfig = {
+                                    title: 'Error',
+                                    message: responseText.message,
+                                    type: 'error'
+                                }
+                                KWACHA_MAIN.sweetAlert(errorConfig);
+                            }
+                        });
+                    }
+                    window.location.reload();
+                }
+
+
+
+            </script>

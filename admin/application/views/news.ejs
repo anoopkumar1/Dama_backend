@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./include/header'); %>
+
+  <!-- <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://news.wrteam.me/public/plugins/ekko-lightbox/ekko-lightbox.css" />
+    <link rel="stylesheet" href="https://news.wrteam.me/public/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/bootstrap-table@1.18.1/dist/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/bootstrap-table@1.21.2/dist/extensions/reorder-rows/bootstrap-table-reorder-rows.css"
+      rel="stylesheet" />
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.1/extensions/fixed-columns/bootstrap-table-fixed-columns.css"
+      integrity="sha512-kvkkrHuKAXVdP5Ank5mgDR9hsNnuA5eVcw+a8K5VgbKjP1UQewIrhBE+826LiXjWMlgZJ0aPZl0Pc+XrOQNa4A=="
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="theme/css/testing.css" />
+    <script type="text/javascript" src="https://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" id="mce-u0"
+      href="https://news.wrteam.me/public/plugins/tinymce/skins/ui/oxide/skin.min.css" />
+    <style>
+      .card-header {
+        background-color: #0056b3;
+        color: #fff;
+      }
+    </style>
+  </head> -->
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+        <div class="d-flex justify-content-between">
+          <%- include('./include/sidebar'); %>
+            <!-- partial -->
+            <div class="content-side" id="content-side">
+              <div class="container">
+                <!-- partial:../../partials/_settings-panel.html -->
+                <div class="theme-setting-wrapper">
+                  <div id="settings-trigger" class="d-flex setting-btn"><i class="ti-settings"></i></div>
+                  <div id="theme-settings" class="settings-panel">
+                    <!-- <i class="settings-close ti-close"></i> -->
+                    <!-- <p class="settings-heading">SIDEBAR SKINS</p> -->
+                    <div class="sidebar-bg-options selected icon-view-form" id="sidebar-light-theme">
+                      <!-- <div class="img-ss rounded-circle bg-light border mr-3"></div> -->
+                      <svg fill="currentColor" viewBox="0 0 35 35" data-name="Layer 2" id="Layer_2"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                          <path
+                            d="M18.44,34.68a18.22,18.22,0,0,1-2.94-.24,18.18,18.18,0,0,1-15-20.86A18.06,18.06,0,0,1,9.59.63,2.42,2.42,0,0,1,12.2.79a2.39,2.39,0,0,1,1,2.41L11.9,3.1l1.23.22A15.66,15.66,0,0,0,23.34,21h0a15.82,15.82,0,0,0,8.47.53A2.44,2.44,0,0,1,34.47,25,18.18,18.18,0,0,1,18.44,34.68ZM10.67,2.89a15.67,15.67,0,0,0-5,22.77A15.66,15.66,0,0,0,32.18,24a18.49,18.49,0,0,1-9.65-.64A18.18,18.18,0,0,1,10.67,2.89Z">
+                          </path>
+                        </g>
+                      </svg>
+                    </div>
+                    <div class="sidebar-bg-options icon-view-form" id="sidebar-dark-theme">
+                      <!-- <div class="img-ss rounded-circle bg-dark border mr-3"></div> -->
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                          <path
+                            d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5001M17.6859 17.69L18.5 18.5001M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          </path>
+                        </g>
+                      </svg>
+                    </div>
+                    <div class="color-tiles mx-0 px-4">
+                      <div class="tiles success"></div>
+                      <div class="tiles warning"></div>
+                      <div class="tiles danger"></div>
+                      <div class="tiles info"></div>
+                      <div class="tiles dark"></div>
+                      <div class="tiles default"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- partial -->
+                <!-- partial:partials/_sidebar.html -->
+                <!-- partial -->
+                <div class="content-wrapper mb-80" style="min-height: 795.562px">
+                  <!-- Content Header (Page header) -->
+
+                  <!-- Main content -->
+                  <section class="content">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card border-0 card-secondary">
+                            <div class="card-body22">
+                              <form role="form" id="addNews" method="POST">
+                                <div class="d-flex align-items-center justify-content-between mb-5">
+                                  <h3 class="card-title m-0">Add News</h3>
+                                  <button type="submit" class="btn btn-primary">
+                                    Submit
+                                  </button>
+                                </div>
+                                <div class="d-flex">
+                                  <div class="upload-side">
+                                    <div class="position-relative">
+                                      <label for="upload-pic">Upload image</label>
+                                      <input type="file" name="upload-image" id="upload-pic">
+                                      <div class="placeholder-view">
+                                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                          viewBox="0 0 48 48" data-testid="Icon" fill="currentColor" height="1em"
+                                          width="1em">
+                                          <path
+                                            d="M24,12 C28.418278,12 32,15.581722 32,20 L32,22 C32,26.418278 28.418278,30 24,30 C19.581722,30 16,26.418278 16,22 L16,20 C16,15.581722 19.581722,12 24,12 Z M24,32 C33.8734019,32 42.1092023,38.8710577 44,48 L4,48 C5.89079771,38.8710577 14.1265981,32 24,32 Z">
+                                          </path>
+                                        </svg>
+                                        <div class="camra">
+                                          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                                            fill="currentColor" viewBox="0 0 24 24" data-testid="AddAPhotoOutlinedIcon"
+                                            class="svg-icon icon-sm" height="1em" width="1em">
+                                            <path
+                                              d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z">
+                                            </path>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                        <div class="form-file">
+                                          <div class="linement" style="margin-top:0px ;width:100%">
+                                            <div class="form-group ">
+                                              <div class="col-sm-12 add-width">
+                                                <label>Title</label>
+                                                <input type="text" id="title" name="title" class="form-control"
+                                                  placeholder="News Title" style="border: 2px solid #ced4da" />
+                                              </div>
+
+                                            </div>
+                                          </div>
+                                          <div class="linement" style="margin-top: 0px ;width:100%">
+                                            <div class="form-group ">
+                                              <div class="col-sm-12 add-width">
+                                                <label>Subtitle</label>
+                                                <input type="text" id="subTitle" name="subTitle" class="form-control"
+                                                  placeholder="News Subtitle" style="border: 2px solid #ced4da" />
+                                              </div>
+
+                                            </div>
+                                          </div>
+                                          <div class="linement" style="margin-top: 0px ;width:100%">
+                                            <div class="form-group ">
+                                              <div class="col-sm-12 add-width ">
+                                                <label>Content</label>
+                                                <input type="text" id="content" name="content" class="form-control"
+                                                  placeholder="News Content" style="border: 2px solid #ced4da" />
+                                              </div>
+
+                                            </div>
+                                          </div>
+                                          <!-- <div class="set" style="margin-top: -20px ;width:50%">
+                                            <div class="form-group ">
+                                              <div class="col-sm-6 add-width">
+                                                <label>Featured Image
+                                                  <small class="text-danger">Only png, jpg, and jpeg image
+                                                    allow</small></label>
+                                                <div class="custom-file">
+                                                  <div class="">
+                                                    <input type="file" name="image" class="input-file" id="n_image"
+                                                      required="" style="border: 2px solid #ced4da" multiple />
+                                                    <div class="input-group col-xs-12">
+                                                      <span class="input-group-addon"><i
+                                                          class="fa fa-video-camera"></i></span>
+                                                      <input type="text" class="form-control" disabled
+                                                        placeholder="Upload Image" style="border: 2px solid #ced4da" />
+                                                      <span class="input-group-btn">
+                                                        <button class="upload-field btn btn-info" type="button">
+                                                          <i class="fa fa-search"></i> Browse
+                                                        </button>
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <p style="display: none" id="img_error_msg" class="alert alert-danger">
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </div> -->
+
+                                        <div class="linement" style="margin-top: 0px ;width:100%">
+                                          <label for="Category">Category</label>
+                                          <div class="form-group ">
+                                            <div class="col-sm-12 add-width">
+                                              <select style="background-color: white; border: 2px solid #ced4da;"
+                                                id="category" name="category">
+                                                <option value="Business">Business</option>
+                                                <option value="Entertainment">Entertainment</option>
+                                                <option value="Broadcast journalism">Broadcast journalism</option>
+                                                <option value="Sports">Sports</option>
+                                                <option value="International">International</option>
+                                                <option value="Lifestyle expos">Lifestyle expos</option>
+                                                <option value="Features">Features</option>
+                                                <option value="Journalistic beats">Journalistic beats</option>
+                                              </select>
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                          <div class="col-sm-12">
+                                            <label>Description</label>
+                                            <textarea id="description" name="description" class="form-control"
+                                              aria-hidden="true" required=""></textarea>
+                                          </div>
+                                        </div>
+                                      </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- /.content -->
+                </div>
+              </div>
+              <!--footer-->
+              <%- include('./include/footer'); %>
+            </div>
+        </div>
+    </div>
+  </body>
+  <style>
+    .form-group select {
+      width: 100% !important;
+      padding: 8px;
+      border: 1px solid #ced4da;
+      border-radius: 10px !important;
+    }
+
+    body {
+      font-family: Roboto;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .input-file {
+      visibility: hidden;
+      position: absolute;
+    }
+
+    button.upload-field.btn.btn-info {
+      padding-bottom: 5px;
+      margin-left: 4px;
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .input-group:not(.has-validation)>.form-control:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.form-control:not(:last-child),
+    .input-group:not(.has-validation)>.asColorPicker-input:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.asColorPicker-input:not(:last-child),
+    .dataTables_wrapper .input-group:not(.has-validation)>select:not(:last-child),
+    .dataTables_wrapper .asColorPicker-wrap:not(.has-validation)>select:not(:last-child),
+    .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>input:not(:last-child)[type="text"],
+    .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>input:not(:last-child)[type="text"],
+    .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>select:not(:last-child),
+    .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>select:not(:last-child),
+    .jsgrid .jsgrid-table .jsgrid-filter-row .input-group:not(.has-validation)>input:not(:last-child)[type="number"],
+    .jsgrid .jsgrid-table .jsgrid-filter-row .asColorPicker-wrap:not(.has-validation)>input:not(:last-child)[type="number"],
+    .select2-container--default .input-group:not(.has-validation)>.select2-selection--single:not(:last-child),
+    .select2-container--default .asColorPicker-wrap:not(.has-validation)>.select2-selection--single:not(:last-child),
+    .select2-container--default .select2-selection--single .input-group:not(.has-validation)>.select2-search__field:not(:last-child),
+    .select2-container--default .select2-selection--single .asColorPicker-wrap:not(.has-validation)>.select2-search__field:not(:last-child),
+    .input-group:not(.has-validation)>.typeahead:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.typeahead:not(:last-child),
+    .input-group:not(.has-validation)>.tt-query:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.tt-query:not(:last-child),
+    .input-group:not(.has-validation)>.tt-hint:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.tt-hint:not(:last-child),
+    .input-group:not(.has-validation)>.custom-select:not(:last-child),
+    .asColorPicker-wrap:not(.has-validation)>.custom-select:not(:last-child),
+    .input-group:not(.has-validation)>.custom-file:not(:last-child) .custom-file-label::after,
+    .asColorPicker-wrap:not(.has-validation)>.custom-file:not(:last-child) .custom-file-label::after {
+      background-color: white;
+    }
+  </style>
+
+  <script>
+    $(function () {
+      $("#addNews").validate({
+        errorPlacement: function (error, element) {
+          $(element)
+            .closest("form")
+            .find("label[for='" + element.attr("id") + "']")
+            .append(error);
+        },
+
+        errorElement: "span",
+        rules: {
+          title: {
+            required: true,
+            maxlength: 1000,
+          },
+
+          content: {
+            required: true,
+            maxlength: 5000,
+          },
+          description: {
+            required: true,
+            maxlength: 5000,
+          },
+
+
+          subTitle: {
+            required: true,
+            maxlength: 1000,
+          },
+
+        },
+        submitHandler: function () {
+          let formData = $("#addNews").serialize();
+          // let uidd = formData.split('&');
+          // let uidds = uidd[0].split('=');
+          // let uId = newsUuid[1];
+
+          $.ajax({
+            url: "/admin/insert-news",
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+            data: formData,
+            cache: false,
+            processData: false,
+            method: "POST",
+            type: "POST",
+
+            success: function (_res) {
+              let _id = _res.payload.newsUuid;
+              KWACHA_MAIN.uploadMultiple(_id);
+              $("#addNews").trigger("reset");
+
+              let successConfig = {
+                title: "Confirmation",
+                message: `Operation performed successfully.`,
+                type: "success",
+              };
+              KWACHA_MAIN.sweetAlert(successConfig);
+            },
+
+            error: function (e) {
+              $("#load").hide();
+              let responseText = JSON.parse(e.responseText);
+              let errorConfig = {
+                title: "Error",
+                message: responseText.message,
+                type: "error",
+              };
+              KWACHA_MAIN.sweetAlert(errorConfig);
+            },
+          });
+        },
+      });
+    });
+    KWACHA_MAIN.uploadMultiple = function (_id) {
+      if (document.getElementById("n_image")) {
+        if (typeof document.getElementById("n_image").files !== "undefined" && document.getElementById("n_image").files.length > 0) {
+          var formData = new FormData();
+          var files = document.getElementById("n_image").files;
+          console.log("Files received from frontend:", files);
+          for (var i = 0; i <= files.length; i++) {
+            formData.append("multiple", files[i]);
+          }
+          formData.append("newsUuid", _id);
+          $.ajax({
+            url: "/admin/upload-image",
+            data: formData,
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            method: "POST",
+            type: "POST",
+            success: function () {
+              $("#addNews").trigger("reset");
+            },
+            error: function (error) {
+              let message = error.responseJSON ? error.responseJSON.message : "Something Went wrong!";
+              KWACHA_MAIN.sweetAlert({ title: "Error", message: message, type: "error" });
+            },
+          });
+        }
+      }
+    };
+
+
+
+
+    $(document).on("click", ".upload-field", function () {
+      var file = $(this).parent().parent().parent().find(".input-file");
+      file.trigger("click");
+    });
+    $(document).on("change", ".input-file", function () {
+      $(this)
+        .parent()
+        .find(".form-control")
+        .val(
+          $(this)
+            .val()
+            .replace(/C:\\fakepath\\/i, "")
+        );
+    });
+  </script>
+
+  <script>
+    var editor = CKEDITOR.replace("description");
+    editor.on("change", function (evt) {
+      $("#hidden").val(evt.editor.getData());
+    });
+  </script>
+
+</html>

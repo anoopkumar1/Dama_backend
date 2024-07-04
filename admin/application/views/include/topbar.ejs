@@ -1,0 +1,87 @@
+<style>
+  .brand-logo-inner {
+    width: 110px;
+  }
+
+  .user-pic {
+    width: 40px;
+  }
+</style>
+<nav class="logo-navbar col-lg-12 col-12 p-0">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between w-100">
+      <div class="d-flex align-items-center gap-5">
+        <div class="text-center navbar-brand-outer d-flex align-items-center justify-content-center">
+          <a class="navbar-brand brand-logo" href="/">
+            <img src="theme/images/logo22.png" alt="logo" class="brand-logo-inner" />
+          </a>
+          <!-- <a class="navbar-brand brand-logo-mini" href="">
+          <img src="theme/images/logo22.png" alt="logo" /></a> -->
+        </div>
+        <button class="sidebar-toggle bg-transparent border-0 text-gray" onclick="toggleMenu()">
+          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-testid="MenuOpenOutlinedIcon" class="svg-icon icon-md" height="24" width="24" fill="currentColor"><path d="M3 18h13v-2H3v2zm0-5h10v-2H3v2zm0-7v2h13V6H3zm18 9.59L17.42 12 21 8.41 19.59 7l-5 5 5 5L21 15.59z"></path></svg>
+        </button>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-toggle="dropdown"
+              id="profileDropdown">
+              <img src="" alt="profile" id="userImageSrc" class="user-pic" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <div class="profile">
+                <a class="nav-link user-info" href="#">
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="https://demos.pixinvent.com/vuexy-html-admin-template/assets/img/avatars/1.png"
+                      alt="profile" id="userImageSrc" class="user-pic" />
+                    <div class="details">
+                      <span class="name">John Doe</span>
+                      <span class="username">admin</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="menu-listing">
+                <a class="dropdown-item" href="/admin/edit-profile">
+                  <i class="fas fa-user-edit fa-key text-primary"></i>
+                  Edit Profile
+                </a>
+                <a class="dropdown-item" href="/admin/changePassword">
+                  <i class="fa fa-duotone fa-key text-primary"></i>
+                  Change Password
+                </a>
+                <a class="dropdown-item" onclick="KWACHA_MAIN.userLogout()">
+                  <i class="ti-power-off text-primary"></i>
+                  Logout
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<script>
+  let image = localStorage.getItem("adminImage");
+  console.log(image, "sghfcddgshvgd");
+  let userImage = document.getElementById("userImageSrc");
+  if (image && image !== "" && image !== null && image !== undefined) {
+    console.log("if");
+    // let fullSource =
+    //   "https://allora-bucket.s3.eu-north-1.amazonaws.com/images/users-profile-images/" +
+    //   image;
+    userImage.src = image;
+  }
+  else {
+    let defaultSource =
+      "https://cdn.pixabay.com/photo/2014/03/25/16/32/user-297330_1280.png";
+    console.log(" else executed", defaultSource);
+    userImage.src = defaultSource;
+  }
+</script>
